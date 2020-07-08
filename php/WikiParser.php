@@ -11,7 +11,7 @@ class WikiParser
     /**
      * @return PreferenceVotes[]
      */
-    public function getPreferenceVotes(DOMDocument $doc, int $firstVoteIndex): array
+    public function getPreferenceVotes(DOMDocument $doc, int $firstVoteIndex, ?int $numPolls = null): array
     {
         $forms = $doc->getElementsByTagName('form');
         $index = -1;
@@ -38,6 +38,10 @@ class WikiParser
             }
 
             $rankedVotes[] = $this->getVoteInfo($table);
+
+            if ($numPolls !== null && $index === $firstVoteIndex + $numPolls - 1) {
+                break;
+            }
         }
 
         return $rankedVotes;
@@ -147,8 +151,14 @@ class WikiParser
         for ($i = 0; $i < $row->childNodes->count(); $i++) {
             $child = $row->childNodes->item($i);
 
-            if ($child->nodeName === 'th' && trim($child->textContent) === 'Count:') {
+            if ($child->nodeName === 'th' &&
+                (trim($child->textContent) === 'Count:' || trim($child->textContent) === 'Final result:')
+            ) {
                 return null; // tally row
+            }
+
+            if ($child->nodeName === 'td' && trim($child->textContent) === 'This poll has been closed.') {
+                return null; // poll closed row
             }
 
             if ($child->nodeName !== 'td') {
