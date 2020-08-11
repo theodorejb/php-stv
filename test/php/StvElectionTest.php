@@ -42,8 +42,10 @@ class StvElectionTest extends TestCase
                 new Vote('20', 4),
             ]),
             new PreferenceVotes('2nd preference', $candidates, [
+                // 2 second preferences for oranges
                 new Vote('5', 0),
                 new Vote('6', 0),
+                // 8 second preferences for strawberries
                 new Vote('7', 3),
                 new Vote('8', 3),
                 new Vote('9', 3),
@@ -52,6 +54,7 @@ class StvElectionTest extends TestCase
                 new Vote('12', 3),
                 new Vote('13', 3),
                 new Vote('14', 3),
+                // 4 second preferences for hamburgers
                 new Vote('15', 4),
                 new Vote('16', 4),
                 new Vote('17', 4),
@@ -60,10 +63,83 @@ class StvElectionTest extends TestCase
         ];
 
         $election = new StvElection($preferenceVotes, 3);
-        $this->assertSame(6, $election->getQuota());
+        $this->assertSame(6, $election->quota);
         $this->assertEmpty($election->invalidBallots);
+        $rounds = $election->runElection();
 
-        // todo: get object with elected candidates, rounds
-        // each round has tally for each candidate and any transfers/elections
+        // round 1
+        $firstRound = $rounds[0];
+        $this->assertEmpty($firstRound->eliminated);
+
+        $firstElected = $firstRound->elected[0];
+        $this->assertSame('Chocolate', $firstElected->name);
+        $this->assertSame(6, $firstElected->surplus);
+
+        $this->assertSame([
+            'Oranges' => 4,
+            'Pears' => 2,
+            'Chocolate' => 12,
+            'Strawberries' => 1,
+            'Hamburgers' => 1,
+        ], $firstRound->tally);
+
+        $this->assertEquals([
+            new CandidateCount('Strawberries', 4),
+            new CandidateCount('Hamburgers', 2),
+        ], $firstElected->transfers);
+
+        // round 2
+        $secondRound = $rounds[1];
+        $this->assertEmpty($secondRound->elected);
+
+        $this->assertEquals([
+            new CandidateCount('Pears', 2),
+        ], $secondRound->eliminated);
+
+        $this->assertSame([
+            'Oranges' => 4,
+            'Pears' => 2,
+            'Strawberries' => 5,
+            'Hamburgers' => 3,
+        ], $secondRound->tally);
+
+        // round 3
+        $thirdRound = $rounds[2];
+        $secondElected = $thirdRound->elected[0];
+        $this->assertSame('Oranges', $secondElected->name);
+        $this->assertSame(0, $secondElected->surplus);
+
+        $this->assertEmpty($thirdRound->eliminated);
+
+        $this->assertSame([
+            'Oranges' => 6,
+            'Strawberries' => 5,
+            'Hamburgers' => 3,
+        ], $thirdRound->tally);
+
+        // round 4
+        $fourthRound = $rounds[3];
+        $this->assertEmpty($fourthRound->elected);
+
+        $this->assertEquals([
+            new CandidateCount('Hamburgers', 3),
+        ], $fourthRound->eliminated);
+
+        $this->assertSame([
+            'Strawberries' => 5,
+            'Hamburgers' => 3,
+        ], $fourthRound->tally);
+
+        // round 5
+        $fifthRound = $rounds[4];
+        $thirdElected = $fifthRound->elected[0];
+        $this->assertSame('Strawberries', $thirdElected->name);
+        $this->assertSame(-1, $thirdElected->surplus);
+
+        $this->assertEmpty($thirdRound->eliminated);
+
+        $this->assertSame([
+            'Strawberries' => 5,
+        ], $fifthRound->tally);
     }
 }

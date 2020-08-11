@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PHP: rfc:shorter_attribute_syntax</title>
+
+  <meta name="generator" content="DokuWiki"/>
+<meta name="robots" content="noindex,nofollow"/>
+<meta name="keywords" content="rfc,shorter_attribute_syntax"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/lib/exe/opensearch.php" title="PHP Wiki"/>
+<link rel="start" href="/"/>
+<link rel="contents" href="/rfc/shorter_attribute_syntax?do=index" title="Sitemap"/>
+<link rel="manifest" href="/lib/exe/manifest.php"/>
+<link rel="alternate" type="application/rss+xml" title="Recent Changes" href="/feed.php"/>
+<link rel="alternate" type="application/rss+xml" title="Current namespace" href="/feed.php?mode=list&amp;ns=rfc"/>
+<link rel="alternate" type="text/html" title="Plain HTML" href="/_export/xhtml/rfc/shorter_attribute_syntax"/>
+<link rel="alternate" type="text/plain" title="Wiki Markup" href="/_export/raw/rfc/shorter_attribute_syntax"/>
+<link rel="canonical" href="https://wiki.php.net/rfc/shorter_attribute_syntax"/>
+<link rel="stylesheet" type="text/css" href="/lib/exe/css.php?t=phpnet&amp;tseed=bb98a79a04ccfbc5597904792b880cf8"/>
+<!--[if gte IE 9]><!-->
+<script type="text/javascript">/*<![CDATA[*/var NS='rfc';var JSINFO = {"id":"rfc:shorter_attribute_syntax","namespace":"rfc","ACT":"show","useHeadingNavigation":0,"useHeadingContent":0};
+/*!]]>*/</script>
+<script type="text/javascript" charset="utf-8" src="/lib/exe/jquery.php?tseed=23f888679b4f1dc26eef34902aca964f"></script>
+<script type="text/javascript" charset="utf-8" src="/lib/exe/js.php?t=phpnet&amp;tseed=bb98a79a04ccfbc5597904792b880cf8"></script>
+<!--<![endif]-->
+  <link media='all' rel='stylesheet' href='//shared.php.net/styles/defaults.css?filemtime=1506087205'/>
+  <link media='all' rel='stylesheet' href='//shared.php.net/styles/wiki.css?filemtime=1550435250'/>
+
+  <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic,600italic|Source+Code+Pro&amp;subset=latin,latin-ext" rel="stylesheet">
+  <link rel="shortcut icon" href="//php.net/favicon.ico">
+<!--[if lt IE 9]>
+  <script src="//shared.php.net/js/html5shiv.js"></script>
+<![endif]-->
+  </head>
+<body id="">
+
+<div class="wrap">
+<header class='clearfix'>
+  <div id="mainmenu-toggle-overlay"></div>
+  <input type="checkbox" id="mainmenu-toggle">
+  <nav class="fullscreen">
+    <div class="mainscreen">
+      <a href="/" class="home"><img src="//php.net/images/logo.php?" width="48" height="24" alt="php"><span class="subdomain"></span></a>
+      <ul>
+        <li><a href="?do=login">Login</a></li>
+        <li><a href="?do=register">Register</a></li>
+      </ul>
+    </div>
+    <div class="secondscreen">
+      <form method="get" action="/start">
+        <input type="search" placeholder="Search" name="id" class="search">
+        <input type="hidden" name="do" value="search">
+      </form>
+    </div>
+  </nav>
+</header>
+<div id="flash-message"></div>
+<nav id="megadropdown"></nav>
+
+<section class="fullscreen clearfix">
+
+
+
+<section id="breadcrumbs">
+<nav>
+<span class="bchead">You are here: </span><span class="home"><bdi><a href="/start" class="wikilink1" title="start">start</a></bdi></span> › <bdi><a href="/rfc" class="wikilink1" title="rfc">rfc</a></bdi> › <bdi><span class="curid"><a href="/rfc/shorter_attribute_syntax" class="wikilink1" title="rfc:shorter_attribute_syntax">shorter_attribute_syntax</a></span></bdi></nav>
+</section>
+<section class="mainscreen">
+    <!--[if lte IE 7 ]><div id="IE7"><![endif]--><!--[if IE 8 ]><div id="IE8"><![endif]-->
+    <div id="dokuwiki__site"><div id="dokuwiki__top" class="site dokuwiki mode_show tpl_phpnet     ">
+
+
+        <div class="wrapper group">
+
+            
+            <!-- ********** CONTENT ********** -->
+            <div id="dokuwiki__content"><div class="pad group">
+
+                <div class="pageId"><span>rfc:shorter_attribute_syntax</span></div>
+
+                <div class="page group">
+                                                            <!-- wikipage start -->
+                                        
+<h1 class="sectionedit1" id="php_rfcshorter_attribute_syntax">PHP RFC: Shorter Attribute Syntax</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> Date: 2020-06-03</div>
+</li>
+<li class="level1"><div class="li"> Author: Theodore Brown <a href="mailto:&#x74;&#x68;&#x65;&#x6f;&#x64;&#x6f;&#x72;&#x65;&#x6a;&#x62;&#x40;&#x6f;&#x75;&#x74;&#x6c;&#x6f;&#x6f;&#x6b;&#x2e;&#x63;&#x6f;&#x6d;" class="mail" title="&#x74;&#x68;&#x65;&#x6f;&#x64;&#x6f;&#x72;&#x65;&#x6a;&#x62;&#x40;&#x6f;&#x75;&#x74;&#x6c;&#x6f;&#x6f;&#x6b;&#x2e;&#x63;&#x6f;&#x6d;">&#x74;&#x68;&#x65;&#x6f;&#x64;&#x6f;&#x72;&#x65;&#x6a;&#x62;&#x40;&#x6f;&#x75;&#x74;&#x6c;&#x6f;&#x6f;&#x6b;&#x2e;&#x63;&#x6f;&#x6d;</a>, Martin Schröder</div>
+</li>
+<li class="level1"><div class="li"> Status: Accepted</div>
+</li>
+<li class="level1"><div class="li"> Discussion: <a href="https://externals.io/message/110355" class="urlextern" title="https://externals.io/message/110355" rel="nofollow">https://externals.io/message/110355</a></div>
+</li>
+<li class="level1"><div class="li"> Target Version: PHP 8.0</div>
+</li>
+<li class="level1"><div class="li"> Implementation for <code>@@</code>: <a href="https://github.com/koolkode/php-src/pull/7" class="urlextern" title="https://github.com/koolkode/php-src/pull/7" rel="nofollow">https://github.com/koolkode/php-src/pull/7</a></div>
+</li>
+<li class="level1"><div class="li"> Implementation for <code>#[]</code>: <a href="https://github.com/koolkode/php-src/pull/5" class="urlextern" title="https://github.com/koolkode/php-src/pull/5" rel="nofollow">https://github.com/koolkode/php-src/pull/5</a></div>
+</li>
+</ul>
+
+</div>
+
+<h2 class="sectionedit2" id="introduction">Introduction</h2>
+<div class="level2">
+
+<p>
+We propose to use <code>@@Attr</code> or <code>#[Attr]</code> as the attribute syntax in PHP 8.0 instead of <code>&lt;&lt;Attr&gt;&gt;</code>.
+</p>
+
+</div>
+
+<h3 class="sectionedit3" id="background">Background</h3>
+<div class="level3">
+
+<p>
+Early last month, the <a href="https://wiki.php.net/rfc/attributes_v2" class="urlextern" title="https://wiki.php.net/rfc/attributes_v2" rel="nofollow">Attributes v2</a> <abbr title="Request for Comments">RFC</abbr> was accepted for PHP 8.0. During voting there was a syntax choice between <code>&lt;&lt;Attr&gt;&gt;</code> and <code>@:Attr</code>, and the former was preferred by an approximately 3/4 majority.
+</p>
+
+<p>
+However, this syntax has several noteworthy shortcomings:
+</p>
+
+</div>
+
+<h3 class="sectionedit4" id="verbosity">1. Verbosity</h3>
+<div class="level3">
+
+<p>
+In this example from the <abbr title="Request for Comments">RFC</abbr>, there are more characters used for the <code>&lt;&lt;</code> and <code>&gt;&gt;</code> tokens than for the attribute name itself:
+</p>
+<pre class="code php"><span class="sy0">&lt;&lt;</span>Jit<span class="sy0">&gt;&gt;</span>
+<span class="kw2">function</span> foo<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span></pre>
+
+<p>
+Especially once more than one attribute needs to be added, the syntax can get quite noisy and difficult to read at a glance. To alleviate this, the <a href="https://wiki.php.net/rfc/attribute_amendments" class="urlextern" title="https://wiki.php.net/rfc/attribute_amendments" rel="nofollow">Attribute Amendments</a> <abbr title="Request for Comments">RFC</abbr> proposes to allow grouping multiple attributes between one pair of <code>&lt;&lt;</code> and <code>&gt;&gt;</code> tokens:
+</p>
+<pre class="code php"><span class="sy0">&lt;&lt;</span>Attr1<span class="br0">&#40;</span><span class="st0">&quot;foo&quot;</span><span class="br0">&#41;</span><span class="sy0">,</span>
+  Attr2<span class="br0">&#40;</span><span class="st0">&quot;bar&quot;</span><span class="br0">&#41;</span><span class="sy0">&gt;&gt;</span>
+<span class="kw2">public</span> <span class="kw2">function</span> test<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span></pre>
+
+<p>
+Unfortunately, this results in another problem: adding a new attribute at the start or end of the list, or removing one of the attributes, will require modifying multiple lines, which adds noise to diffs. Notably, the proposal does allow trailing commas, so the code could be written like this instead:
+</p>
+<pre class="code php"><span class="sy0">&lt;&lt;</span>
+  Attr1<span class="br0">&#40;</span><span class="st0">&quot;foo&quot;</span><span class="br0">&#41;</span><span class="sy0">,</span>
+  Attr2<span class="br0">&#40;</span><span class="st0">&quot;bar&quot;</span><span class="br0">&#41;</span><span class="sy0">,</span>
+<span class="sy0">&gt;&gt;</span>
+<span class="kw2">public</span> <span class="kw2">function</span> test<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span></pre>
+
+<p>
+But now two extra lines are needed for the <code>&lt;&lt;</code> and <code>&gt;&gt;</code> tokens, and multiple lines will likely still be modified when moving from one attribute to two attributes, or vice versa.
+</p>
+
+</div>
+
+<h3 class="sectionedit5" id="lack_of_nested_attributes">2. Lack of nested attributes</h3>
+<div class="level3">
+
+<p>
+Nested annotations are quite common in apps using Doctrine. Here&#039;s an example <a href="https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/association-mapping.html#mapping-defaults" class="urlextern" title="https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/association-mapping.html#mapping-defaults" rel="nofollow">from the documentation</a>:
+</p>
+<pre class="code">@JoinTable(
+    name=&quot;User_Group&quot;,
+    joinColumns={@JoinColumn(name=&quot;User_id&quot;, referencedColumnName=&quot;id&quot;)},
+    inverseJoinColumns={@JoinColumn(name=&quot;Group_id&quot;, referencedColumnName=&quot;id&quot;)}
+)</pre>
+
+<p>
+While nested attributes with the <code>&lt;&lt;&gt;&gt;</code> syntax should technically be possible, there was general agreement among the implementers that this approach crosses a line of unacceptable ugliness. For example:
+</p>
+<pre class="code php"><span class="sy0">&lt;&lt;</span>JoinTable<span class="br0">&#40;</span>
+    <span class="st0">&quot;User_Group&quot;</span><span class="sy0">,</span>
+    <span class="sy0">&lt;&lt;</span>JoinColumn<span class="br0">&#40;</span><span class="st0">&quot;User_id&quot;</span><span class="sy0">,</span> <span class="st0">&quot;id&quot;</span><span class="br0">&#41;</span><span class="sy0">&gt;&gt;,</span>
+    <span class="sy0">&lt;&lt;</span>JoinColumn<span class="br0">&#40;</span><span class="st0">&quot;Group_id&quot;</span><span class="sy0">,</span> <span class="st0">&quot;id&quot;</span><span class="br0">&#41;</span><span class="sy0">&gt;&gt;,</span>
+<span class="br0">&#41;</span><span class="sy0">&gt;&gt;</span>
+<span class="kw2">private</span> <span class="re0">$groups</span><span class="sy0">;</span></pre>
+
+<p>
+A somewhat more readable approach would be to allow <code>new Attr()</code> expressions for nested attributes:
+</p>
+<pre class="code php"><span class="sy0">&lt;&lt;</span>JoinTable<span class="br0">&#40;</span>
+    <span class="st0">&quot;User_Group&quot;</span><span class="sy0">,</span>
+    <span class="kw2">new</span> JoinColumn<span class="br0">&#40;</span><span class="st0">&quot;User_id&quot;</span><span class="sy0">,</span> <span class="st0">&quot;id&quot;</span><span class="br0">&#41;</span><span class="sy0">,</span>
+    <span class="kw2">new</span> JoinColumn<span class="br0">&#40;</span><span class="st0">&quot;Group_id&quot;</span><span class="sy0">,</span> <span class="st0">&quot;id&quot;</span><span class="br0">&#41;</span><span class="sy0">,</span>
+<span class="br0">&#41;</span><span class="sy0">&gt;&gt;</span>
+<span class="kw2">private</span> <span class="re0">$groups</span><span class="sy0">;</span></pre>
+
+<p>
+The downside of this is that it can lead to confusion about which expressions are supported (e.g. <code>new Foo()</code> would be allowed but <code>Foo::create()</code> wouldn&#039;t work). Furthermore, it turned out to be very difficult to implement this, and the feature was ultimately given up on since it would require a lot of changes to const expressions.
+</p>
+
+</div>
+
+<h3 class="sectionedit6" id="confusion_with_generics">3. Confusion with generics</h3>
+<div class="level3">
+
+<p>
+Although there isn&#039;t technically a conflict between the syntax for attributes and generics, once generics are supported in PHP it may be harder to tell at a glance where generics are being used as opposed to attributes.
+</p>
+
+</div>
+
+<h3 class="sectionedit7" id="confusion_with_shift_operators_and_const_arguments">4. Confusion with shift operators and const arguments</h3>
+<div class="level3">
+
+<p>
+Reusing shift tokens can make it difficult to tell if a line contains multiple attributes, or a shift operator in a constant expression:
+</p>
+<pre class="code php"><span class="sy0">&lt;&lt;</span>Bar<span class="br0">&#40;</span><span class="nu0">2</span> <span class="sy0">*</span> <span class="br0">&#40;</span><span class="nu0">3</span> <span class="sy0">+</span> <span class="nu0">3</span><span class="br0">&#41;</span><span class="sy0">&gt;&gt;</span>Baz<span class="sy0">,</span> <span class="br0">&#40;</span><span class="nu0">4</span> <span class="sy0">+</span> <span class="nu0">5</span><span class="br0">&#41;</span> <span class="sy0">*</span> <span class="nu0">2</span><span class="br0">&#41;</span><span class="sy0">&gt;&gt;</span>
+<span class="kw2">function</span> foo<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span></pre>
+
+<p>
+Of course, bit shifts will rarely be used in this context. However, for developers who are used to working with shift operators, reusing the same syntax to delineate attributes may still result in less readable code due to this association. Furthermore, if the grouped attribute proposal is accepted, there can be similar confusion between comma separated attributes and attribute arguments:
+</p>
+<pre class="code php"><span class="sy0">&lt;&lt;</span>Attr1<span class="br0">&#40;</span><span class="nu0">2</span> <span class="sy0">*</span> <span class="nu0">3</span> <span class="sy0">+</span> <span class="nu0">3</span><span class="br0">&#41;</span><span class="sy0">,</span> Bar<span class="br0">&#40;</span><span class="nu0">4</span> <span class="sy0">+</span> <span class="nu0">5</span> <span class="sy0">*</span> <span class="nu0">2</span><span class="br0">&#41;</span><span class="sy0">&gt;&gt;</span>
+<span class="sy0">&lt;&lt;</span>Attr2<span class="br0">&#40;</span><span class="nu0">2</span> <span class="sy0">*</span> <span class="br0">&#40;</span><span class="nu0">3</span> <span class="sy0">+</span> <span class="nu0">3</span><span class="br0">&#41;</span><span class="sy0">,</span> Baz<span class="sy0">,</span> <span class="br0">&#40;</span><span class="nu0">4</span> <span class="sy0">+</span> <span class="nu0">5</span><span class="br0">&#41;</span> <span class="sy0">*</span> <span class="nu0">2</span><span class="br0">&#41;</span><span class="sy0">&gt;&gt;</span>
+<span class="kw2">function</span> foo<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span></pre>
+
+</div>
+
+<h3 class="sectionedit8" id="dissimilarity_to_other_languages">5. Dissimilarity to other languages</h3>
+<div class="level3">
+
+<p>
+Most other languages in the C family use either <code>[Attr]</code> or <code>@Attr</code> for their attribute syntax, requiring just one or two characters, rather than four (see comparison further below).
+</p>
+
+</div>
+
+<h2 class="sectionedit9" id="proposal">Proposal</h2>
+<div class="level2">
+
+<p>
+Use <code>@@Attr</code> instead of <code>&lt;&lt;Attr&gt;&gt;</code> for the attribute syntax in PHP 8.0 (using a new <code>T_ATTRIBUTE</code> token).
+</p>
+
+<p>
+This solves each of the above issues. It requires half as many characters, reducing verbosity in line with most other languages that have attributes:
+</p>
+<pre class="code php"><span class="sy0">@@</span>Jit
+<span class="kw2">function</span> foo<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span></pre>
+
+<p>
+The <code>@@</code> syntax doesn&#039;t have any conflicts with nested attributes, so it will be straightforward to add support for them in the future if desired (without needing any special cases or changes to const expressions):
+</p>
+<pre class="code php"><span class="sy0">@@</span>JoinTable<span class="br0">&#40;</span>
+    <span class="st0">&quot;User_Group&quot;</span><span class="sy0">,</span>
+    <span class="sy0">@@</span>JoinColumn<span class="br0">&#40;</span><span class="st0">&quot;User_id&quot;</span><span class="sy0">,</span> <span class="st0">&quot;id&quot;</span><span class="br0">&#41;</span><span class="sy0">,</span>
+    <span class="sy0">@@</span>JoinColumn<span class="br0">&#40;</span><span class="st0">&quot;Group_id&quot;</span><span class="sy0">,</span> <span class="st0">&quot;id&quot;</span><span class="br0">&#41;</span><span class="sy0">,</span>
+<span class="br0">&#41;</span>
+<span class="kw2">private</span> <span class="re0">$groups</span><span class="sy0">;</span></pre>
+
+<p>
+The shorter syntax can also improve code readability by making it easier to tell at a glance where attributes are used as opposed to generics or shift operators. Lastly, it avoids the problem of needing to modify multiple lines when adding or removing a single attribute:
+</p>
+<pre class="code php"><span class="sy0">@@</span>Attr1<span class="br0">&#40;</span><span class="st0">&quot;foo&quot;</span><span class="br0">&#41;</span>
+<span class="sy0">@@</span>Attr2<span class="br0">&#40;</span><span class="st0">&quot;bar&quot;</span><span class="br0">&#41;</span> <span class="co1">// this line can be added or removed independent of other lines</span>
+<span class="kw2">public</span> <span class="kw2">function</span> test<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span></pre>
+
+<p>
+A small side benefit of the <code>@@</code> syntax is the ability to easily grep for attributes. Besides being used as a shift operator, <code>&lt;&lt;</code> also occurs in heredocs/nowdocs which would add noise to simple attribute searches.
+</p>
+
+</div>
+
+<h3 class="sectionedit10" id="additional_examples">Additional examples</h3>
+<div class="level3">
+
+<p>
+So far the <abbr title="Request for Comments">RFC</abbr> has shown attributes on functions, methods, and class properties. For completeness, here&#039;s how the proposed syntax looks with classes (or interfaces or traits), class constants, parameters, anonymous classes, and closures:
+</p>
+<pre class="code php"><span class="sy0">@@</span>ExampleAttribute
+<span class="kw2">class</span> Foo
+<span class="br0">&#123;</span>
+    <span class="sy0">@@</span>ExampleAttribute
+    <span class="kw2">public</span> <span class="kw2">const</span> FOO <span class="sy0">=</span> <span class="st_h">'foo'</span><span class="sy0">;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> foo<span class="br0">&#40;</span><span class="sy0">@@</span>ExampleAttribute Type <span class="re0">$bar</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="re0">$object</span> <span class="sy0">=</span> <span class="kw2">new</span> <span class="sy0">@@</span>ExampleAttribute <span class="kw2">class</span> <span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span><span class="sy0">;</span>
+&nbsp;
+<span class="re0">$f1</span> <span class="sy0">=</span> <span class="sy0">@@</span>ExampleAttribute <span class="kw2">function</span> <span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span><span class="sy0">;</span>
+&nbsp;
+<span class="re0">$f2</span> <span class="sy0">=</span> <span class="sy0">@@</span>ExampleAttribute fn<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">=&gt;</span> <span class="nu0">1</span><span class="sy0">;</span></pre>
+
+</div>
+
+<h2 class="sectionedit11" id="alternative_syntax">Alternative #[] syntax</h2>
+<div class="level2">
+
+<p>
+An alternative to using <code>@@Attr</code> would be to borrow the <code>#[attr]</code> syntax from Rust. This would have the benefit of reusing the same syntax as another language, and it is also potentially forwards compatible for single-line attributes. E.g. the following code could work with both PHP 7 and PHP 8 (the attribute is treated as a comment on PHP 7):
+</p>
+<pre class="code php"><span class="co2">#[Attribute]
+</span>final <span class="kw2">class</span> Covers <span class="br0">&#123;</span><span class="br0">&#125;</span></pre>
+
+<p>
+So with this syntax, in theory it would be possible for a library to support both native PHP 8 attributes and PHP 7 docblock annotations with the same code. E.g. PHPUnit could introduce a <code>Covers</code> attribute class which would also work in PHP 7 to encapsulate information from an <code>@covers</code> docblock annotation.
+</p>
+
+<p>
+However, this benefit would be lost as soon as a library wants to depend on any other PHP 8 features, and it will become irrelevant anyway once most users upgrade to PHP 8. With the <code>@@</code> syntax, libraries can still support both native attributes and docblock annotations, they just would need to use a different class (or a parent class) to encapsulate the docblock arguments on PHP 7.x.
+</p>
+
+</div>
+
+<h3 class="sectionedit12" id="downsides">Downsides</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Larger BC break than <code>@@</code> (see Backward Incompatible Changes section below).</div>
+</li>
+<li class="level1"><div class="li"> Slightly more verbose than <code>@@</code>, which works against one of the goals of this <abbr title="Request for Comments">RFC</abbr>.</div>
+</li>
+<li class="level1"><div class="li"> Arguably more difficult to type than <code>@@</code> on common qwerty keyboard layouts.</div>
+</li>
+<li class="level1"><div class="li"> Syntax may be confusing for some, since it looks more like a comment than the existing docblock annotations developers are familiar with.</div>
+</li>
+</ul>
+
+</div>
+
+<h3 class="sectionedit13" id="additional_examples_with">Additional examples with #[]</h3>
+<div class="level3">
+
+<p>
+Note: JavaScript syntax highlighting is used so <code>#</code> doesn&#039;t appear as a comment.
+</p>
+<pre class="code ecmascript">#<span class="br0">&#91;</span>Jit<span class="br0">&#93;</span>
+<span class="kw2">function</span> foo<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span>
+&nbsp;
+<span class="kw3">class</span> Foo
+<span class="br0">&#123;</span>
+    #<span class="br0">&#91;</span>ExampleAttribute<span class="br0">&#93;</span>
+    <span class="kw3">public</span> <span class="kw3">const</span> FOO <span class="sy0">=</span> <span class="st0">'foo'</span><span class="sy0">;</span>
+&nbsp;
+    <span class="co1">// with potential nesting in future</span>
+    #<span class="br0">&#91;</span>JoinTable<span class="br0">&#40;</span>
+        <span class="st0">&quot;User_Group&quot;</span><span class="sy0">,</span>
+        #JoinColumn<span class="br0">&#40;</span><span class="st0">&quot;User_id&quot;</span><span class="sy0">,</span> <span class="st0">&quot;id&quot;</span><span class="br0">&#41;</span><span class="sy0">,</span>
+        #JoinColumn<span class="br0">&#40;</span><span class="st0">&quot;Group_id&quot;</span><span class="sy0">,</span> <span class="st0">&quot;id&quot;</span><span class="br0">&#41;</span><span class="sy0">,</span>
+    <span class="br0">&#41;</span><span class="br0">&#93;</span>
+    <span class="kw3">private</span> $groups<span class="sy0">;</span>
+&nbsp;
+    #<span class="br0">&#91;</span>ExampleAttribute<span class="br0">&#93;</span>
+    <span class="kw3">public</span> <span class="kw2">function</span> foo<span class="br0">&#40;</span>#<span class="br0">&#91;</span>ExampleAttribute<span class="br0">&#93;</span> Type $bar<span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+$object <span class="sy0">=</span> <span class="kw2">new</span> #<span class="br0">&#91;</span>ExampleAttribute<span class="br0">&#93;</span> <span class="kw3">class</span> <span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span><span class="sy0">;</span>
+&nbsp;
+$f1 <span class="sy0">=</span> #<span class="br0">&#91;</span>ExampleAttribute<span class="br0">&#93;</span> <span class="kw2">function</span> <span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span><span class="sy0">;</span>
+&nbsp;
+$f2 <span class="sy0">=</span> #<span class="br0">&#91;</span>ExampleAttribute<span class="br0">&#93;</span> fn<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">=&gt;</span> <span class="nu0">1</span><span class="sy0">;</span></pre>
+
+</div>
+
+<h2 class="sectionedit14" id="discussion">Discussion</h2>
+<div class="level2">
+
+</div>
+
+<h3 class="sectionedit15" id="why_was_thesyntax_rejected">Why was the &quot;@:&quot; syntax rejected?</h3>
+<div class="level3">
+
+<p>
+One argument against it was that it is more prone to accidental typos like <code>@;</code>. Another reason that some people disliked it is that it&#039;s non-symmetrical, and thus doesn&#039;t fit well with existing PHP tokens. The <code>@@</code> syntax avoids both of these issues.
+</p>
+
+</div>
+
+<h3 class="sectionedit16" id="will_the_character_make_attributes_hard_to_read">Will the &quot;@&quot; character make attributes hard to read?</h3>
+<div class="level3">
+
+<p>
+It has been suggested that the <code>@</code> character could run into other wide characters like <code>M</code>, making attributes starting with that letter harder to read. However, in practice this hasn&#039;t been an issue for the many other languages that use the <code>@Attr</code> syntax. This concern is largely dependent on font choice and syntax highlighting.
+</p>
+
+</div>
+
+<h3 class="sectionedit17" id="will_the_lack_of_a_closing_delineator_make_inline_attributes_less_readable">Will the lack of a closing &gt;&gt; delineator make inline attributes less readable?</h3>
+<div class="level3">
+
+<p>
+There was a concern that it could be harder to tell where an inline attribute ends without a closing <code>&gt;&gt;</code> token. However, for inline class and function attributes, the <code>class</code>/<code>function</code> keyword already provides a clear delineator.
+</p>
+
+<p>
+For parameter attributes, this ends up being a bit subjective. Some see <code>&gt;&gt;</code> as clearly marking the end of an attribute, while others find that the <code>&gt;&gt;</code> looks like a shift operator at first glance which makes the syntax harder to read:
+</p>
+<pre class="code php"><span class="kw2">function</span> foo<span class="br0">&#40;</span>
+    <span class="sy0">&lt;&lt;</span>MyAttr<span class="br0">&#40;</span><span class="br0">&#91;</span><span class="nu0">1</span><span class="sy0">,</span> <span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">&gt;&gt;</span> Type <span class="re0">$myParam</span><span class="sy0">,</span>
+<span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">// vs.</span>
+&nbsp;
+<span class="kw2">function</span> foo<span class="br0">&#40;</span>
+    <span class="sy0">@@</span>MyAttr<span class="br0">&#40;</span><span class="br0">&#91;</span><span class="nu0">1</span><span class="sy0">,</span> <span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#41;</span> Type <span class="re0">$myParam</span><span class="sy0">,</span>
+<span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">// vs.</span>
+&nbsp;
+<span class="kw2">function</span> foo<span class="br0">&#40;</span>
+    <span class="co2">#[MyAttr([1, 2])] Type $myParam,
+</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span></pre>
+
+</div>
+
+<h3 class="sectionedit18" id="why_not_use_a_keyword_instead">Why not use a keyword instead?</h3>
+<div class="level3">
+
+<p>
+It has been suggested that a keyword be used instead of a symbol. E.g.
+</p>
+<pre class="code php">attribute Foo<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="kw2">function</span> myFunc<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span></pre>
+
+<p>
+However, the objective of this proposal is to arrive at a syntax that is less verbose and aligns better with the attribute syntax used in other common languages. Using a keyword doesn&#039;t meet either of these goals.
+</p>
+
+</div>
+
+<h3 class="sectionedit19" id="isn_t_the_syntax_choice_just_something_subjective_we_ll_get_used_to">Isn&#039;t the syntax choice just something subjective we&#039;ll get used to?</h3>
+<div class="level3">
+
+<p>
+To some extent this may be true. However, in this case we believe there are also objective shortcomings with using <code>&lt;&lt;&gt;&gt;</code> for attributes, which we have the opportunity to solve with a shorter syntax.
+</p>
+
+</div>
+
+<h2 class="sectionedit20" id="comparison_to_other_languages">Comparison to Other Languages</h2>
+<div class="level2">
+
+<p>
+Most other languages with attributes use a variant of <code>[Attr]</code> or <code>@Attr</code> for the syntax. Hack is the only language using <code>&lt;&lt;Attr&gt;&gt;</code>, but apparently they are migrating away from this to <code>@Attr</code> now that compatibility with PHP is no longer a goal.
+</p>
+<ul>
+<li class="level1"><div class="li"> C#: <code>[Attr]</code> <a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/" class="urlextern" title="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/" rel="nofollow">1</a></div>
+</li>
+<li class="level1"><div class="li"> C++: <code>[[attr]]</code> <a href="https://docs.microsoft.com/en-us/cpp/cpp/attributes?view=vs-2019" class="urlextern" title="https://docs.microsoft.com/en-us/cpp/cpp/attributes?view=vs-2019" rel="nofollow">2</a></div>
+</li>
+<li class="level1"><div class="li"> Hack: <code>&lt;&lt;Attr&gt;&gt;</code> <a href="https://docs.hhvm.com/hack/attributes/attribute-specification" class="urlextern" title="https://docs.hhvm.com/hack/attributes/attribute-specification" rel="nofollow">3</a> (but migrating to <code>@Attr</code>) <a href="https://github.com/facebook/hhvm/commit/a3f65737996e151ca2f25b3a335b89ef665c75cd" class="urlextern" title="https://github.com/facebook/hhvm/commit/a3f65737996e151ca2f25b3a335b89ef665c75cd" rel="nofollow">4</a></div>
+</li>
+<li class="level1"><div class="li"> Java: <code>@Attr</code> <a href="https://en.wikipedia.org/wiki/Java_annotation" class="urlextern" title="https://en.wikipedia.org/wiki/Java_annotation" rel="nofollow">5</a></div>
+</li>
+<li class="level1"><div class="li"> Kotlin: <code>@Attr</code> <a href="https://kotlinlang.org/docs/reference/annotations.html" class="urlextern" title="https://kotlinlang.org/docs/reference/annotations.html" rel="nofollow">6</a></div>
+</li>
+<li class="level1"><div class="li"> Python: <code>@attr</code> <a href="https://pythonbasics.org/decorators/" class="urlextern" title="https://pythonbasics.org/decorators/" rel="nofollow">7</a></div>
+</li>
+<li class="level1"><div class="li"> Rust: <code>#[attr]</code> <a href="https://doc.rust-lang.org/reference/attributes.html" class="urlextern" title="https://doc.rust-lang.org/reference/attributes.html" rel="nofollow">8</a></div>
+</li>
+<li class="level1"><div class="li"> Swift: <code>@attr</code> <a href="https://docs.swift.org/swift-book/ReferenceManual/Attributes.html" class="urlextern" title="https://docs.swift.org/swift-book/ReferenceManual/Attributes.html" rel="nofollow">9</a></div>
+</li>
+<li class="level1"><div class="li"> TypeScript/JS: <code>@Attr</code> <a href="https://www.typescriptlang.org/docs/handbook/decorators.html" class="urlextern" title="https://www.typescriptlang.org/docs/handbook/decorators.html" rel="nofollow">10</a></div>
+</li>
+</ul>
+
+</div>
+
+<h2 class="sectionedit21" id="backward_incompatible_changes">Backward Incompatible Changes</h2>
+<div class="level2">
+
+<p>
+In theory there is a small BC break for the <code>@@</code> syntax, since multiple error suppression operators can currently be added with no additional effect (e.g. <code>@@@@@really_suppress_me()</code>). However, this isn&#039;t useful for anything and is very unlikely to be used anywhere.
+</p>
+
+<p>
+The alternate <code>#[]</code> syntax presents a larger backwards compatibility break, since it would no longer be possible to begin a hash style comment with a left bracket:
+</p>
+<pre class="code php"><span class="co2">#[x] code like this would break
+</span><span class="re0">$val</span> <span class="sy0">=</span> <span class="br0">&#91;</span><span class="st_h">'new value'</span><span class="br0">&#93;</span><span class="sy0">;</span> <span class="co2">#['old value'];</span></pre>
+
+<p>
+While duplicate error suppression operators aren&#039;t useful, there is a use for comments starting with a left bracket (e.g. making checkboxes or commenting out an array). There is definitely code in the wild like this that would break. <a href="https://grep.app/search?q=%23%5B&amp;filter[lang][0]=PHP" class="urlextern" title="https://grep.app/search?q=%23%5B&amp;filter[lang][0]=PHP" rel="nofollow">11</a>
+</p>
+
+</div>
+
+<h2 class="sectionedit22" id="unaffected_functionality">Unaffected Functionality</h2>
+<div class="level2">
+
+<p>
+Attributes can still be applied to all the same places outlined in the <a href="https://wiki.php.net/rfc/attributes_v2" class="urlextern" title="https://wiki.php.net/rfc/attributes_v2" rel="nofollow">Attributes v2</a> <abbr title="Request for Comments">RFC</abbr>. Non-syntactical attribute functionality also remains unchanged (e.g. the reflection <abbr title="Application Programming Interface">API</abbr>).
+</p>
+
+<p>
+Finally, this proposal does not conflict with the <a href="https://wiki.php.net/rfc/attribute_amendments" class="urlextern" title="https://wiki.php.net/rfc/attribute_amendments" rel="nofollow">Attribute Amendments</a> <abbr title="Request for Comments">RFC</abbr>, with the exception that if the <code>@@</code> syntax is accepted, it will supersede the syntax for grouped attributes.
+</p>
+
+</div>
+
+<h2 class="sectionedit23" id="community_poll">Community Poll</h2>
+<div class="level2">
+
+<p>
+On June 10-13 there was a poll on Reddit to see which syntax the community prefers. <a href="https://www.reddit.com/r/PHP/comments/h06bra/community_poll_attribute_syntax/" class="urlextern" title="https://www.reddit.com/r/PHP/comments/h06bra/community_poll_attribute_syntax/" rel="nofollow">12</a>
+</p>
+
+<p>
+<code>@@</code> was the most popular, with 436 votes. <code>&lt;&lt;&gt;&gt;</code> came in second place, with 240 votes. <code>#[]</code> came in third place, with 159 votes.
+</p>
+
+</div>
+
+<h2 class="sectionedit24" id="vote">Vote</h2>
+<div class="level2">
+
+<p>
+Voting started on 2020-06-17 and ended on 2020-07-01.
+</p>
+
+</div>
+
+<h3 class="sectionedit25" id="primary_vote">Primary vote</h3>
+<div class="level3">
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__are_you_okay_with_re-voting_on_the_attribute_syntax_for_php_8.0" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="rfc:shorter_attribute_syntax" >
+<input type="hidden" name="formId" value="doodle__form__are_you_okay_with_re-voting_on_the_attribute_syntax_for_php_8.0" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="3">
+        Are you okay with re-voting on the attribute syntax for PHP 8.0?      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">Yes</td>
+        <td class="centeralign">No</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/alcaeus">alcaeus</a>&nbsp;(alcaeus)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 17:28"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/as">as</a>&nbsp;(as)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/27 22:05"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/asgrim">asgrim</a>&nbsp;(asgrim)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 12:47"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/23 22:04"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/beberlei">beberlei</a>&nbsp;(beberlei)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 05:38"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/bmajdak">bmajdak</a>&nbsp;(bmajdak)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 07:09"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/brzuchal">brzuchal</a>&nbsp;(brzuchal)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 16:16"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/bwoebi">bwoebi</a>&nbsp;(bwoebi)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/20 14:39"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/carusogabriel">carusogabriel</a>&nbsp;(carusogabriel)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 09:20"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/cpriest">cpriest</a>&nbsp;(cpriest)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/20 21:05"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/cschneid">cschneid</a>&nbsp;(cschneid)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 14:37"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/danack">danack</a>&nbsp;(danack)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/24 14:49"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/derick">derick</a>&nbsp;(derick)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 00:26"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/dragoonis">dragoonis</a>&nbsp;(dragoonis)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 10:28"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/duncan3dc">duncan3dc</a>&nbsp;(duncan3dc)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 15:27"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/duodraco">duodraco</a>&nbsp;(duodraco)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/25 17:39"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/galvao">galvao</a>&nbsp;(galvao)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 00:05"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/girgias">girgias</a>&nbsp;(girgias)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 08:36"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/guilhermeblanco">guilhermeblanco</a>&nbsp;(guilhermeblanco)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 03:25"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jasny">jasny</a>&nbsp;(jasny)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 09:44"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jbnahan">jbnahan</a>&nbsp;(jbnahan)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/20 09:31"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jhdxr">jhdxr</a>&nbsp;(jhdxr)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 05:17"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kguest">kguest</a>&nbsp;(kguest)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/22 09:12"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/klaussilveira">klaussilveira</a>&nbsp;(klaussilveira)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 14:00"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kocsismate">kocsismate</a>&nbsp;(kocsismate)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 08:48"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/lcobucci">lcobucci</a>&nbsp;(lcobucci)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 07:21"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/malukenho">malukenho</a>&nbsp;(malukenho)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/29 14:01"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/marandall">marandall</a>&nbsp;(marandall)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 13:47"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/marcio">marcio</a>&nbsp;(marcio)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 02:02"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mbeccati">mbeccati</a>&nbsp;(mbeccati)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 08:46"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mgocobachi">mgocobachi</a>&nbsp;(mgocobachi)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/07/01 17:59"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/nicolasgrekas">nicolasgrekas</a>&nbsp;(nicolasgrekas)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 08:39"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/nikic">nikic</a>&nbsp;(nikic)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 07:48"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ocramius">ocramius</a>&nbsp;(ocramius)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 10:06"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pajoye">pajoye</a>&nbsp;(pajoye)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 04:52"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/patrickallaert">patrickallaert</a>&nbsp;(patrickallaert)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/26 07:49"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pmjones">pmjones</a>&nbsp;(pmjones)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 11:54"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pollita">pollita</a>&nbsp;(pollita)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 14:58"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ralphschindler">ralphschindler</a>&nbsp;(ralphschindler)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 15:34"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ramsey">ramsey</a>&nbsp;(ramsey)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 15:23"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/reywob">reywob</a>&nbsp;(reywob)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 07:38"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/royopa">royopa</a>&nbsp;(royopa)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/26 00:44"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/salathe">salathe</a>&nbsp;(salathe)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 10:13"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sebastian">sebastian</a>&nbsp;(sebastian)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 05:21"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/seld">seld</a>&nbsp;(seld)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 12:45"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sergey">sergey</a>&nbsp;(sergey)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/23 13:09"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sirsnyder">sirsnyder</a>&nbsp;(sirsnyder)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 08:55"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/stas">stas</a>&nbsp;(stas)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 01:05"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/subjective">subjective</a>&nbsp;(subjective)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 10:59"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/svpernova09">svpernova09</a>&nbsp;(svpernova09)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 14:20"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/tandre">tandre</a>&nbsp;(tandre)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 13:37"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/theodorejb">theodorejb</a>&nbsp;(theodorejb)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 12:16"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/theseer">theseer</a>&nbsp;(theseer)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 07:33"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/tiffany">tiffany</a>&nbsp;(tiffany)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 11:46"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/trowski">trowski</a>&nbsp;(trowski)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/22 16:51"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/villfa">villfa</a>&nbsp;(villfa)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 14:53"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/weierophinney">weierophinney</a>&nbsp;(weierophinney)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/25 19:18"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/zimt">zimt</a>&nbsp;(zimt)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 07:36"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>50</b></th>
+        <th class="centeralign"><b>8</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="3">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+</div>
+
+<h3 class="sectionedit26" id="secondary_vote">Secondary vote</h3>
+<div class="level3">
+
+<p>
+This is a ranked-choice poll (following <a href="https://en.wikipedia.org/wiki/Single_transferable_vote#Example" class="urlextern" title="https://en.wikipedia.org/wiki/Single_transferable_vote#Example" rel="nofollow">STV</a>) between the <code>@@</code>, <code>#[]</code>, and <code>&lt;&lt;&gt;&gt;</code> syntax alternatives. You can vote <strong>three</strong> times, but make sure you select each syntax only once.
+</p>
+
+</div>
+
+<h4 id="first_choice">First choice</h4>
+<div class="level4">
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__attribute_syntax_choice_1" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="rfc:shorter_attribute_syntax" >
+<input type="hidden" name="formId" value="doodle__form__attribute_syntax_choice_1" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="4">
+        Attribute syntax choice #1      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">@@</td>
+        <td class="centeralign">#[]</td>
+        <td class="centeralign">&lt;&lt;&gt;&gt;</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ajf">ajf</a>&nbsp;(ajf)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 22:13"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/alcaeus">alcaeus</a>&nbsp;(alcaeus)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 17:28"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/as">as</a>&nbsp;(as)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/27 22:05"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/asgrim">asgrim</a>&nbsp;(asgrim)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 12:47"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/23 22:05"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/beberlei">beberlei</a>&nbsp;(beberlei)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 05:38"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/bmajdak">bmajdak</a>&nbsp;(bmajdak)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 07:10"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/brzuchal">brzuchal</a>&nbsp;(brzuchal)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 04:04"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/bwoebi">bwoebi</a>&nbsp;(bwoebi)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 08:16"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/carusogabriel">carusogabriel</a>&nbsp;(carusogabriel)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 09:20"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/cpriest">cpriest</a>&nbsp;(cpriest)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/20 21:06"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/cschneid">cschneid</a>&nbsp;(cschneid)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 14:38"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/danack">danack</a>&nbsp;(danack)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/24 14:49"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/derick">derick</a>&nbsp;(derick)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 00:29"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/dragoonis">dragoonis</a>&nbsp;(dragoonis)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 11:08"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/duncan3dc">duncan3dc</a>&nbsp;(duncan3dc)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 15:31"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/duodraco">duodraco</a>&nbsp;(duodraco)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/25 17:40"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/galvao">galvao</a>&nbsp;(galvao)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 00:06"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/girgias">girgias</a>&nbsp;(girgias)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 08:37"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/guilhermeblanco">guilhermeblanco</a>&nbsp;(guilhermeblanco)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 03:24"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jasny">jasny</a>&nbsp;(jasny)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 09:44"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jbnahan">jbnahan</a>&nbsp;(jbnahan)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/20 09:32"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jhdxr">jhdxr</a>&nbsp;(jhdxr)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 05:17"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kalle">kalle</a>&nbsp;(kalle)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 10:07"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kguest">kguest</a>&nbsp;(kguest)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/22 09:13"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/klaussilveira">klaussilveira</a>&nbsp;(klaussilveira)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 14:00"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kocsismate">kocsismate</a>&nbsp;(kocsismate)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 05:53"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/lcobucci">lcobucci</a>&nbsp;(lcobucci)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 07:22"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/levim">levim</a>&nbsp;(levim)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/07/01 21:36"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/malukenho">malukenho</a>&nbsp;(malukenho)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/29 14:01"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/marandall">marandall</a>&nbsp;(marandall)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 13:47"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/marcio">marcio</a>&nbsp;(marcio)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 02:02"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mbeccati">mbeccati</a>&nbsp;(mbeccati)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 08:52"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mcmic">mcmic</a>&nbsp;(mcmic)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/23 13:06"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mgocobachi">mgocobachi</a>&nbsp;(mgocobachi)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/07/01 18:04"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/nicolasgrekas">nicolasgrekas</a>&nbsp;(nicolasgrekas)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 08:40"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/nikic">nikic</a>&nbsp;(nikic)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 07:49"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ocramius">ocramius</a>&nbsp;(ocramius)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 10:05"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pmjones">pmjones</a>&nbsp;(pmjones)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 11:55"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pollita">pollita</a>&nbsp;(pollita)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 15:01"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ralphschindler">ralphschindler</a>&nbsp;(ralphschindler)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 15:35"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ramsey">ramsey</a>&nbsp;(ramsey)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 15:24"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/reywob">reywob</a>&nbsp;(reywob)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 07:43"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/salathe">salathe</a>&nbsp;(salathe)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 10:14"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sebastian">sebastian</a>&nbsp;(sebastian)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 05:22"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/seld">seld</a>&nbsp;(seld)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 12:46"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sergey">sergey</a>&nbsp;(sergey)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/23 13:10"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sirsnyder">sirsnyder</a>&nbsp;(sirsnyder)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 08:55"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sobak">sobak</a>&nbsp;(sobak)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 16:15"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sorin">sorin</a>&nbsp;(sorin)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 08:43"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/stas">stas</a>&nbsp;(stas)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 01:05"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/subjective">subjective</a>&nbsp;(subjective)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 10:59"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/svpernova09">svpernova09</a>&nbsp;(svpernova09)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 14:20"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/tandre">tandre</a>&nbsp;(tandre)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 13:37"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/theodorejb">theodorejb</a>&nbsp;(theodorejb)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 12:17"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/theseer">theseer</a>&nbsp;(theseer)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 07:35"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/tiffany">tiffany</a>&nbsp;(tiffany)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 11:46"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/trowski">trowski</a>&nbsp;(trowski)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/22 16:52"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/villfa">villfa</a>&nbsp;(villfa)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 14:54"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/weierophinney">weierophinney</a>&nbsp;(weierophinney)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/25 19:19"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/zimt">zimt</a>&nbsp;(zimt)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 07:37"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>33</b></th>
+        <th class="centeralign"><b>22</b></th>
+        <th class="centeralign"><b>6</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="4">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+</div>
+
+<h4 id="second_choice">Second choice</h4>
+<div class="level4">
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__attribute_syntax_choice_2" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="rfc:shorter_attribute_syntax" >
+<input type="hidden" name="formId" value="doodle__form__attribute_syntax_choice_2" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="4">
+        Attribute syntax choice #2      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">@@</td>
+        <td class="centeralign">#[]</td>
+        <td class="centeralign">&lt;&lt;&gt;&gt;</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ajf">ajf</a>&nbsp;(ajf)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 22:14"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/alcaeus">alcaeus</a>&nbsp;(alcaeus)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 17:28"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/as">as</a>&nbsp;(as)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/27 22:06"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/asgrim">asgrim</a>&nbsp;(asgrim)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 12:47"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/23 22:05"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/beberlei">beberlei</a>&nbsp;(beberlei)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 05:39"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/bmajdak">bmajdak</a>&nbsp;(bmajdak)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 07:10"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/brzuchal">brzuchal</a>&nbsp;(brzuchal)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 04:05"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/bwoebi">bwoebi</a>&nbsp;(bwoebi)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 08:16"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/carusogabriel">carusogabriel</a>&nbsp;(carusogabriel)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 09:20"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/cpriest">cpriest</a>&nbsp;(cpriest)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/20 21:07"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/cschneid">cschneid</a>&nbsp;(cschneid)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 14:38"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/danack">danack</a>&nbsp;(danack)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/24 14:50"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/derick">derick</a>&nbsp;(derick)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 00:29"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/dragoonis">dragoonis</a>&nbsp;(dragoonis)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 20:47"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/duncan3dc">duncan3dc</a>&nbsp;(duncan3dc)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 15:32"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/duodraco">duodraco</a>&nbsp;(duodraco)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/25 17:40"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/galvao">galvao</a>&nbsp;(galvao)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 00:06"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/girgias">girgias</a>&nbsp;(girgias)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 08:37"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/guilhermeblanco">guilhermeblanco</a>&nbsp;(guilhermeblanco)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 03:24"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jasny">jasny</a>&nbsp;(jasny)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 09:45"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jbnahan">jbnahan</a>&nbsp;(jbnahan)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/20 09:32"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jhdxr">jhdxr</a>&nbsp;(jhdxr)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 05:17"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kalle">kalle</a>&nbsp;(kalle)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 10:07"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kguest">kguest</a>&nbsp;(kguest)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/22 09:13"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kocsismate">kocsismate</a>&nbsp;(kocsismate)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 05:54"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/lcobucci">lcobucci</a>&nbsp;(lcobucci)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 07:22"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/levim">levim</a>&nbsp;(levim)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/07/01 21:37"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/malukenho">malukenho</a>&nbsp;(malukenho)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/29 14:02"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/marandall">marandall</a>&nbsp;(marandall)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 13:47"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/marcio">marcio</a>&nbsp;(marcio)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 02:03"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mbeccati">mbeccati</a>&nbsp;(mbeccati)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/22 16:21"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mcmic">mcmic</a>&nbsp;(mcmic)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/23 13:07"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mgocobachi">mgocobachi</a>&nbsp;(mgocobachi)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/07/01 18:04"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/nicolasgrekas">nicolasgrekas</a>&nbsp;(nicolasgrekas)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 08:40"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/nikic">nikic</a>&nbsp;(nikic)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 14:52"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ocramius">ocramius</a>&nbsp;(ocramius)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 10:05"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pmjones">pmjones</a>&nbsp;(pmjones)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 11:56"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pollita">pollita</a>&nbsp;(pollita)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 15:01"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ralphschindler">ralphschindler</a>&nbsp;(ralphschindler)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 15:37"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ramsey">ramsey</a>&nbsp;(ramsey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 15:24"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/reywob">reywob</a>&nbsp;(reywob)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 07:43"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/salathe">salathe</a>&nbsp;(salathe)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 10:14"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sebastian">sebastian</a>&nbsp;(sebastian)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 05:23"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/seld">seld</a>&nbsp;(seld)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 12:46"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sergey">sergey</a>&nbsp;(sergey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/07/01 08:58"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sirsnyder">sirsnyder</a>&nbsp;(sirsnyder)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 08:56"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sorin">sorin</a>&nbsp;(sorin)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 09:26"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/stas">stas</a>&nbsp;(stas)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 01:05"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/subjective">subjective</a>&nbsp;(subjective)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 10:59"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/svpernova09">svpernova09</a>&nbsp;(svpernova09)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 14:21"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/tandre">tandre</a>&nbsp;(tandre)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 13:37"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/theodorejb">theodorejb</a>&nbsp;(theodorejb)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 12:17"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/theseer">theseer</a>&nbsp;(theseer)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 07:35"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/tiffany">tiffany</a>&nbsp;(tiffany)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 11:46"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/trowski">trowski</a>&nbsp;(trowski)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/22 16:53"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/villfa">villfa</a>&nbsp;(villfa)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 14:54"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/weierophinney">weierophinney</a>&nbsp;(weierophinney)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/25 19:19"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/zimt">zimt</a>&nbsp;(zimt)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 07:37"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>12</b></th>
+        <th class="centeralign"><b>19</b></th>
+        <th class="centeralign"><b>28</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="4">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+</div>
+
+<h4 id="third_choice">Third choice</h4>
+<div class="level4">
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__attribute_syntax_choice_3" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="rfc:shorter_attribute_syntax" >
+<input type="hidden" name="formId" value="doodle__form__attribute_syntax_choice_3" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="4">
+        Attribute syntax choice #3      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">@@</td>
+        <td class="centeralign">#[]</td>
+        <td class="centeralign">&lt;&lt;&gt;&gt;</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ajf">ajf</a>&nbsp;(ajf)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 22:14"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/alcaeus">alcaeus</a>&nbsp;(alcaeus)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 17:29"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/as">as</a>&nbsp;(as)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/27 22:06"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/asgrim">asgrim</a>&nbsp;(asgrim)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 12:47"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/23 22:05"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/beberlei">beberlei</a>&nbsp;(beberlei)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 05:39"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/bmajdak">bmajdak</a>&nbsp;(bmajdak)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 07:11"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/brzuchal">brzuchal</a>&nbsp;(brzuchal)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/30 04:26"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/bwoebi">bwoebi</a>&nbsp;(bwoebi)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 08:16"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/carusogabriel">carusogabriel</a>&nbsp;(carusogabriel)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 09:20"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/cpriest">cpriest</a>&nbsp;(cpriest)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/20 21:07"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/cschneid">cschneid</a>&nbsp;(cschneid)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 14:38"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/derick">derick</a>&nbsp;(derick)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 00:29"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/dragoonis">dragoonis</a>&nbsp;(dragoonis)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 20:47"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/duncan3dc">duncan3dc</a>&nbsp;(duncan3dc)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 15:32"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/duodraco">duodraco</a>&nbsp;(duodraco)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/25 17:41"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/galvao">galvao</a>&nbsp;(galvao)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 00:07"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/guilhermeblanco">guilhermeblanco</a>&nbsp;(guilhermeblanco)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 03:24"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jasny">jasny</a>&nbsp;(jasny)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 09:40"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jbnahan">jbnahan</a>&nbsp;(jbnahan)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/20 09:33"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jhdxr">jhdxr</a>&nbsp;(jhdxr)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 05:17"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kalle">kalle</a>&nbsp;(kalle)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 10:08"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kguest">kguest</a>&nbsp;(kguest)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/30 11:45"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kocsismate">kocsismate</a>&nbsp;(kocsismate)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 05:54"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/lcobucci">lcobucci</a>&nbsp;(lcobucci)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 07:22"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/levim">levim</a>&nbsp;(levim)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/07/01 21:38"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/malukenho">malukenho</a>&nbsp;(malukenho)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/29 14:02"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/marcio">marcio</a>&nbsp;(marcio)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 02:03"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mbeccati">mbeccati</a>&nbsp;(mbeccati)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 08:53"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mcmic">mcmic</a>&nbsp;(mcmic)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/23 13:07"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mgocobachi">mgocobachi</a>&nbsp;(mgocobachi)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/07/01 18:04"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/nicolasgrekas">nicolasgrekas</a>&nbsp;(nicolasgrekas)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 08:40"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/nikic">nikic</a>&nbsp;(nikic)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 14:52"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ocramius">ocramius</a>&nbsp;(ocramius)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 10:05"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pajoye">pajoye</a>&nbsp;(pajoye)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 04:53"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pmjones">pmjones</a>&nbsp;(pmjones)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 11:55"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pollita">pollita</a>&nbsp;(pollita)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 15:01"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ralphschindler">ralphschindler</a>&nbsp;(ralphschindler)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 15:37"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ramsey">ramsey</a>&nbsp;(ramsey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 15:24"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/salathe">salathe</a>&nbsp;(salathe)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 10:15"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sebastian">sebastian</a>&nbsp;(sebastian)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 12:48"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/seld">seld</a>&nbsp;(seld)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 12:46"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sergey">sergey</a>&nbsp;(sergey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/07/01 08:58"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sirsnyder">sirsnyder</a>&nbsp;(sirsnyder)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 08:56"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sorin">sorin</a>&nbsp;(sorin)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 09:28"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/stas">stas</a>&nbsp;(stas)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 01:05"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/subjective">subjective</a>&nbsp;(subjective)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 10:59"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/svpernova09">svpernova09</a>&nbsp;(svpernova09)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 14:21"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/tandre">tandre</a>&nbsp;(tandre)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 13:37"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/theodorejb">theodorejb</a>&nbsp;(theodorejb)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 12:18"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/theseer">theseer</a>&nbsp;(theseer)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 07:36"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/tiffany">tiffany</a>&nbsp;(tiffany)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 11:46"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/trowski">trowski</a>&nbsp;(trowski)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/22 16:53"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/villfa">villfa</a>&nbsp;(villfa)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/18 14:54"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/weierophinney">weierophinney</a>&nbsp;(weierophinney)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/25 19:19"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/zimt">zimt</a>&nbsp;(zimt)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/06/19 07:38"></td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>12</b></th>
+        <th class="centeralign"><b>19</b></th>
+        <th class="centeralign"><b>25</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="4">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+</div>
+
+<h2 class="sectionedit27" id="references">References</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Previous discussion about nested attributes: <a href="https://externals.io/message/108907#109623" class="urlextern" title="https://externals.io/message/108907#109623" rel="nofollow">https://externals.io/message/108907#109623</a> and <a href="https://externals.io/message/108907#109688" class="urlextern" title="https://externals.io/message/108907#109688" rel="nofollow">https://externals.io/message/108907#109688</a></div>
+</li>
+<li class="level1"><div class="li"> Previous comments in favor of <code>@@</code>: <a href="https://externals.io/message/109713#109742" class="urlextern" title="https://externals.io/message/109713#109742" rel="nofollow">https://externals.io/message/109713#109742</a></div>
+</li>
+</ul>
+
+</div>
+
+<h2 class="sectionedit28" id="changelog">Changelog</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> 2020-06-09 - Added <code>#[Attr]</code> syntax alternative with ranked-choice vote.</div>
+</li>
+<li class="level1"><div class="li"> 2020-06-16 - Summarized community poll and moved alternative syntax proposal before discussion section.</div>
+</li>
+</ul>
+
+</div>
+
+                    <!-- wikipage stop -->
+                                    </div>
+
+                <div class="docInfo"><bdi>rfc/shorter_attribute_syntax.txt</bdi> · Last modified: 2020/07/02 00:01 by <bdi>theodorejb</bdi></div>
+
+                            </div></div><!-- /content -->
+
+            <hr class="a11y" />
+
+            <!-- PAGE ACTIONS -->
+            <div id="dokuwiki__pagetools">
+                <h3 class="a11y">Page Tools</h3>
+                <div class="tools">
+                    <ul>
+                        <li><a href="/rfc/shorter_attribute_syntax?do=edit"  class="action source" accesskey="v" rel="nofollow" title="Show pagesource [V]"><span>Show pagesource</span></a></li><li><a href="/rfc/shorter_attribute_syntax?do=revisions"  class="action revs" accesskey="o" rel="nofollow" title="Old revisions [O]"><span>Old revisions</span></a></li><li><a href="/rfc/shorter_attribute_syntax?do=backlink"  class="action backlink" rel="nofollow" title="Backlinks"><span>Backlinks</span></a></li><li><a href="#dokuwiki__top"  class="action top" accesskey="t" rel="nofollow" title="Back to top [T]"><span>Back to top</span></a></li>                    </ul>
+                </div>
+            </div>
+        </div><!-- /wrapper -->
+
+    </div></div><!-- /site -->
+
+    <div class="no"><img src="/lib/exe/indexer.php?id=rfc%3Ashorter_attribute_syntax&amp;1593648104" width="2" height="1" alt="" /></div>
+    <div id="screen__mode" class="no"></div>    <!--[if ( lte IE 7 | IE 8 ) ]></div><![endif]-->
+</section>
+
+﻿<section class="secondscreen">
+  <!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#php_rfcshorter_attribute_syntax">PHP RFC: Shorter Attribute Syntax</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#introduction">Introduction</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#background">Background</a></div></li>
+<li class="level3"><div class="li"><a href="#verbosity">1. Verbosity</a></div></li>
+<li class="level3"><div class="li"><a href="#lack_of_nested_attributes">2. Lack of nested attributes</a></div></li>
+<li class="level3"><div class="li"><a href="#confusion_with_generics">3. Confusion with generics</a></div></li>
+<li class="level3"><div class="li"><a href="#confusion_with_shift_operators_and_const_arguments">4. Confusion with shift operators and const arguments</a></div></li>
+<li class="level3"><div class="li"><a href="#dissimilarity_to_other_languages">5. Dissimilarity to other languages</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#proposal">Proposal</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#additional_examples">Additional examples</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#alternative_syntax">Alternative #[] syntax</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#downsides">Downsides</a></div></li>
+<li class="level3"><div class="li"><a href="#additional_examples_with">Additional examples with #[]</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#discussion">Discussion</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#why_was_thesyntax_rejected">Why was the &quot;@:&quot; syntax rejected?</a></div></li>
+<li class="level3"><div class="li"><a href="#will_the_character_make_attributes_hard_to_read">Will the &quot;@&quot; character make attributes hard to read?</a></div></li>
+<li class="level3"><div class="li"><a href="#will_the_lack_of_a_closing_delineator_make_inline_attributes_less_readable">Will the lack of a closing &gt;&gt; delineator make inline attributes less readable?</a></div></li>
+<li class="level3"><div class="li"><a href="#why_not_use_a_keyword_instead">Why not use a keyword instead?</a></div></li>
+<li class="level3"><div class="li"><a href="#isn_t_the_syntax_choice_just_something_subjective_we_ll_get_used_to">Isn&#039;t the syntax choice just something subjective we&#039;ll get used to?</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#comparison_to_other_languages">Comparison to Other Languages</a></div></li>
+<li class="level2"><div class="li"><a href="#backward_incompatible_changes">Backward Incompatible Changes</a></div></li>
+<li class="level2"><div class="li"><a href="#unaffected_functionality">Unaffected Functionality</a></div></li>
+<li class="level2"><div class="li"><a href="#community_poll">Community Poll</a></div></li>
+<li class="level2"><div class="li"><a href="#vote">Vote</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#primary_vote">Primary vote</a></div></li>
+<li class="level3"><div class="li"><a href="#secondary_vote">Secondary vote</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#references">References</a></div></li>
+<li class="level2"><div class="li"><a href="#changelog">Changelog</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+</section>
+</section><!-- .fullscreen -->
+<footer>
+  <nav class="fullscreen">
+    <ul>
+      <li><a href="//php.net/copyright">Copyright © 2001-2020 The PHP Group</a></li>
+      <li><a href="//php.net/sites">Other PHP.net sites</a></li>
+      <li><a href="//php.net/privacy">Privacy policy</a></li>
+    </ul>
+  </nav>
+</footer>
+
+</div><!-- .wrap -->
+</body>
+</html>
