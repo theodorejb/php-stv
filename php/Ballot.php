@@ -8,10 +8,14 @@ class Ballot
 {
     /** null if a redistributed vote */
     public ?string $name;
+
     /** @var string[] */
     public array $rankedChoices;
     public int $selectedChoice;
 
+    /**
+     * @param string[] $rankedChoices
+     */
     public function __construct(?string $name, array $rankedChoices, int $selectedChoice = 0)
     {
         if (!isset($rankedChoices[0])) {

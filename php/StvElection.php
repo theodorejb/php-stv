@@ -9,13 +9,21 @@ use Exception;
 class StvElection
 {
     public int $seats;
+    public int $quota;
+
+    /** @var string[] */
     public array $candidates;
+
+    /**
+     * @var array<string, string[]>
+     */
     public array $allBallots;
+
     /** @var Ballot[] */
     public array $validBallots;
+
     /** @var Ballot[] */
     public array $invalidBallots;
-    public int $quota;
 
     /**
      * @param PreferenceVotes[] $preferenceVotes
@@ -103,23 +111,19 @@ class StvElection
             }
 
             foreach ($rankedVote->votes as $vote) {
-                /*if ($idx !== 0 && isset($this->allBallots[$vote->username]) && !isset($this->allBallots[$vote->username][$idx - 1])) {
-                    throw new Exception("Gap in vote for user {$vote->username}");
-                }*/
-
                 $this->allBallots[$vote->username][] = $this->candidates[$vote->candidateIndex];
             }
         }
 
-        $this->setValidBallots($this->allBallots);
+        $this->setValidBallots();
     }
 
-    private function setValidBallots(array $ballots)
+    private function setValidBallots(): void
     {
         $this->validBallots = [];
         $this->invalidBallots = [];
 
-        foreach ($ballots as $username => $ballot) {
+        foreach ($this->allBallots as $username => $ballot) {
             $unique = [];
             $isValid = true;
 

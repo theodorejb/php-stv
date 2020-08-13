@@ -11,6 +11,8 @@ class ElectionRound
     /** @var Ballot[] */
     public array $ballots;
     private array $eliminatedKeys;
+
+    /** @var array<string, int> */
     public array $tally;
     private StvElection $election;
 
@@ -134,8 +136,10 @@ class ElectionRound
     {
         $tallyCopy = $this->tally;
         asort($tallyCopy);
+        $firstKey = array_key_first($tallyCopy);
+        assert($firstKey !== null);
 
-        $fewestVotes = $tallyCopy[array_key_first($tallyCopy)];
+        $fewestVotes = $tallyCopy[$firstKey];
         $candidates = [];
 
         foreach ($tallyCopy as $candidate => $count) {
@@ -149,6 +153,9 @@ class ElectionRound
         return $candidates;
     }
 
+    /**
+     * @return array<string, int>
+     */
     private function getNextPreferenceTally(string $candidate): array
     {
         $tally = [];

@@ -12,6 +12,10 @@ class PreferenceVotes
     /** @var Vote[] */
     public array $votes;
 
+    /**
+     * @param string[] $candidates
+     * @param Vote[] $votes
+     */
     public function __construct(string $name, array $candidates, array $votes)
     {
         $this->name = $name;

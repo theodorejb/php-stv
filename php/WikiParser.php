@@ -95,7 +95,9 @@ class WikiParser
             }
 
             if ($row->hasAttributes()) {
-                $classAttr = $row->attributes->getNamedItem('class');
+                /** @var \DOMNamedNodeMap $attributes */
+                $attributes = $row->attributes;
+                $classAttr = $attributes->getNamedItem('class');
 
                 if (!$classAttr) {
                     throw new Exception('Missing class attribute for row');
@@ -128,6 +130,9 @@ class WikiParser
         return new PreferenceVotes($name, $candidates, $votes);
     }
 
+    /**
+     * @return string[]
+     */
     public function getCandidates(DOMNode $row): array
     {
         $candidates = [];
