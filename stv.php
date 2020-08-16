@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use theodorejb\PhpStv\{ElectionRound, StvElection, WikiParser};
+use theodorejb\PhpStv\{StvElection, WikiParser};
 
 require 'vendor/autoload.php';
 
@@ -33,7 +33,7 @@ libxml_use_internal_errors(false);
 
 $parser = new WikiParser();
 $preferenceVotes = $parser->getPreferenceVotes($doc, $firstVoteIndex, $numPreferences);
-$election = new StvElection($preferenceVotes, $seats);
+$election = new StvElection($preferenceVotes, $seats, true);
 
 echo PHP_EOL;
 echo 'Candidates (in order of ballot):' . PHP_EOL;
@@ -43,7 +43,7 @@ $invalidBallotCount = count($election->invalidBallots);
 $index = $invalidBallotCount * -1;
 
 if ($invalidBallotCount > 0) {
-    echo $invalidBallotCount . ' invalid ballots were discarded:' . PHP_EOL;
+    echo $invalidBallotCount . ' invalid ballots:' . PHP_EOL;
     foreach ($election->invalidBallots as $ballot) {
         $index++;
         echo "{$ballot->name}:   ";

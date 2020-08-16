@@ -28,10 +28,10 @@ class StvElection
     /**
      * @param PreferenceVotes[] $preferenceVotes
      */
-    public function __construct(array $preferenceVotes, int $seats)
+    public function __construct(array $preferenceVotes, int $seats, bool $keepInvalidBallots = false)
     {
         $this->seats = $seats;
-        $this->setBallots($preferenceVotes);
+        $this->setBallots($preferenceVotes, $keepInvalidBallots);
 
         $votesCast = count($this->validBallots);
         // Droop quota formula
@@ -94,7 +94,7 @@ class StvElection
     /**
      * @param PreferenceVotes[] $preferenceVotes
      */
-    private function setBallots(array $preferenceVotes): void
+    private function setBallots(array $preferenceVotes, bool $keepInvalidBallots): void
     {
         if (count($preferenceVotes) === 0) {
             throw new Exception('Failed to find any votes');
@@ -115,10 +115,10 @@ class StvElection
             }
         }
 
-        $this->setValidBallots();
+        $this->setValidBallots($keepInvalidBallots);
     }
 
-    private function setValidBallots(): void
+    private function setValidBallots(bool $keepInvalidBallots): void
     {
         $this->validBallots = [];
         $this->invalidBallots = [];
@@ -136,9 +136,12 @@ class StvElection
                 $unique[$preference] = true;
             }
 
-            if ($isValid) {
-                $this->validBallots[] = new Ballot((string) $username, $ballot);
-            } else {
+            if ($isValid || $keepInvalidBallots) {
+                // if invalid, only include preferences prior to duplicate
+                $this->validBallots[] = new Ballot((string) $username, array_keys($unique));
+            }
+
+            if (!$isValid) {
                 $this->invalidBallots[] = new Ballot((string) $username, $ballot);
             }
         }
