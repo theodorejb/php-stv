@@ -86,7 +86,7 @@
 <h1 class="sectionedit1" id="php_rfcshorter_attribute_syntax_change">PHP RFC: Shorter Attribute Syntax Change</h1>
 <div class="level1">
 <ul>
-<li class="level1"><div class="li"> Version: 0.3</div>
+<li class="level1"><div class="li"> Version: 0.4</div>
 </li>
 <li class="level1"><div class="li"> Date: 2020-08-04</div>
 </li>
@@ -156,7 +156,7 @@ Pick the <strong>best</strong> syntax from the following options, taking into ac
 		<td class="col0 leftalign"> Target                                        </td><td class="col1 leftalign"> 8.0    </td><td class="col2 leftalign"> 8.0     </td><td class="col3 leftalign"> 8.0     </td><td class="col4 leftalign"> 8.0      </td>
 	</tr>
 	<tr class="row11">
-		<td class="col0 leftalign"> Patch                                         </td><td class="col1 leftalign"> -      </td><td class="col2 leftalign">         </td><td class="col3"> <a href="https://github.com/php/php-src/pull/5928" class="urlextern" title="https://github.com/php/php-src/pull/5928" rel="nofollow">patch</a> </td><td class="col4"> </td>
+		<td class="col0 leftalign"> Patch                                         </td><td class="col1 leftalign"> -      </td><td class="col2"> <a href="https://github.com/php/php-src/pull/5989" class="urlextern" title="https://github.com/php/php-src/pull/5989" rel="nofollow">patch</a> </td><td class="col3"> <a href="https://github.com/php/php-src/pull/5928" class="urlextern" title="https://github.com/php/php-src/pull/5928" rel="nofollow">patch</a> </td><td class="col4"> </td>
 	</tr>
 </table></div>
 
@@ -250,7 +250,215 @@ All syntaxes side by side in order of the table above. Syntaxes that would allow
 
 </div>
 
-<h2 class="sectionedit6" id="proposed_php_version_s">Proposed PHP Version(s)</h2>
+<h2 class="sectionedit6" id="discussion_of_backwards_compatibility_breaks">Discussion of Backwards Compatibility Breaks</h2>
+<div class="level2">
+
+<p>
+Three of the proposed syntaxes break backwards compatibility at varying
+degrees. This section attempts to give a full overview of the BC break
+potential of each choice.
+</p>
+
+</div>
+
+<h3 class="sectionedit7" id="syntax_and_bc_breaks">@@ Syntax and BC Breaks</h3>
+<div class="level3">
+
+<p>
+The following code snippets work in PHP 7 and would break if @@ becomes
+attribute syntax:
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+<span class="kw2">function</span> foo<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="sy0">@@</span>foo<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+
+<p>
+In Words: Using the error suppress operator twice after each other will cause
+this BC break.
+</p>
+
+<p>
+Realistically this BC break is going to be extremely unlikely to happen and is
+the least critical from all three potential BC breaks.
+</p>
+
+<p>
+This BC break can be fixed mechanically with a project-wide search and replace
+from “@@” to “@ @” or “@” only even.
+</p>
+
+</div>
+
+<h3 class="sectionedit8" id="syntax_and_bc_breaks1">#[] Syntax and BC Breaks</h3>
+<div class="level3">
+
+<p>
+The following code snippets work in PHP 7 and would break if #[] becomes
+attribute syntax:
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+<span class="co1">// 1. starting hash comments with a [</span>
+<span class="co2">#[author=Benjamin]
+</span><span class="co2">#[todo]
+</span>
+<span class="co1">// 2. commenting out an old array value using #</span>
+<span class="re0">$data</span> <span class="sy0">=</span> <span class="br0">&#91;</span><span class="st_h">'new'</span><span class="br0">&#93;</span><span class="sy0">;</span> <span class="co2">#['old']
+</span>
+<span class="co1">// 3 commenting out a line starting with [ using #</span>
+<span class="co2">#[$foo, $bar] = explode(&quot;-&quot;, $data);</span></pre>
+
+<p>
+In Words: Commenting out a line or expression that starts with [ using #
+instead of // would trigger this BC break.
+</p>
+
+<p>
+Using grep.app a few occurrences in open source code of this BC break have been
+found, but overall it looks like it is used in old exploit scripts and not in
+code that is still used or widespread. The impact is higher than for @@.
+</p>
+
+<p>
+<a href="https://grep.app/search?q=%23%5B&amp;filter[lang][0]=PHP" class="urlextern" title="https://grep.app/search?q=%23%5B&amp;filter[lang][0]=PHP" rel="nofollow">https://grep.app/search?q=%23%5B&amp;filter[lang][0]=PHP</a>
+</p>
+
+<p>
+This BC break can be fixed mechanically with a project-wide search and replace
+from “#[” to “# [”, with some care as #[ sometimes appears in regular
+expressions.
+</p>
+
+</div>
+
+<h3 class="sectionedit9" id="syntax_and_bc_breaks2">@[] Syntax and BC Breaks</h3>
+<div class="level3">
+
+<p>
+The following code snippets work in PHP 7 and would break if @[] becomes
+attribute syntax:
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+<span class="co1">// 1. using the short list syntax with error suppression, likely with explode</span>
+<span class="re0">$email</span> <span class="sy0">=</span> <span class="re0">$_GET</span><span class="br0">&#91;</span><span class="st_h">'email'</span><span class="br0">&#93;</span><span class="sy0">;</span>
+<span class="sy0">@</span><span class="br0">&#91;</span><span class="re0">$local</span><span class="sy0">,</span> <span class="re0">$domain</span><span class="br0">&#93;</span> <span class="sy0">=</span> <a href="http://www.php.net/explode"><span class="kw3">explode</span></a><span class="br0">&#40;</span><span class="st0">&quot;@&quot;</span><span class="sy0">,</span> <span class="re0">$email</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">// 2. suppressing errors in an expression that starts with short array</span>
+<span class="sy0">@</span><span class="br0">&#91;</span>foo<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#93;</span><span class="sy0">;</span></pre>
+
+<p>
+In Words: Suppressing errors on a line that immediately follows with the short
+array syntax will not be possible with @[] for attributes anymore.
+</p>
+
+<p>
+Using grep.app occurrences of these code patterns cannot be found, only in
+regexp strings that would not be affected. Yet at least the explode case with
+short list syntax seems to be something that could be used widely, but is not
+at the moment.
+</p>
+
+<p>
+<a href="https://grep.app/search?q=%40%5B&amp;filter[lang][0]=PHP" class="urlextern" title="https://grep.app/search?q=%40%5B&amp;filter[lang][0]=PHP" rel="nofollow">https://grep.app/search?q=%40%5B&amp;filter[lang][0]=PHP</a>
+</p>
+
+<p>
+This BC break can be fixed mechanically with a project-wide search and replace
+from “@[” to “@ [”, with some care as @[ often appears in regular expressions.
+</p>
+
+</div>
+
+<h2 class="sectionedit10" id="forwards_compatibility_procons">Forwards Compatibility Pro/Cons</h2>
+<div class="level2">
+
+<p>
+The #[]-Syntax has the unique property of being forwards compatible, meaning
+specifically that the syntax can be used in PHP 7 code without leading to a
+compile fatal error, but is instead interpreted as a comment.
+</p>
+
+<p>
+This is different to @@, @[] and &lt;&lt;&gt;&gt; which when used with any PHP 7 version
+would lead to a compile fatal error.
+</p>
+
+<p>
+The primary benefit of this forward compatibility is for libraries that want to
+use a class for an Attribute in PHP 8 but use it with doc-comment based
+Annotations libraries in PHP 7.
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="co2">#[Attribute]
+</span><span class="kw2">class</span> Route
+<span class="br0">&#123;</span>
+    <span class="kw2">public</span> <span class="re0">$path</span><span class="sy0">;</span>
+    <span class="kw2">public</span> <span class="re0">$controller</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre>
+
+<p>
+This code compiles fine on PHP 7, interpreting #[Attribute] as a comment.
+</p>
+
+<p>
+While #[] would allow forward compatibility, it is important to mention that it
+would not work for 100% of all attribute syntax uses with #[].
+</p>
+
+<p>
+The forward compatibility does lead to a few theoretically problematic cases
+where working code in PHP 7 and PHP 8 behaves very different:
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="co1">// on PHP 7 its a function foo with one argument $param2</span>
+<span class="co1">// on PHP 8 its a function foo with two arguments $param1, $param2</span>
+<span class="kw2">function</span> foo<span class="br0">&#40;</span>
+    <span class="co2">#[Attribute] $param1,
+</span>    <span class="re0">$param2</span>
+<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+<span class="br0">&#125;</span></pre>
+
+<p>
+Another example where code would be interpreted differently on PHP 7:
+</p>
+<pre class="code php"><span class="re0">$f1</span> <span class="sy0">=</span> <span class="co2">#[ExampleAttribute] function () {};
+</span>
+<span class="re0">$f2</span> <span class="sy0">=</span> <span class="co2">#[ExampleAttribute] fn() =&gt; 1;
+</span>
+<span class="re0">$object</span> <span class="sy0">=</span> <span class="kw2">new</span> <span class="co2">#[ExampleAttribute] class () {};
+</span>foo<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">// On PHP 7 this is interpreted as</span>
+<span class="re0">$f1</span> <span class="sy0">=</span> <span class="re0">$f2</span> <span class="sy0">=</span> <span class="re0">$object</span> <span class="sy0">=</span> <span class="kw2">new</span> foo<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+
+<p>
+This example echoes the rest of the source code in php 7 and echoes “Test” in php 8.
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+<span class="co2">#[DeprecationReason('reason: &lt;https://some-website/reason</span><span class="sy1">?&gt;</span><span class="st_h">')]
+function main() {}
+const APP_SECRET = '</span>app<span class="sy0">-</span>secret<span class="st_h">';
+echo &quot;Test\n&quot;;</span></pre>
+
+<p>
+These examples are artificially crafted and would only be problematic on new
+attribute code that runs on PHP 7. Developers writing code running on multiple
+versions need to handle versions differences already, so these problems might
+not be a problem at all in the end.
+</p>
+
+<p>
+This is especially true, because these edge cases will not happen for existing
+PHP 7 code running on PHP 8, but only when new code primarily written for PHP 8
+is then also run on PHP 7.
+</p>
+
+</div>
+
+<h2 class="sectionedit11" id="proposed_php_version_s">Proposed PHP Version(s)</h2>
 <div class="level2">
 
 <p>
@@ -259,7 +467,7 @@ PHP 8.0
 
 </div>
 
-<h2 class="sectionedit7" id="voting">Voting</h2>
+<h2 class="sectionedit12" id="voting">Voting</h2>
 <div class="level2">
 
 <p>
@@ -305,6 +513,11 @@ A first vote (⅔rds) to allow the vote to change the syntax
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 20:42"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/beberlei">beberlei</a>&nbsp;(beberlei)        </td>
         <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 11:58"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
@@ -312,6 +525,11 @@ A first vote (⅔rds) to allow the vote to change the syntax
         <td class="rightalign">
                     <a href="//people.php.net/bmajdak">bmajdak</a>&nbsp;(bmajdak)        </td>
         <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 08:15"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/bukka">bukka</a>&nbsp;(bukka)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 22:37"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -365,8 +583,18 @@ A first vote (⅔rds) to allow the vote to change the syntax
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/heiglandreas">heiglandreas</a>&nbsp;(heiglandreas)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 15:23"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/ilutov">ilutov</a>&nbsp;(ilutov)        </td>
         <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 14:25"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jasny">jasny</a>&nbsp;(jasny)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 10:27"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -380,6 +608,11 @@ A first vote (⅔rds) to allow the vote to change the syntax
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/john">john</a>&nbsp;(john)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 21:12"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/kalle">kalle</a>&nbsp;(kalle)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 14:15"></td>        
     </tr>
@@ -390,8 +623,18 @@ A first vote (⅔rds) to allow the vote to change the syntax
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/kocsismate">kocsismate</a>&nbsp;(kocsismate)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 12:28"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/lcobucci">lcobucci</a>&nbsp;(lcobucci)        </td>
         <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 10:51"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/levim">levim</a>&nbsp;(levim)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/13 14:58"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -417,6 +660,11 @@ A first vote (⅔rds) to allow the vote to change the syntax
         <td class="rightalign">
                     <a href="//people.php.net/mauricio">mauricio</a>&nbsp;(mauricio)        </td>
         <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 22:59"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mbeccati">mbeccati</a>&nbsp;(mbeccati)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 16:13"></td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -455,6 +703,16 @@ A first vote (⅔rds) to allow the vote to change the syntax
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/ralphschindler">ralphschindler</a>&nbsp;(ralphschindler)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 13:55"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ramsey">ramsey</a>&nbsp;(ramsey)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 13:03"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/rdohms">rdohms</a>&nbsp;(rdohms)        </td>
         <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 08:23"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
@@ -470,6 +728,11 @@ A first vote (⅔rds) to allow the vote to change the syntax
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/ruudboon">ruudboon</a>&nbsp;(ruudboon)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 19:10"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/salathe">salathe</a>&nbsp;(salathe)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 09:28"></td>        
     </tr>
@@ -482,6 +745,11 @@ A first vote (⅔rds) to allow the vote to change the syntax
         <td class="rightalign">
                     <a href="//people.php.net/sebastian">sebastian</a>&nbsp;(sebastian)        </td>
         <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 12:13"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/seld">seld</a>&nbsp;(seld)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 06:41"></td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -522,8 +790,8 @@ A first vote (⅔rds) to allow the vote to change the syntax
     <!-- Results / sum per column -->
     <tr>
         <th class="rightalign"><b>Count:</b></th>
-        <th class="centeralign"><b>38</b></th>
-        <th class="centeralign"><b>8</b></th>
+        <th class="centeralign"><b>48</b></th>
+        <th class="centeralign"><b>10</b></th>
     </tr>
 
 
@@ -575,6 +843,11 @@ First choice:
 
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/ajf">ajf</a>&nbsp;(ajf)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 09:35"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/alcaeus">alcaeus</a>&nbsp;(alcaeus)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/11 07:20"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
@@ -590,6 +863,11 @@ First choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 20:43"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/beberlei">beberlei</a>&nbsp;(beberlei)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 12:04"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
@@ -602,6 +880,11 @@ First choice:
         <td class="rightalign">
                     <a href="//people.php.net/brzuchal">brzuchal</a>&nbsp;(brzuchal)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 15:12"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/bukka">bukka</a>&nbsp;(bukka)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 22:37"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -655,18 +938,33 @@ First choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/heiglandreas">heiglandreas</a>&nbsp;(heiglandreas)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 15:24"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/ilutov">ilutov</a>&nbsp;(ilutov)        </td>
-        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 14:39"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/13 14:29"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jasny">jasny</a>&nbsp;(jasny)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 10:27"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
                     <a href="//people.php.net/jhdxr">jhdxr</a>&nbsp;(jhdxr)        </td>
-        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 15:34"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/13 16:50"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
                     <a href="//people.php.net/jmikola">jmikola</a>&nbsp;(jmikola)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/11 12:48"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/john">john</a>&nbsp;(john)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 21:12"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -680,8 +978,18 @@ First choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/kocsismate">kocsismate</a>&nbsp;(kocsismate)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 12:28"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/lcobucci">lcobucci</a>&nbsp;(lcobucci)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 10:52"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/levim">levim</a>&nbsp;(levim)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 14:24"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -706,7 +1014,12 @@ First choice:
     <tr>
         <td class="rightalign">
                     <a href="//people.php.net/mauricio">mauricio</a>&nbsp;(mauricio)        </td>
-        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 23:01"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 03:16"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mbeccati">mbeccati</a>&nbsp;(mbeccati)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 07:45"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -750,6 +1063,16 @@ First choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/ralphschindler">ralphschindler</a>&nbsp;(ralphschindler)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 13:59"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ramsey">ramsey</a>&nbsp;(ramsey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 13:03"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/rdohms">rdohms</a>&nbsp;(rdohms)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 08:22"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
@@ -765,18 +1088,28 @@ First choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/ruudboon">ruudboon</a>&nbsp;(ruudboon)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 19:10"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/salathe">salathe</a>&nbsp;(salathe)        </td>
-        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/11 15:00"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 11:05"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
                     <a href="//people.php.net/sammyk">sammyk</a>&nbsp;(sammyk)        </td>
-        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 14:41"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 17:53"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
                     <a href="//people.php.net/sebastian">sebastian</a>&nbsp;(sebastian)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/11 15:41"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/seld">seld</a>&nbsp;(seld)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 06:41"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -822,10 +1155,10 @@ First choice:
     <!-- Results / sum per column -->
     <tr>
         <th class="rightalign"><b>Count:</b></th>
-        <th class="centeralign"><b>8</b></th>
-        <th class="centeralign"><b>17</b></th>
-        <th class="centeralign"><b>19</b></th>
-        <th class="centeralign"><b>5</b></th>
+        <th class="centeralign"><b>10</b></th>
+        <th class="centeralign"><b>28</b></th>
+        <th class="centeralign"><b>18</b></th>
+        <th class="centeralign"><b>6</b></th>
     </tr>
 
 
@@ -869,6 +1202,11 @@ Second choice:
 
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/ajf">ajf</a>&nbsp;(ajf)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 09:36"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/alcaeus">alcaeus</a>&nbsp;(alcaeus)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/11 07:20"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
@@ -881,6 +1219,11 @@ Second choice:
         <td class="rightalign">
                     <a href="//people.php.net/asgrim">asgrim</a>&nbsp;(asgrim)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 14:02"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 20:44"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -899,8 +1242,13 @@ Second choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/bukka">bukka</a>&nbsp;(bukka)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 22:38"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/bwoebi">bwoebi</a>&nbsp;(bwoebi)        </td>
-        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 10:42"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 18:02"></td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -949,18 +1297,33 @@ Second choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/heiglandreas">heiglandreas</a>&nbsp;(heiglandreas)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 15:27"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/ilutov">ilutov</a>&nbsp;(ilutov)        </td>
-        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 14:39"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/13 14:30"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jasny">jasny</a>&nbsp;(jasny)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 10:27"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
                     <a href="//people.php.net/jhdxr">jhdxr</a>&nbsp;(jhdxr)        </td>
-        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 15:34"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/13 16:51"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
                     <a href="//people.php.net/jmikola">jmikola</a>&nbsp;(jmikola)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/11 12:48"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/john">john</a>&nbsp;(john)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 21:13"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -974,8 +1337,18 @@ Second choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/kocsismate">kocsismate</a>&nbsp;(kocsismate)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 12:28"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/lcobucci">lcobucci</a>&nbsp;(lcobucci)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 10:52"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/levim">levim</a>&nbsp;(levim)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/13 15:00"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -1000,7 +1373,12 @@ Second choice:
     <tr>
         <td class="rightalign">
                     <a href="//people.php.net/mauricio">mauricio</a>&nbsp;(mauricio)        </td>
-        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 23:01"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 03:16"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mbeccati">mbeccati</a>&nbsp;(mbeccati)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 07:46"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -1044,6 +1422,16 @@ Second choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/ralphschindler">ralphschindler</a>&nbsp;(ralphschindler)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 14:00"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ramsey">ramsey</a>&nbsp;(ramsey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 13:04"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/rdohms">rdohms</a>&nbsp;(rdohms)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 08:34"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
@@ -1059,18 +1447,28 @@ Second choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/ruudboon">ruudboon</a>&nbsp;(ruudboon)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 19:11"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/salathe">salathe</a>&nbsp;(salathe)        </td>
-        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/11 15:01"></td>        
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 11:06"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
                     <a href="//people.php.net/sammyk">sammyk</a>&nbsp;(sammyk)        </td>
-        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 14:41"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 17:54"></td>        
     </tr>
     <tr>
         <td class="rightalign">
                     <a href="//people.php.net/sebastian">sebastian</a>&nbsp;(sebastian)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/11 15:41"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/seld">seld</a>&nbsp;(seld)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 06:47"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -1090,7 +1488,7 @@ Second choice:
     <tr>
         <td class="rightalign">
                     <a href="//people.php.net/theodorejb">theodorejb</a>&nbsp;(theodorejb)        </td>
-        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 11:17"></td>        
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 14:51"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -1111,10 +1509,10 @@ Second choice:
     <!-- Results / sum per column -->
     <tr>
         <th class="rightalign"><b>Count:</b></th>
-        <th class="centeralign"><b>2</b></th>
-        <th class="centeralign"><b>19</b></th>
-        <th class="centeralign"><b>15</b></th>
-        <th class="centeralign"><b>12</b></th>
+        <th class="centeralign"><b>5</b></th>
+        <th class="centeralign"><b>17</b></th>
+        <th class="centeralign"><b>26</b></th>
+        <th class="centeralign"><b>13</b></th>
     </tr>
 
 
@@ -1168,6 +1566,11 @@ Third choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 20:44"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/beberlei">beberlei</a>&nbsp;(beberlei)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 15:30"></td>        
     </tr>
@@ -1183,8 +1586,13 @@ Third choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/bukka">bukka</a>&nbsp;(bukka)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 22:38"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/bwoebi">bwoebi</a>&nbsp;(bwoebi)        </td>
-        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 10:42"></td>        
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 18:03"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -1233,8 +1641,18 @@ Third choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/heiglandreas">heiglandreas</a>&nbsp;(heiglandreas)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 15:26"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/ilutov">ilutov</a>&nbsp;(ilutov)        </td>
         <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 14:40"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jasny">jasny</a>&nbsp;(jasny)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 10:28"></td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -1248,6 +1666,11 @@ Third choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/john">john</a>&nbsp;(john)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 21:13"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/kalle">kalle</a>&nbsp;(kalle)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/11 21:44"></td>        
     </tr>
@@ -1258,8 +1681,18 @@ Third choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/kocsismate">kocsismate</a>&nbsp;(kocsismate)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 12:29"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/lcobucci">lcobucci</a>&nbsp;(lcobucci)        </td>
         <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 10:53"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/levim">levim</a>&nbsp;(levim)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/13 15:00"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -1283,6 +1716,11 @@ Third choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/mbeccati">mbeccati</a>&nbsp;(mbeccati)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 07:46"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/mcmic">mcmic</a>&nbsp;(mcmic)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/11 07:38"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
@@ -1303,6 +1741,16 @@ Third choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/ralphschindler">ralphschindler</a>&nbsp;(ralphschindler)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 14:00"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ramsey">ramsey</a>&nbsp;(ramsey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 13:04"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/rdohms">rdohms</a>&nbsp;(rdohms)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 08:22"></td>        
     </tr>
@@ -1318,18 +1766,28 @@ Third choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/ruudboon">ruudboon</a>&nbsp;(ruudboon)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 19:11"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/salathe">salathe</a>&nbsp;(salathe)        </td>
-        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/11 15:01"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 11:06"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
                     <a href="//people.php.net/sammyk">sammyk</a>&nbsp;(sammyk)        </td>
-        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 14:41"></td>        
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 17:54"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
                     <a href="//people.php.net/sebastian">sebastian</a>&nbsp;(sebastian)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/11 15:42"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/seld">seld</a>&nbsp;(seld)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 06:47"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -1345,11 +1803,6 @@ Third choice:
         <td class="rightalign">
                     <a href="//people.php.net/tandre">tandre</a>&nbsp;(tandre)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 13:52"></td>        
-    </tr>
-    <tr>
-        <td class="rightalign">
-                    <a href="//people.php.net/theodorejb">theodorejb</a>&nbsp;(theodorejb)        </td>
-        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 11:18"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -1370,10 +1823,10 @@ Third choice:
     <!-- Results / sum per column -->
     <tr>
         <th class="rightalign"><b>Count:</b></th>
-        <th class="centeralign"><b>6</b></th>
+        <th class="centeralign"><b>10</b></th>
         <th class="centeralign"><b>5</b></th>
         <th class="centeralign"><b>8</b></th>
-        <th class="centeralign"><b>23</b></th>
+        <th class="centeralign"><b>30</b></th>
     </tr>
 
 
@@ -1417,8 +1870,18 @@ Fourth choice:
 
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/alcaeus">alcaeus</a>&nbsp;(alcaeus)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 19:30"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/asgrim">asgrim</a>&nbsp;(asgrim)        </td>
         <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 14:03"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 20:45"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -1429,6 +1892,11 @@ Fourth choice:
         <td class="rightalign">
                     <a href="//people.php.net/brzuchal">brzuchal</a>&nbsp;(brzuchal)        </td>
         <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 15:13"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/bukka">bukka</a>&nbsp;(bukka)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 22:39"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -1482,6 +1950,11 @@ Fourth choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/jasny">jasny</a>&nbsp;(jasny)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 10:28"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/jhdxr">jhdxr</a>&nbsp;(jhdxr)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 15:35"></td>        
     </tr>
@@ -1489,6 +1962,11 @@ Fourth choice:
         <td class="rightalign">
                     <a href="//people.php.net/jmikola">jmikola</a>&nbsp;(jmikola)        </td>
         <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/11 12:49"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/john">john</a>&nbsp;(john)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 21:13"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -1502,8 +1980,18 @@ Fourth choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/kocsismate">kocsismate</a>&nbsp;(kocsismate)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 12:30"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/lcobucci">lcobucci</a>&nbsp;(lcobucci)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 10:53"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/levim">levim</a>&nbsp;(levim)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/13 15:00"></td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -1532,6 +2020,11 @@ Fourth choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/mbeccati">mbeccati</a>&nbsp;(mbeccati)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 07:46"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/mcmic">mcmic</a>&nbsp;(mcmic)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/11 07:38"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
@@ -1557,6 +2050,16 @@ Fourth choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/ralphschindler">ralphschindler</a>&nbsp;(ralphschindler)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 14:00"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ramsey">ramsey</a>&nbsp;(ramsey)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 13:05"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/rdohms">rdohms</a>&nbsp;(rdohms)        </td>
         <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 08:22"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
@@ -1567,18 +2070,28 @@ Fourth choice:
     </tr>
     <tr>
         <td class="rightalign">
+                    <a href="//people.php.net/ruudboon">ruudboon</a>&nbsp;(ruudboon)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 19:11"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
                     <a href="//people.php.net/salathe">salathe</a>&nbsp;(salathe)        </td>
         <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/11 15:01"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
                     <a href="//people.php.net/sammyk">sammyk</a>&nbsp;(sammyk)        </td>
-        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 14:42"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/14 17:54"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
                     <a href="//people.php.net/sebastian">sebastian</a>&nbsp;(sebastian)        </td>
         <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/11 15:42"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/seld">seld</a>&nbsp;(seld)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/12 06:47"></td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -1594,11 +2107,6 @@ Fourth choice:
         <td class="rightalign">
                     <a href="//people.php.net/tandre">tandre</a>&nbsp;(tandre)        </td>
         <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 13:53"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
-    </tr>
-    <tr>
-        <td class="rightalign">
-                    <a href="//people.php.net/theodorejb">theodorejb</a>&nbsp;(theodorejb)        </td>
-        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2020/08/10 11:18"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
     </tr>
     <tr>
         <td class="rightalign">
@@ -1619,10 +2127,10 @@ Fourth choice:
     <!-- Results / sum per column -->
     <tr>
         <th class="rightalign"><b>Count:</b></th>
-        <th class="centeralign"><b>28</b></th>
-        <th class="centeralign"><b>4</b></th>
-        <th class="centeralign"><b>4</b></th>
-        <th class="centeralign"><b>4</b></th>
+        <th class="centeralign"><b>35</b></th>
+        <th class="centeralign"><b>5</b></th>
+        <th class="centeralign"><b>5</b></th>
+        <th class="centeralign"><b>6</b></th>
     </tr>
 
 
@@ -1638,7 +2146,7 @@ Fourth choice:
 
 </div>
 
-<h2 class="sectionedit8" id="implementation">Implementation</h2>
+<h2 class="sectionedit13" id="implementation">Implementation</h2>
 <div class="level2">
 
 <p>
@@ -1657,7 +2165,7 @@ After the project is implemented, this section should contain
 
 </div>
 
-<h2 class="sectionedit9" id="references">References</h2>
+<h2 class="sectionedit14" id="references">References</h2>
 <div class="level2">
 
 <p>
@@ -1676,10 +2184,12 @@ Links to external references, discussions or RFCs
 
 </div>
 
-<h2 class="sectionedit10" id="updates">Updates</h2>
+<h2 class="sectionedit15" id="updates">Updates</h2>
 <div class="level2">
 <ul>
 <li class="level1"><div class="li"> v0.3: Removed “Difficulties for Userland Parsers” as its a subjective opinion and boils down to the fact that a new token T_ATTRIBUTE is introduced in some syntaxes that would include tokens that were parsed differently in previous PHP versions. Added “Tokens used” and “Changes the lexing of remaining tokens”.</div>
+</li>
+<li class="level1"><div class="li"> v0.4 Added more details about BC breaks and forward compatilbity issues.</div>
 </li>
 </ul>
 
@@ -1688,7 +2198,7 @@ Links to external references, discussions or RFCs
                     <!-- wikipage stop -->
                                     </div>
 
-                <div class="docInfo"><bdi>rfc/shorter_attribute_syntax_change.txt</bdi> · Last modified: 2020/08/10 13:44 by <bdi>beberlei</bdi></div>
+                <div class="docInfo"><bdi>rfc/shorter_attribute_syntax_change.txt</bdi> · Last modified: 2020/08/15 08:59 by <bdi>beberlei</bdi></div>
 
                             </div></div><!-- /content -->
 
@@ -1706,7 +2216,7 @@ Links to external references, discussions or RFCs
 
     </div></div><!-- /site -->
 
-    <div class="no"><img src="/lib/exe/indexer.php?id=rfc%3Ashorter_attribute_syntax_change&amp;1597182624" width="2" height="1" alt="" /></div>
+    <div class="no"><img src="/lib/exe/indexer.php?id=rfc%3Ashorter_attribute_syntax_change&amp;1597522796" width="2" height="1" alt="" /></div>
     <div id="screen__mode" class="no"></div>    <!--[if ( lte IE 7 | IE 8 ) ]></div><![endif]-->
 </section>
 
@@ -1722,6 +2232,14 @@ Links to external references, discussions or RFCs
 <li class="level2"><div class="li"><a href="#introduction">Introduction</a></div></li>
 <li class="level2"><div class="li"><a href="#proposal">Proposal</a></div></li>
 <li class="level2"><div class="li"><a href="#syntax_side_by_side">Syntax Side by Side</a></div></li>
+<li class="level2"><div class="li"><a href="#discussion_of_backwards_compatibility_breaks">Discussion of Backwards Compatibility Breaks</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#syntax_and_bc_breaks">@@ Syntax and BC Breaks</a></div></li>
+<li class="level3"><div class="li"><a href="#syntax_and_bc_breaks1">#[] Syntax and BC Breaks</a></div></li>
+<li class="level3"><div class="li"><a href="#syntax_and_bc_breaks2">@[] Syntax and BC Breaks</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#forwards_compatibility_procons">Forwards Compatibility Pro/Cons</a></div></li>
 <li class="level2"><div class="li"><a href="#proposed_php_version_s">Proposed PHP Version(s)</a></div></li>
 <li class="level2"><div class="li"><a href="#voting">Voting</a></div></li>
 <li class="level2"><div class="li"><a href="#implementation">Implementation</a></div></li>
