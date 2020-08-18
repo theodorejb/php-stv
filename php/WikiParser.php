@@ -8,6 +8,31 @@ use DOMDocument, DOMNode, DOMNodeList, Exception;
 
 class WikiParser
 {
+    public static function getHtml(string $fileOrUrl): string
+    {
+        $result = @\file_get_contents($fileOrUrl);
+
+        if ($result === false) {
+            throw new Exception('Failed to fetch HTML');
+        }
+
+        return $result;
+    }
+
+    /**
+     * @return PreferenceVotes[]
+     */
+    public static function getVotesFromHtml(string $html, int $firstVoteIndex, ?int $numPolls = null): array
+    {
+        libxml_use_internal_errors(true);
+        $doc = new DOMDocument();
+        $doc->loadHTML($html);
+        libxml_use_internal_errors(false);
+
+        $parser = new self();
+        return $parser->getPreferenceVotes($doc, $firstVoteIndex, $numPolls);
+    }
+
     /**
      * @return PreferenceVotes[]
      */

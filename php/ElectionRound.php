@@ -10,7 +10,9 @@ class ElectionRound
 
     /** @var Ballot[] */
     public array $ballots;
-    private array $eliminatedKeys;
+
+    /** @var array<string, true> */
+    private array $allEliminated;
 
     /** @var array<string, int> */
     public array $tally;
@@ -26,21 +28,16 @@ class ElectionRound
 
     /**
      * @param Ballot[] $ballots
-     * @param string[] $candidates
+     * @param array<string, int> $baseTally
+     * @param array<string, true> $allEliminated
      */
-    public function __construct(int $round, array $ballots, array $candidates, array $electedKeys, array $eliminatedKeys, StvElection $election)
+    public function __construct(int $round, array $ballots, array $baseTally, array $allEliminated, StvElection $election)
     {
         $this->round = $round;
         $this->ballots = $ballots;
-        $this->eliminatedKeys = $eliminatedKeys;
+        $this->allEliminated = $allEliminated;
         $this->election = $election;
-        $this->tally = [];
-
-        foreach ($candidates as $candidate) {
-            if (!isset($electedKeys[$candidate])) {
-                $this->tally[$candidate] = 0;
-            }
-        }
+        $this->tally = $baseTally;
 
         foreach ($this->ballots as $ballot) {
             $candidate = $ballot->getCandidate();
@@ -57,14 +54,46 @@ class ElectionRound
     public function getSummary(): string
     {
         $summary = PHP_EOL . "Round #{$this->round}" . PHP_EOL;
-        $summary .= '--------' . PHP_EOL . PHP_EOL;
-        $summary .= 'Tally:' . PHP_EOL;
+        $summary .= '--------' . PHP_EOL;
+        $transfers = $this->getTransfers();
+
+        if (count($transfers) !== 0) {
+            $summary .= PHP_EOL . 'Transfers:' . PHP_EOL;
+
+            foreach ($transfers as $candidate => $transfer) {
+                $summary .= "{$candidate}: +{$transfer}" . PHP_EOL;
+            }
+        }
+
+        $summary .= PHP_EOL . 'Tally:' . PHP_EOL;
 
         foreach ($this->tally as $candidate => $count) {
-            $summary .= "Candidate {$candidate}: {$count}" . PHP_EOL;
+            $summary .= "{$candidate}: {$count}" . PHP_EOL;
         }
 
         return $summary;
+    }
+
+    /**
+     * @return array<string, int>
+     */
+    private function getTransfers(): array
+    {
+        $transfers = [];
+
+        foreach ($this->ballots as $ballot) {
+            if ($ballot->lastChoice !== null) {
+                $candidate = $ballot->getCandidate();
+
+                if (!isset($transfers[$candidate])) {
+                    $transfers[$candidate] = 1;
+                } else {
+                    $transfers[$candidate]++;
+                }
+            }
+        }
+
+        return $transfers;
     }
 
     /**
@@ -86,12 +115,14 @@ class ElectionRound
 
             // tally next preferences of each voter for this candidate
             $nextTally = $this->getNextPreferenceTally($candidate);
+            $transferable = array_sum($nextTally);
 
             foreach ($nextTally as $nextCandidate => $nextCount) {
-                $toTransfer = (int) floor(($nextCount / $count) * $surplus);
+                $toTransfer = (int) floor(($nextCount / $transferable) * $surplus);
+                $details = "floor(({$nextCount} / {$transferable}) * {$surplus})";
 
                 if ($toTransfer !== 0) {
-                    $electedCandidate->transfers[] = new CandidateCount($nextCandidate, $toTransfer);
+                    $electedCandidate->transfers[] = new CandidateCount($nextCandidate, $toTransfer, $details);
                 }
             }
 
@@ -105,12 +136,12 @@ class ElectionRound
      * @param ElectedCandidate[] $elected
      * @return Ballot[]
      */
-    public function getNewBallots(array $elected, array $eliminated): array
+    public function getNewBallots(array $elected, array $allElected, array $eliminated): array
     {
         $ballots = [];
 
         foreach ($this->ballots as $ballot) {
-            $newBallot = $ballot->withFirstOpenPreference($eliminated);
+            $newBallot = $ballot->withFirstOpenPreference($allElected, $eliminated);
 
             if ($newBallot !== null) {
                 $ballots[] = $newBallot;
@@ -162,7 +193,7 @@ class ElectionRound
 
         foreach ($this->ballots as $ballot) {
             if ($ballot->getCandidate() === $candidate) {
-                $nextPreference = $ballot->getNextPreference($this->eliminatedKeys);
+                $nextPreference = $ballot->getNextPreference($this->allEliminated);
 
                 if ($nextPreference !== null) {
                     $nextCandidate = $nextPreference->getCandidate();

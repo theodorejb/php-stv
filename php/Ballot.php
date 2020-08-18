@@ -12,11 +12,12 @@ class Ballot
     /** @var string[] */
     public array $rankedChoices;
     public int $selectedChoice;
+    public ?int $lastChoice;
 
     /**
      * @param string[] $rankedChoices
      */
-    public function __construct(?string $name, array $rankedChoices, int $selectedChoice = 0)
+    public function __construct(?string $name, array $rankedChoices, int $selectedChoice = 0, ?int $lastChoice = null)
     {
         if (!isset($rankedChoices[0])) {
             throw new \Exception("Ballot for '{$name}' has no ranked choices");
@@ -25,6 +26,7 @@ class Ballot
         $this->name = $name;
         $this->rankedChoices = $rankedChoices;
         $this->selectedChoice = $selectedChoice;
+        $this->lastChoice = $lastChoice;
     }
 
     public function getCandidate(): string
@@ -32,13 +34,13 @@ class Ballot
         return $this->rankedChoices[$this->selectedChoice];
     }
 
-    public function withFirstOpenPreference(array $eliminated): ?self
+    public function withFirstOpenPreference(array $elected, array $eliminated): ?self
     {
         if (!isset($eliminated[$this->getCandidate()])) {
             return $this;
         }
 
-        return $this->getNextPreference($eliminated);
+        return $this->getNextPreference(array_merge($elected, $eliminated));
     }
 
     public function getNextPreference(array $eliminated): ?self
@@ -49,7 +51,7 @@ class Ballot
             $candidate = $this->rankedChoices[$index];
 
             if (!isset($eliminated[$candidate])) {
-                return new self($this->name, $this->rankedChoices, $index);
+                return new self($this->name, $this->rankedChoices, $index, $this->selectedChoice);
             }
 
             $index++;

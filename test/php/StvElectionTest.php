@@ -84,8 +84,8 @@ class StvElectionTest extends TestCase
         ], $firstRound->tally);
 
         $this->assertEquals([
-            new CandidateCount('Strawberries', 4),
-            new CandidateCount('Hamburgers', 2),
+            new CandidateCount('Strawberries', 4, 'floor((8 / 12) * 6)'),
+            new CandidateCount('Hamburgers', 2, 'floor((4 / 12) * 6)'),
         ], $firstElected->transfers);
 
         // round 2

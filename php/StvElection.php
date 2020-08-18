@@ -38,11 +38,37 @@ class StvElection
         $this->quota = (int) floor($votesCast / ($this->seats + 1)) + 1;
     }
 
-    public function getSummary(): string
+    public function getSummary(bool $listVotes = false): string
     {
-        $votes = count($this->validBallots);
+        $summary = 'Candidates (in order of ballot):' . PHP_EOL;
+        $summary .= implode("  -   ", $this->candidates) . PHP_EOL . PHP_EOL;
 
-        $summary = "Votes: {$votes}" . PHP_EOL;
+        $invalidBallotCount = count($this->invalidBallots);
+        $index = $invalidBallotCount * -1;
+
+        if ($invalidBallotCount > 0) {
+            $summary .= "{$invalidBallotCount} invalid ballots:" . PHP_EOL;
+
+            foreach ($this->invalidBallots as $ballot) {
+                $index++;
+                $summary .= "{$ballot->name}:   ";
+                $summary .= implode("  -   ", $ballot->rankedChoices) . PHP_EOL;
+            }
+        }
+
+        if ($listVotes) {
+            $summary .= PHP_EOL . 'Votes:' . PHP_EOL;
+            $index = 0;
+
+            foreach ($this->validBallots as $ballot) {
+                $index++;
+                $summary .= "Vote #{$index}:   ";
+                $summary .= implode("  -   ", $ballot->rankedChoices) . PHP_EOL;
+            }
+        }
+
+        $votes = count($this->validBallots);
+        $summary .= "Votes: {$votes}" . PHP_EOL;
         $summary .= 'Candidates: ' . count($this->candidates) . PHP_EOL;
         $summary .= 'Seats: ' . $this->seats . PHP_EOL;
         $summary .= "Quota: floor({$votes} / ({$this->seats} + 1)) + 1 = {$this->quota}" . PHP_EOL;
@@ -64,7 +90,19 @@ class StvElection
 
         while (count($allElected) < $this->seats && count($candidates) !== 0) {
             $roundNum++;
-            $round = new ElectionRound($roundNum, $ballots, $candidates, $allElected, $allEliminated, $this);
+            $baseTally = [];
+
+            foreach ($candidates as $candidate) {
+                if (!isset($allElected[$candidate])) {
+                    $baseTally[$candidate] = 0;
+                }
+            }
+
+            if (count($baseTally) === 0) {
+                break;
+            }
+
+            $round = new ElectionRound($roundNum, $ballots, $baseTally, $allEliminated, $this);
             $pastRounds[] = $round;
             $elected = $round->elected;
 
@@ -85,7 +123,7 @@ class StvElection
             }
 
             $candidates = $newCandidates;
-            $ballots = $round->getNewBallots($elected, $allEliminated);
+            $ballots = $round->getNewBallots($elected, $allElected, $allEliminated);
         }
 
         return $pastRounds;
