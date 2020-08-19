@@ -38,7 +38,7 @@ class StvElection
         $this->quota = (int) floor($votesCast / ($this->seats + 1)) + 1;
     }
 
-    public function getSummary(bool $listVotes = false): string
+    public function getSummary(bool $listVotes, bool $showInvalid): string
     {
         $summary = 'Candidates (in order of ballot):' . PHP_EOL;
         $summary .= implode("  -   ", $this->candidates) . PHP_EOL . PHP_EOL;
@@ -46,7 +46,7 @@ class StvElection
         $invalidBallotCount = count($this->invalidBallots);
         $index = $invalidBallotCount * -1;
 
-        if ($invalidBallotCount > 0) {
+        if ($invalidBallotCount > 0 && $showInvalid) {
             $summary .= "{$invalidBallotCount} invalid ballots:" . PHP_EOL;
 
             foreach ($this->invalidBallots as $ballot) {
@@ -68,7 +68,7 @@ class StvElection
         }
 
         $votes = count($this->validBallots);
-        $summary .= "Votes: {$votes}" . PHP_EOL;
+        $summary .= PHP_EOL . "Votes: {$votes}" . PHP_EOL;
         $summary .= 'Candidates: ' . count($this->candidates) . PHP_EOL;
         $summary .= 'Seats: ' . $this->seats . PHP_EOL;
         $summary .= "Quota: floor({$votes} / ({$this->seats} + 1)) + 1 = {$this->quota}" . PHP_EOL;

@@ -19,10 +19,44 @@ class WikiParser
         return $result;
     }
 
+    public static function getElectionResults(string $fileOrUrl, int $seats, int $firstVoteIndex, ?int $numPolls, bool $countInvalid, bool $showInvalid): string
+    {
+        $output = "Reading from {$fileOrUrl}..." . PHP_EOL . PHP_EOL;
+        $html = WikiParser::getHtml($fileOrUrl);
+        $preferenceVotes = WikiParser::getVotesFromHtml($html, $firstVoteIndex, $numPolls);
+        $election = new StvElection($preferenceVotes, $seats, $countInvalid);
+
+        $output .= $election->getSummary(false, $showInvalid);
+        $rounds = $election->runElection();
+
+        foreach ($rounds as $round) {
+            $output .= $round->getSummary() . PHP_EOL;
+            $elected = $round->elected;
+
+            foreach ($elected as $candidate) {
+                $output .= "{$candidate->name} elected with {$candidate->surplus} surplus votes" . PHP_EOL;
+
+                if (count($candidate->transfers) !== 0) {
+                    $output .= "Distributing surplus votes" . PHP_EOL . PHP_EOL;
+                }
+
+                foreach ($candidate->transfers as $transfer) {
+                    $output .= "{$transfer->candidate}: +{$transfer->count}  {$transfer->details}" . PHP_EOL;
+                }
+            }
+
+            foreach ($round->eliminated as $cc) {
+                $output .= "Eliminating {$cc->candidate}" . PHP_EOL;
+            }
+        }
+
+        return $output;
+    }
+
     /**
      * @return PreferenceVotes[]
      */
-    public static function getVotesFromHtml(string $html, int $firstVoteIndex, ?int $numPolls = null): array
+    public static function getVotesFromHtml(string $html, int $firstVoteIndex, ?int $numPolls): array
     {
         libxml_use_internal_errors(true);
         $doc = new DOMDocument();
