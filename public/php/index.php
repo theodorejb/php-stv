@@ -20,28 +20,57 @@ require '../../vendor/autoload.php';
 // default to one seat unless find text about release manager, then 2
 
 try {
+    $seats = 1;
+    $firstVoteIndex = 1;
+    $numPolls = null;
+    $countInvalid = (bool) ($_GET['countInvalid'] ?? false);
+    $showInvalid = (bool) ($_GET['showInvalid'] ?? false);
+    $showCounted = (bool) ($_GET['showCounted'] ?? false);
     $rfc = $_GET['rfc'] ?? null;
+    $election = $_GET['election'] ?? null;
 
-    if (!$rfc) {
+    if ($rfc) {
+        if (!preg_match('/^\w+$/', $rfc)) {
+            throw new Exception('Invalid rfc name');
+        }
+
+        $url = 'https://wiki.php.net/rfc/' . $rfc;
+    } elseif ($election) {
+        if (!preg_match('/^(\w+(\/\w+)*)$/', $election)) {
+            throw new Exception('Invalid election url');
+        }
+
+        $url = 'https://wiki.php.net/' . $election;
+    } else {
         throw new Exception('Missing required rfc parameter');
     }
 
-    $rfcUrl = 'https://wiki.php.net/rfc/' . $rfc;
-    $seats = (int) ($_GET['seats'] ?? 1);
-    $numPreferences = $_GET['numPolls'] ?? null;
-
-    if ($numPreferences !== null) {
-        $numPreferences = (int) $numPreferences;
+    if ($election !== null && strpos($election, 'todo/') === 0) {
+        // defaults for RM election
+        $seats = 2;
+        $firstVoteIndex = 0;
+        $numPolls = 4;
     }
 
-    $firstVoteIndex = (int) ($_GET['firstVoteIndex'] ?? 1);
-    $countInvalid = (bool) ($_GET['countInvalid'] ?? false);
-    $showInvalid = (bool) ($_GET['showInvalid'] ?? false);
+    if (isset($_GET['seats'])) {
+        $seats = (int) $_GET['seats'];
+    }
 
-    $results = WikiParser::getElectionResults($rfcUrl, $seats, $firstVoteIndex, $numPreferences, $countInvalid, $showInvalid);
+    if (isset($_GET['numPolls'])) {
+        $numPolls = (int) $_GET['numPolls'];
+    }
+
+    if (isset($_GET['firstVoteIndex'])) {
+        $firstVoteIndex = (int) $_GET['firstVoteIndex'];
+    }
+
+    echo "<p>Reading from <a href=\"{$url}\">{$url}</a>...</p>";
+
+    $html = WikiParser::getHtml($url);
+    $results = WikiParser::getElectionResults($html, $seats, $firstVoteIndex, $numPolls, $countInvalid, $showInvalid, $showCounted);
     echo p($results);
 
-    if ($rfc === 'shorter_attribute_syntax_change') {
+    if (strpos($html, 'Status: Voting') !== false) {
         echo '<p style="margin: 2em 0; font-weight: bold">
                 Note: these results are not official/final!
             </p>';

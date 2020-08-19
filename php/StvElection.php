@@ -41,18 +41,18 @@ class StvElection
     public function getSummary(bool $listVotes, bool $showInvalid): string
     {
         $summary = 'Candidates (in order of ballot):' . PHP_EOL;
-        $summary .= implode("  -   ", $this->candidates) . PHP_EOL . PHP_EOL;
+        $summary .= implode("  -  ", $this->candidates) . PHP_EOL;
 
         $invalidBallotCount = count($this->invalidBallots);
         $index = $invalidBallotCount * -1;
 
         if ($invalidBallotCount > 0 && $showInvalid) {
-            $summary .= "{$invalidBallotCount} invalid ballots:" . PHP_EOL;
+            $summary .= PHP_EOL . "{$invalidBallotCount} invalid ballots:" . PHP_EOL;
 
             foreach ($this->invalidBallots as $ballot) {
                 $index++;
                 $summary .= "{$ballot->name}:   ";
-                $summary .= implode("  -   ", $ballot->rankedChoices) . PHP_EOL;
+                $summary .= implode("  -  ", $ballot->rankedChoices) . PHP_EOL;
             }
         }
 
@@ -63,7 +63,7 @@ class StvElection
             foreach ($this->validBallots as $ballot) {
                 $index++;
                 $summary .= "Vote #{$index}:   ";
-                $summary .= implode("  -   ", $ballot->rankedChoices) . PHP_EOL;
+                $summary .= implode("  -  ", $ballot->rankedChoices) . PHP_EOL;
             }
         }
 

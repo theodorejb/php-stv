@@ -19,29 +19,32 @@ class WikiParser
         return $result;
     }
 
-    public static function getElectionResults(string $fileOrUrl, int $seats, int $firstVoteIndex, ?int $numPolls, bool $countInvalid, bool $showInvalid): string
+    public static function getElectionResults(
+        string $html, int $seats, int $firstVoteIndex, ?int $numPolls, bool $countInvalid,
+        bool $showInvalid, bool $showCounted): string
     {
-        $output = "Reading from {$fileOrUrl}..." . PHP_EOL . PHP_EOL;
-        $html = WikiParser::getHtml($fileOrUrl);
         $preferenceVotes = WikiParser::getVotesFromHtml($html, $firstVoteIndex, $numPolls);
         $election = new StvElection($preferenceVotes, $seats, $countInvalid);
 
-        $output .= $election->getSummary(false, $showInvalid);
+        $output = $election->getSummary($showCounted, $showInvalid);
         $rounds = $election->runElection();
+        $lastIndex = count($rounds) - 1;
 
-        foreach ($rounds as $round) {
+        foreach ($rounds as $index => $round) {
             $output .= $round->getSummary() . PHP_EOL;
             $elected = $round->elected;
 
             foreach ($elected as $candidate) {
                 $output .= "{$candidate->name} elected with {$candidate->surplus} surplus votes" . PHP_EOL;
 
-                if (count($candidate->transfers) !== 0) {
-                    $output .= "Distributing surplus votes" . PHP_EOL . PHP_EOL;
-                }
+                if ($index !== $lastIndex) {
+                    if (count($candidate->transfers) !== 0) {
+                        $output .= "Distributing surplus votes" . PHP_EOL . PHP_EOL;
+                    }
 
-                foreach ($candidate->transfers as $transfer) {
-                    $output .= "{$transfer->candidate}: +{$transfer->count}  {$transfer->details}" . PHP_EOL;
+                    foreach ($candidate->transfers as $transfer) {
+                        $output .= "{$transfer->candidate}: +{$transfer->count}  {$transfer->details}" . PHP_EOL;
+                    }
                 }
             }
 
