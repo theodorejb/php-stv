@@ -10,7 +10,7 @@ class WikiParserTest extends TestCase
 {
     public function testRmElection(): void
     {
-        $html = WikiParser::getHtml('test/php/rm_election.html');
+        $html = WikiParser::getHtml('test/cases/rm_election.html');
         $preferenceVotes = WikiParser::getVotesFromHtml($html, 0, 4);
         $election = new StvElection($preferenceVotes, 2, false);
 
@@ -68,5 +68,34 @@ class WikiParserTest extends TestCase
             'Ben Ramsey' => 13,
             'Gabriel Caruso' => 14,
         ], $thirdRound->tally);
+    }
+
+    public function testShorterAttributeSyntax(): void
+    {
+        $html = WikiParser::getHtml('test/cases/shorter_attribute_syntax.html');
+        $preferenceVotes = WikiParser::getVotesFromHtml($html, 1, null);
+        $election = new StvElection($preferenceVotes, 1, false);
+
+        $this->assertTrue($election->isClosed);
+        $this->assertCount(3, $election->candidates);
+        $this->assertCount(61, $election->validBallots);
+        $this->assertSame(31, $election->quota);
+
+        $rounds = $election->runElection();
+        $this->assertCount(1, $rounds);
+
+        // round 1
+        $firstRound = $rounds[0];
+        $this->assertEmpty($firstRound->eliminated);
+
+        $firstElected = $firstRound->elected[0];
+        $this->assertSame('@@', $firstElected->name);
+        $this->assertSame(3, $firstElected->surplus);
+
+        $this->assertSame([
+            '@@' => 34,
+            '#[]' => 21,
+            '<<>>' => 6,
+        ], $firstRound->tally);
     }
 }
