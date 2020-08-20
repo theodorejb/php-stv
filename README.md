@@ -2,3 +2,25 @@
 
 Parse vote results of RFCs using a Single Transferable Vote
 on wiki.php.net and determine the winning candidate(s). 
+
+## Details
+
+Uses Droop quota formula. When quota has not been reached, the candidate(s)
+with the fewest votes are eliminated. No tie-breaking logic is implemented.
+
+## Requirements
+
+PHP 7.4+ with DOM extension.
+
+## CLI usage
+
+Set the appropriate parameters in **stv.php**, then run the script with `php stv.php`.
+
+## Development
+
+Before editing the code, run `composer install`. As part of development, run tests
+with `vendor/bin/phpunit`, and perform static analysis with `vendor/bin/psalm`.
+
+## License
+
+BSD 3-Clause
