@@ -10,6 +10,7 @@ class StvElection
 {
     public int $seats;
     public int $quota;
+    public bool $isClosed;
 
     /** @var string[] */
     public array $candidates;
@@ -36,6 +37,38 @@ class StvElection
         $votesCast = count($this->validBallots);
         // Droop quota formula
         $this->quota = (int) floor($votesCast / ($this->seats + 1)) + 1;
+    }
+
+    public function getResults(bool $showInvalid, bool $showCounted): string
+    {
+        $output = $this->getSummary($showCounted, $showInvalid);
+        $rounds = $this->runElection();
+        $lastIndex = count($rounds) - 1;
+
+        foreach ($rounds as $index => $round) {
+            $output .= $round->getSummary() . PHP_EOL;
+            $elected = $round->elected;
+
+            foreach ($elected as $candidate) {
+                $output .= "{$candidate->name} elected with {$candidate->surplus} surplus votes" . PHP_EOL;
+
+                if ($index !== $lastIndex) {
+                    if (count($candidate->transfers) !== 0) {
+                        $output .= "Distributing surplus votes" . PHP_EOL . PHP_EOL;
+                    }
+
+                    foreach ($candidate->transfers as $transfer) {
+                        $output .= "{$transfer->candidate}: +{$transfer->count}  {$transfer->details}" . PHP_EOL;
+                    }
+                }
+            }
+
+            foreach ($round->eliminated as $cc) {
+                $output .= "Eliminating {$cc->candidate}" . PHP_EOL;
+            }
+        }
+
+        return $output;
     }
 
     public function getSummary(bool $listVotes, bool $showInvalid): string
@@ -138,6 +171,7 @@ class StvElection
             throw new Exception('Failed to find any votes');
         }
 
+        $this->isClosed = true;
         $this->candidates = [];
         $this->allBallots = [];
 
@@ -146,6 +180,10 @@ class StvElection
                 $this->candidates = $rankedVote->candidates;
             } elseif ($rankedVote->candidates !== $this->candidates) {
                 throw new Exception("Candidate list doesn't match for {$rankedVote->name} vote");
+            }
+
+            if (!$rankedVote->pollClosed) {
+                $this->isClosed = false;
             }
 
             foreach ($rankedVote->votes as $vote) {

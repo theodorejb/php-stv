@@ -14,6 +14,7 @@ class WikiParserTest extends TestCase
         $preferenceVotes = WikiParser::getVotesFromHtml($html, 0, 4);
         $election = new StvElection($preferenceVotes, 2, false);
 
+        $this->assertTrue($election->isClosed);
         $this->assertCount(4, $election->candidates);
         $this->assertCount(43, $election->validBallots);
         $this->assertSame(15, $election->quota);

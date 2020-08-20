@@ -27,7 +27,7 @@ try {
     $showInvalid = (bool) ($_GET['showInvalid'] ?? false);
     $showCounted = (bool) ($_GET['showCounted'] ?? false);
     $rfc = $_GET['rfc'] ?? null;
-    $election = $_GET['election'] ?? null;
+    $electionUrl = $_GET['election'] ?? null;
 
     if ($rfc) {
         if (!preg_match('/^\w+$/', $rfc)) {
@@ -35,17 +35,17 @@ try {
         }
 
         $url = 'https://wiki.php.net/rfc/' . $rfc;
-    } elseif ($election) {
-        if (!preg_match('/^(\w+(\/\w+)*)$/', $election)) {
+    } elseif ($electionUrl) {
+        if (!preg_match('/^(\w+(\/\w+)*)$/', $electionUrl)) {
             throw new Exception('Invalid election url');
         }
 
-        $url = 'https://wiki.php.net/' . $election;
+        $url = 'https://wiki.php.net/' . $electionUrl;
     } else {
         throw new Exception('Missing required rfc parameter');
     }
 
-    if ($election !== null && strpos($election, 'todo/') === 0) {
+    if ($electionUrl !== null && strpos($electionUrl, 'todo/') === 0) {
         // defaults for RM election
         $seats = 2;
         $firstVoteIndex = 0;
@@ -67,12 +67,13 @@ try {
     echo "<p>Reading from <a href=\"{$url}\">{$url}</a>...</p>";
 
     $html = WikiParser::getHtml($url);
-    $results = WikiParser::getElectionResults($html, $seats, $firstVoteIndex, $numPolls, $countInvalid, $showInvalid, $showCounted);
+    $election = WikiParser::getElection($html, $seats, $firstVoteIndex, $numPolls, $countInvalid);
+    $results = $election->getResults($showInvalid, $showCounted);
     echo p($results);
 
-    if (strpos($html, 'Status: Voting') !== false) {
+    if (!$election->isClosed) {
         echo '<p style="margin: 2em 0; font-weight: bold">
-                Note: these results are not official/final!
+                Note: voting is in progress and these results are not final!
             </p>';
     }
 } catch (Exception $e) {

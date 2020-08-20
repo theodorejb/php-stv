@@ -19,41 +19,10 @@ class WikiParser
         return $result;
     }
 
-    public static function getElectionResults(
-        string $html, int $seats, int $firstVoteIndex, ?int $numPolls, bool $countInvalid,
-        bool $showInvalid, bool $showCounted): string
+    public static function getElection(string $html, int $seats, int $firstVoteIndex, ?int $numPolls, bool $countInvalid): StvElection
     {
         $preferenceVotes = WikiParser::getVotesFromHtml($html, $firstVoteIndex, $numPolls);
-        $election = new StvElection($preferenceVotes, $seats, $countInvalid);
-
-        $output = $election->getSummary($showCounted, $showInvalid);
-        $rounds = $election->runElection();
-        $lastIndex = count($rounds) - 1;
-
-        foreach ($rounds as $index => $round) {
-            $output .= $round->getSummary() . PHP_EOL;
-            $elected = $round->elected;
-
-            foreach ($elected as $candidate) {
-                $output .= "{$candidate->name} elected with {$candidate->surplus} surplus votes" . PHP_EOL;
-
-                if ($index !== $lastIndex) {
-                    if (count($candidate->transfers) !== 0) {
-                        $output .= "Distributing surplus votes" . PHP_EOL . PHP_EOL;
-                    }
-
-                    foreach ($candidate->transfers as $transfer) {
-                        $output .= "{$transfer->candidate}: +{$transfer->count}  {$transfer->details}" . PHP_EOL;
-                    }
-                }
-            }
-
-            foreach ($round->eliminated as $cc) {
-                $output .= "Eliminating {$cc->candidate}" . PHP_EOL;
-            }
-        }
-
-        return $output;
+        return new StvElection($preferenceVotes, $seats, $countInvalid);
     }
 
     /**
@@ -146,6 +115,7 @@ class WikiParser
     {
         $rows = $this->getRows($table);
         $name = null;
+        $pollClosed = false;
         $candidates = null;
         $votes = [];
 
@@ -175,7 +145,9 @@ class WikiParser
             } else {
                 $vote = $this->getVote($row);
 
-                if ($vote !== null) {
+                if ($vote === false) {
+                    $pollClosed = true;
+                } elseif ($vote !== null) {
                     $votes[] = $vote;
                 }
             }
@@ -189,7 +161,7 @@ class WikiParser
             throw new Exception('Failed to find candidates');
         }
 
-        return new PreferenceVotes($name, $candidates, $votes);
+        return new PreferenceVotes($name, $candidates, $votes, $pollClosed);
     }
 
     /**
@@ -210,7 +182,10 @@ class WikiParser
         return $candidates;
     }
 
-    public function getVote(DOMNode $row): ?Vote
+    /**
+     * @return Vote|null|false
+     */
+    public function getVote(DOMNode $row)
     {
         $username = null;
         $candidateIndex = 0;
@@ -225,7 +200,7 @@ class WikiParser
             }
 
             if ($child->nodeName === 'td' && trim($child->textContent) === 'This poll has been closed.') {
-                return null; // poll closed row
+                return false; // poll closed row
             }
 
             if ($child->nodeName !== 'td') {
