@@ -24,6 +24,7 @@ class WikiParserTest extends TestCase
 
         // round 1
         $firstRound = $rounds[0];
+        $this->assertEmpty($firstRound->getTransfers());
         $this->assertEmpty($firstRound->eliminated);
 
         $firstElected = $firstRound->elected[0];
@@ -44,6 +45,7 @@ class WikiParserTest extends TestCase
 
         // round 2
         $secondRound = $rounds[1];
+        $this->assertEmpty($secondRound->getTransfers());
         $this->assertEmpty($secondRound->elected);
 
         $this->assertEquals([
@@ -59,6 +61,10 @@ class WikiParserTest extends TestCase
         // round 3
         $thirdRound = $rounds[2];
         $this->assertEmpty($thirdRound->elected);
+
+        $this->assertSame([
+            'Gabriel Caruso' => 1,
+        ], $thirdRound->getTransfers());
 
         $this->assertEquals([
             new CandidateCount('Ben Ramsey', 13),
@@ -86,6 +92,7 @@ class WikiParserTest extends TestCase
 
         // round 1
         $firstRound = $rounds[0];
+        $this->assertEmpty($firstRound->getTransfers());
         $this->assertEmpty($firstRound->eliminated);
 
         $firstElected = $firstRound->elected[0];

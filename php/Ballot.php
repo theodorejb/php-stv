@@ -37,7 +37,8 @@ class Ballot
     public function withFirstOpenPreference(array $elected, array $eliminated): ?self
     {
         if (!isset($eliminated[$this->getCandidate()])) {
-            return $this;
+            // return new instance so ballot won't appear as transferred
+            return new self($this->name, $this->rankedChoices, $this->selectedChoice);
         }
 
         return $this->getNextPreference(array_merge($elected, $eliminated));

@@ -77,7 +77,7 @@ class ElectionRound
     /**
      * @return array<string, int>
      */
-    private function getTransfers(): array
+    public function getTransfers(): array
     {
         $transfers = [];
 

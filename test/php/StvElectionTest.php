@@ -66,9 +66,11 @@ class StvElectionTest extends TestCase
         $this->assertSame(6, $election->quota);
         $this->assertEmpty($election->invalidBallots);
         $rounds = $election->runElection();
+        $this->assertCount(5, $rounds);
 
         // round 1
         $firstRound = $rounds[0];
+        $this->assertEmpty($firstRound->getTransfers());
         $this->assertEmpty($firstRound->eliminated);
 
         $firstElected = $firstRound->elected[0];
@@ -90,6 +92,7 @@ class StvElectionTest extends TestCase
 
         // round 2
         $secondRound = $rounds[1];
+        $this->assertEmpty($secondRound->getTransfers());
         $this->assertEmpty($secondRound->elected);
 
         $this->assertEquals([
@@ -105,11 +108,15 @@ class StvElectionTest extends TestCase
 
         // round 3
         $thirdRound = $rounds[2];
+        $this->assertEmpty($thirdRound->eliminated);
+
+        $this->assertSame([
+            'Oranges' => 2,
+        ], $thirdRound->getTransfers());
+
         $secondElected = $thirdRound->elected[0];
         $this->assertSame('Oranges', $secondElected->name);
         $this->assertSame(0, $secondElected->surplus);
-
-        $this->assertEmpty($thirdRound->eliminated);
 
         $this->assertSame([
             'Oranges' => 6,
@@ -119,6 +126,7 @@ class StvElectionTest extends TestCase
 
         // round 4
         $fourthRound = $rounds[3];
+        $this->assertEmpty($fourthRound->getTransfers());
         $this->assertEmpty($fourthRound->elected);
 
         $this->assertEquals([
@@ -132,11 +140,12 @@ class StvElectionTest extends TestCase
 
         // round 5
         $fifthRound = $rounds[4];
+        $this->assertEmpty($fifthRound->getTransfers());
+        $this->assertEmpty($fifthRound->eliminated);
+
         $thirdElected = $fifthRound->elected[0];
         $this->assertSame('Strawberries', $thirdElected->name);
         $this->assertSame(-1, $thirdElected->surplus);
-
-        $this->assertEmpty($thirdRound->eliminated);
 
         $this->assertSame([
             'Strawberries' => 5,
