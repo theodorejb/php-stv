@@ -150,7 +150,7 @@ class StvElection
             $newCandidates = [];
 
             foreach ($candidates as $candidate) {
-                if (!isset($allEliminated[$candidate]) && $candidate) {
+                if (!isset($allEliminated[$candidate])) {
                     $newCandidates[] = $candidate;
                 }
             }
