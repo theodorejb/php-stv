@@ -76,6 +76,12 @@ try {
                 Note: voting is in progress and these results are not final!
             </p>';
     }
+
+    if ($rfc === 'shorter_attribute_syntax_change') {
+        echo "<p>
+                <a href='https://theodorejb.me/2020/08/21/why-atat-is-the-best-attribute-syntax-for-php/'>
+                Why @@ is the best attribute syntax for PHP</a></p>";
+    }
 } catch (Exception $e) {
     echo p("Error: {$e->getMessage()}");
 }
