@@ -1,0 +1,12 @@
+dist: focal
+language: php
+
+php:
+  - 7.4
+
+install:
+  - composer install
+
+script:
+  - vendor/bin/phpunit
+  - vendor/bin/psalm
