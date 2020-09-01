@@ -2,7 +2,7 @@
     "name": "theodorejb/php-stv",
     "description": "Determine winning candidate(s) in an STV election",
     "type": "project",
-    "license": "MIT",
+    "license": "BSD-3-Clause",
     "authors": [
         {
             "name": "Theodore Brown",
@@ -18,7 +18,7 @@
         "psr-4": {"theodorejb\\PhpStv\\": "php/"}
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.2",
-        "vimeo/psalm": "^3.13"
+        "phpunit/phpunit": "^9.3",
+        "vimeo/psalm": "^3.14"
     }
 }
