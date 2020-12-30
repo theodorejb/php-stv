@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class StvElectionTest extends TestCase
 {
-    public function testWikipediaExample()
+    public function testWikipediaExample(): void
     {
         $candidates = ['Oranges', 'Pears', 'Chocolate', 'Strawberries', 'Hamburgers'];
 

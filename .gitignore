@@ -1,3 +1,4 @@
 /vendor/
 /deploy/archive.zip
 /stv_cache.html
+.phpunit.result.cache

@@ -16,7 +16,7 @@ class StvElection
     public array $candidates;
 
     /**
-     * @var array<string, string[]>
+     * @var array<mixed, string[]>
      */
     public array $allBallots;
 
