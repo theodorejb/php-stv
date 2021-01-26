@@ -12,17 +12,7 @@ use theodorejb\PhpStv\WikiParser;
 
 require '../../vendor/autoload.php';
 
-// todo: handle plurality elections and detect stv vs. plurality votes
-//  if page contains text " STV " before vote doodle, treat following doodles as stv election
-//  (otherwise as separate plurality polls)
-// if certain header detected, stop counting stv election (for rm example)
-// and detect following polls as stv or plurality as before
-// default to one seat unless find text about release manager, then 2
-
 try {
-    $seats = 1;
-    $firstVoteIndex = 1;
-    $numPolls = null;
     $countInvalid = (bool) ($_GET['countInvalid'] ?? false);
     $showInvalid = (bool) ($_GET['showInvalid'] ?? false);
     $showCounted = (bool) ($_GET['showCounted'] ?? false);
@@ -45,29 +35,10 @@ try {
         throw new Exception('Missing required rfc parameter');
     }
 
-    if ($electionUrl !== null && strpos($electionUrl, 'todo/') === 0) {
-        // defaults for RM election
-        $seats = 2;
-        $firstVoteIndex = 0;
-        $numPolls = 4;
-    }
-
-    if (isset($_GET['seats'])) {
-        $seats = (int) $_GET['seats'];
-    }
-
-    if (isset($_GET['numPolls'])) {
-        $numPolls = (int) $_GET['numPolls'];
-    }
-
-    if (isset($_GET['firstVoteIndex'])) {
-        $firstVoteIndex = (int) $_GET['firstVoteIndex'];
-    }
-
     echo "<p>Reading from <a href=\"{$url}\">{$url}</a>...</p>";
 
     $html = WikiParser::getHtml($url);
-    $election = WikiParser::getElection($html, $seats, $firstVoteIndex, $numPolls, $countInvalid);
+    $election = WikiParser::getStvElection($html, $countInvalid);
     $results = $election->getResults($showInvalid, $showCounted);
     echo p($results);
 

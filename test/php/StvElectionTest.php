@@ -13,7 +13,7 @@ class StvElectionTest extends TestCase
         $candidates = ['Oranges', 'Pears', 'Chocolate', 'Strawberries', 'Hamburgers'];
 
         $preferenceVotes = [
-            new PreferenceVotes('1st preference', $candidates, [
+            new Poll('1st preference', $candidates, [
                 // 4 ballots with oranges as 1st pref and no 2nd
                 new Vote('1', 0),
                 new Vote('2', 0),
@@ -41,7 +41,7 @@ class StvElectionTest extends TestCase
                 // 1 ballot with hamburgers as 1st and no 2nd
                 new Vote('20', 4),
             ]),
-            new PreferenceVotes('2nd preference', $candidates, [
+            new Poll('2nd preference', $candidates, [
                 // 2 second preferences for oranges
                 new Vote('5', 0),
                 new Vote('6', 0),

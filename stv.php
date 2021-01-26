@@ -22,5 +22,5 @@ if (!file_exists($cacheFilename)) {
 
 echo "Reading from {$cacheFilename}..." . PHP_EOL . PHP_EOL;
 $html = WikiParser::getHtml($cacheFilename);
-$election = WikiParser::getElection($html, 1, 1, null, false);
+$election = WikiParser::getStvElection($html, false);
 echo $election->getResults(true, false);

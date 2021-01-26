@@ -11,8 +11,7 @@ class WikiParserTest extends TestCase
     public function testRmElection(): void
     {
         $html = WikiParser::getHtml('test/cases/rm_election.html');
-        $preferenceVotes = WikiParser::getVotesFromHtml($html, 0, 4);
-        $election = new StvElection($preferenceVotes, 2, false);
+        $election = WikiParser::getStvElection($html, false);
 
         $this->assertTrue($election->isClosed);
         $this->assertCount(4, $election->candidates);
@@ -79,8 +78,7 @@ class WikiParserTest extends TestCase
     public function testShorterAttributeSyntax(): void
     {
         $html = WikiParser::getHtml('test/cases/shorter_attribute_syntax.html');
-        $preferenceVotes = WikiParser::getVotesFromHtml($html, 1, null);
-        $election = new StvElection($preferenceVotes, 1, false);
+        $election = WikiParser::getStvElection($html, false);
 
         $this->assertTrue($election->isClosed);
         $this->assertCount(3, $election->candidates);

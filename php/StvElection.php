@@ -27,7 +27,7 @@ class StvElection
     public array $invalidBallots;
 
     /**
-     * @param PreferenceVotes[] $preferenceVotes
+     * @param Poll[] $preferenceVotes
      */
     public function __construct(array $preferenceVotes, int $seats, bool $keepInvalidBallots = false)
     {
@@ -163,11 +163,11 @@ class StvElection
     }
 
     /**
-     * @param PreferenceVotes[] $preferenceVotes
+     * @param Poll[] $polls
      */
-    private function setBallots(array $preferenceVotes, bool $keepInvalidBallots): void
+    private function setBallots(array $polls, bool $keepInvalidBallots): void
     {
-        if (count($preferenceVotes) === 0) {
+        if (count($polls) === 0) {
             throw new Exception('Failed to find any votes');
         }
 
@@ -175,18 +175,18 @@ class StvElection
         $this->candidates = [];
         $this->allBallots = [];
 
-        foreach ($preferenceVotes as $idx => $rankedVote) {
+        foreach ($polls as $poll) {
             if ($this->candidates === []) {
-                $this->candidates = $rankedVote->candidates;
-            } elseif ($rankedVote->candidates !== $this->candidates) {
-                throw new Exception("Candidate list doesn't match for {$rankedVote->name} vote");
+                $this->candidates = $poll->candidates;
+            } elseif ($poll->candidates !== $this->candidates) {
+                throw new Exception("Candidate list doesn't match for {$poll->name} vote");
             }
 
-            if (!$rankedVote->pollClosed) {
+            if (!$poll->isClosed) {
                 $this->isClosed = false;
             }
 
-            foreach ($rankedVote->votes as $vote) {
+            foreach ($poll->votes as $vote) {
                 $this->allBallots[$vote->username][] = $this->candidates[$vote->candidateIndex];
             }
         }

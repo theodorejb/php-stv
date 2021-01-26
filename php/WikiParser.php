@@ -19,33 +19,74 @@ class WikiParser
         return $result;
     }
 
-    public static function getElection(string $html, int $seats, int $firstVoteIndex, ?int $numPolls, bool $countInvalid): StvElection
+    public static function getStvElection(string $html, bool $countInvalid, ?int $seats = null): StvElection
     {
-        $preferenceVotes = WikiParser::getVotesFromHtml($html, $firstVoteIndex, $numPolls);
-        return new StvElection($preferenceVotes, $seats, $countInvalid);
+        $stvLineNum = self::getStvLineNum($html);
+
+        if ($stvLineNum === null) {
+            // todo: also support plurality elections
+            throw new Exception('Failed to detect STV election');
+        }
+
+        if ($seats === null) {
+            $seats = 1;
+            $checkForRm = true;
+        } else {
+            $checkForRm = false;
+        }
+
+        $polls = self::getPollsFromHtml($html);
+        $stvPolls = [];
+
+        foreach ($polls as $poll) {
+            if ($poll->lineNumber < $stvLineNum) {
+                continue;
+            }
+
+            $stvPolls[] = $poll;
+
+            if ($checkForRm && strpos($poll->name, " RM ") !== false) {
+                $seats = 2;
+                $checkForRm = false;
+            }
+
+            if (count($stvPolls) === count($poll->candidates)) {
+                break;
+            }
+        }
+
+        return new StvElection($stvPolls, $seats, $countInvalid);
+    }
+
+    public static function getStvLineNum(string $html): ?int
+    {
+        $lineNum = 1;
+        $separator = "\r\n";
+        $line = strtok($html, $separator);
+
+        while ($line !== false) {
+            if (strpos($line, ">STV<") !== false) {
+                return $lineNum;
+            }
+
+            $lineNum++;
+            $line = strtok($separator);
+        }
+
+        return null;
     }
 
     /**
-     * @return PreferenceVotes[]
+     * @return Poll[]
      */
-    public static function getVotesFromHtml(string $html, int $firstVoteIndex, ?int $numPolls): array
+    public static function getPollsFromHtml(string $html): array
     {
         libxml_use_internal_errors(true);
         $doc = new DOMDocument();
         $doc->loadHTML($html);
         libxml_use_internal_errors(false);
 
-        $parser = new self();
-        return $parser->getPreferenceVotes($doc, $firstVoteIndex, $numPolls);
-    }
-
-    /**
-     * @return PreferenceVotes[]
-     */
-    public function getPreferenceVotes(DOMDocument $doc, int $firstVoteIndex, ?int $numPolls = null): array
-    {
         $forms = $doc->getElementsByTagName('form');
-        $index = -1;
         $rankedVotes = [];
 
         for ($i = 0; $i < $forms->count(); $i++) {
@@ -56,29 +97,19 @@ class WikiParser
                 continue;
             }
 
-            $index++;
-
-            if ($index < $firstVoteIndex) {
-                continue;
-            }
-
-            $table = $this->getFirstTable($form->childNodes);
+            $table = self::getFirstTable($form->childNodes);
 
             if ($table === null) {
                 continue;
             }
 
-            $rankedVotes[] = $this->getVoteInfo($table);
-
-            if ($numPolls !== null && $index === $firstVoteIndex + $numPolls - 1) {
-                break;
-            }
+            $rankedVotes[] = self::getVoteInfo($table);
         }
 
         return $rankedVotes;
     }
 
-    public function getFirstTable(DOMNodeList $nodes): ?DOMNode
+    private static function getFirstTable(DOMNodeList $nodes): ?DOMNode
     {
         for ($i = 0; $i < $nodes->count(); $i++) {
             $node = $nodes->item($i);
@@ -91,7 +122,7 @@ class WikiParser
         return null;
     }
 
-    public function getRows(DOMNode $table): DOMNodeList
+    private static function getRows(DOMNode $table): DOMNodeList
     {
         $children = $table->childNodes;
         $tbody = null;
@@ -111,9 +142,9 @@ class WikiParser
         return $tbody->childNodes;
     }
 
-    public function getVoteInfo(DOMNode $table): PreferenceVotes
+    private static function getVoteInfo(DOMNode $table): Poll
     {
-        $rows = $this->getRows($table);
+        $rows = self::getRows($table);
         $name = null;
         $pollClosed = false;
         $candidates = null;
@@ -138,12 +169,12 @@ class WikiParser
                 if ($classAttr->nodeValue === 'row0') {
                     $name = trim($row->textContent);
                 } elseif ($classAttr->nodeValue === 'row1') {
-                    $candidates = $this->getCandidates($row);
+                    $candidates = self::getCandidates($row);
                 } else {
                     throw new Exception('Unexpected class name for row');
                 }
             } else {
-                $vote = $this->getVote($row);
+                $vote = self::getVote($row);
 
                 if ($vote === false) {
                     $pollClosed = true;
@@ -161,13 +192,15 @@ class WikiParser
             throw new Exception('Failed to find candidates');
         }
 
-        return new PreferenceVotes($name, $candidates, $votes, $pollClosed);
+        /** @var int $lineNo */
+        $lineNo = $table->getLineNo();
+        return new Poll($name, $candidates, $votes, $pollClosed, $lineNo);
     }
 
     /**
      * @return string[]
      */
-    public function getCandidates(DOMNode $row): array
+    private static function getCandidates(DOMNode $row): array
     {
         $candidates = [];
 
@@ -185,7 +218,7 @@ class WikiParser
     /**
      * @return Vote|null|false
      */
-    public function getVote(DOMNode $row)
+    private static function getVote(DOMNode $row)
     {
         $username = null;
         $candidateIndex = 0;
@@ -213,7 +246,7 @@ class WikiParser
                 continue;
             }
 
-            if ($this->containsImg($child)) {
+            if (self::containsImg($child)) {
                 return new Vote($username, $candidateIndex);
             }
 
@@ -223,7 +256,7 @@ class WikiParser
         throw new Exception("Failed to find vote for user {$username}");
     }
 
-    public function containsImg(DOMNode $node): bool
+    private static function containsImg(DOMNode $node): bool
     {
         for ($i = 0; $i < $node->childNodes->count(); $i++) {
             $child = $node->childNodes->item($i);
