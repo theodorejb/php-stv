@@ -39,72 +39,104 @@ class StvElection
         $this->quota = (int) floor($votesCast / ($this->seats + 1)) + 1;
     }
 
-    public function getResults(bool $showInvalid, bool $showCounted): string
+    public function getResultsHtml(bool $showInvalid, bool $showCounted): string
     {
-        $output = $this->getSummary($showCounted, $showInvalid);
+        $output = $this->getSummaryHtml($showCounted, $showInvalid);
         $rounds = $this->runElection();
         $lastIndex = count($rounds) - 1;
 
         foreach ($rounds as $index => $round) {
-            $output .= $round->getSummary() . PHP_EOL;
-            $elected = $round->elected;
+            $output .= $round->getSummaryHtml() . "\n";
 
-            foreach ($elected as $candidate) {
-                $output .= "{$candidate->name} elected with {$candidate->surplus} surplus votes" . PHP_EOL;
+            foreach ($round->elected as $candidate) {
+                $encodedName = Utils::encodeHtml($candidate->name);
+                $output .= <<<elected
+
+                <p class="alert alert-success" role="alert">
+                  <b>{$encodedName}</b> elected with {$candidate->surplus} surplus votes 🎆
+                </p>
+
+                elected;
 
                 if ($index !== $lastIndex) {
                     if (count($candidate->transfers) !== 0) {
-                        $output .= "Distributing surplus votes" . PHP_EOL . PHP_EOL;
-                    }
+                        $output .= "\n<p>➕ Distributing surplus votes...</p>\n";
+                        $output .= "<ul>\n";
 
-                    foreach ($candidate->transfers as $transfer) {
-                        $output .= "{$transfer->candidate}: +{$transfer->count}  {$transfer->details}" . PHP_EOL;
+                        foreach ($candidate->transfers as $transfer) {
+                            $output .= "  <li>" . Utils::encodeHtml($transfer->candidate) . ": <b>+{$transfer->count}</b>";
+                            $output .= "  " . Utils::encodeHtml($transfer->details) . "</li>\n";
+                        }
+
+                        $output .= "</ul>\n";
                     }
                 }
             }
 
-            foreach ($round->eliminated as $cc) {
-                $output .= "Eliminating {$cc->candidate}" . PHP_EOL;
+            if (count($round->eliminated) !== 0) {
+                $output .= "<h4>⛔ Eliminated (" . $round->eliminated[0]->count . " votes)</h4>\n";
+                $output .= "<ul>\n";
+
+                foreach ($round->eliminated as $cc) {
+                    $output .= "  <li>" . Utils::encodeHtml($cc->candidate) . "</li>\n";
+                }
+
+                $output .= "</ul>\n";
             }
         }
 
         return $output;
     }
 
-    public function getSummary(bool $listVotes, bool $showInvalid): string
+    public function getSummaryHtml(bool $listVotes, bool $showInvalid): string
     {
-        $summary = 'Candidates (in order of ballot):' . PHP_EOL;
-        $summary .= implode("  -  ", $this->candidates) . PHP_EOL;
+        $summary = "<h2>" . count($this->candidates) . " Candidates (in order of ballot)</h2>\n";
+        $summary .= "<ul>\n";
 
-        $invalidBallotCount = count($this->invalidBallots);
-        $index = $invalidBallotCount * -1;
-
-        if ($invalidBallotCount > 0 && $showInvalid) {
-            $summary .= PHP_EOL . "{$invalidBallotCount} invalid ballots:" . PHP_EOL;
-
-            foreach ($this->invalidBallots as $ballot) {
-                $index++;
-                $summary .= "{$ballot->name}:   ";
-                $summary .= implode("  -  ", $ballot->rankedChoices) . PHP_EOL;
-            }
+        foreach ($this->candidates as $candidate) {
+            $summary .= "  <li>" . Utils::encodeHtml($candidate) . "</li>\n";
         }
 
-        if ($listVotes) {
-            $summary .= PHP_EOL . 'Votes:' . PHP_EOL;
-            $index = 0;
+        $summary .= "</ul>\n";
 
-            foreach ($this->validBallots as $ballot) {
-                $index++;
-                $summary .= "Vote #{$index}:   ";
-                $summary .= implode("  -  ", $ballot->rankedChoices) . PHP_EOL;
-            }
+        if (count($this->invalidBallots) > 0 && $showInvalid) {
+            $summary .= Utils::getBallotsHtml($this->invalidBallots, 'Invalid Ballots ❌');
         }
 
         $votes = count($this->validBallots);
-        $summary .= PHP_EOL . "Votes: {$votes}" . PHP_EOL;
-        $summary .= 'Candidates: ' . count($this->candidates) . PHP_EOL;
-        $summary .= 'Seats: ' . $this->seats . PHP_EOL;
-        $summary .= "Quota: floor({$votes} / ({$this->seats} + 1)) + 1 = {$this->quota}" . PHP_EOL;
+        $summary .= <<<infoTable
+
+        <h2>🔵 Info</h2>
+        <table class="table">
+          <tr>
+            <th scope="row">Votes</th>
+            <td>{$votes}</td>
+          </tr>
+          <tr>
+            <th scope="row">Seats</th>
+            <td>{$this->seats}</td>
+          </tr>
+          <tr>
+            <th scope="row">Quota</th>
+            <td>floor({$votes} / ({$this->seats} + 1)) + 1 = <b>{$this->quota}</b></td>
+          </tr>
+        </table>
+
+        infoTable;
+
+        if (!$this->isClosed) {
+            $summary .= <<<inProgress
+
+            <div class="alert alert-warning" role="alert">
+              ⚠️ Note: voting is in progress and these results are not final!
+            </div>
+
+            inProgress;
+        }
+
+        if ($listVotes) {
+            $summary .= Utils::getBallotsHtml($this->validBallots, 'Votes', true);
+        }
 
         return $summary;
     }

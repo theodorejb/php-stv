@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>PHP STV results</title>
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
 <body>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">STV results</span>
+    </div>
+</nav>
+<div class="container">
 <?php
 
 use theodorejb\PhpStv\WikiParser;
@@ -35,18 +43,11 @@ try {
         throw new Exception('Missing required rfc parameter');
     }
 
-    echo "<p>Reading from <a href=\"{$url}\">{$url}</a>...</p>";
+    echo '<p style="font-size: 0.875rem" class="text-break mt-2">Reading from <a href="' . $url . '">' . $url . '</a>...</p>';
 
     $html = WikiParser::getHtml($url);
     $election = WikiParser::getStvElection($html, $countInvalid);
-    $results = $election->getResults($showInvalid, $showCounted);
-    echo p($results);
-
-    if (!$election->isClosed) {
-        echo '<p style="margin: 2em 0; font-weight: bold">
-                Note: voting is in progress and these results are not final!
-            </p>';
-    }
+    echo $election->getResultsHtml($showInvalid, $showCounted);
 
     if ($rfc === 'shorter_attribute_syntax_change') {
         echo "<p>
@@ -54,16 +55,18 @@ try {
                 Why @@ is the best attribute syntax for PHP</a></p>";
     }
 } catch (Exception $e) {
-    echo p("Error: {$e->getMessage()}");
+    echo "<p>Error: " . htmlspecialchars($e->getMessage()) . "</p>";
 }
 
-function p(string $html): string
-{
-    return '<p><pre>' . htmlspecialchars($html) . '</pre></p>';
-}
 ?>
-<p>
-    Created with ❤️ by Theodore Brown
-</p>
+</div>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <span class="navbar-text">
+          Created with ❤️ by Theodore Brown
+        </span>
+        <a class="navbar-text" href="https://github.com/theodorejb/php-stv">Source</a>
+    </div>
+</nav>
 </body>
 </html>

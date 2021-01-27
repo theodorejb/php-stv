@@ -6,8 +6,8 @@ namespace theodorejb\PhpStv;
 
 class Ballot
 {
-    /** null if a redistributed vote */
-    public ?string $name;
+    /** An empty string if a redistributed vote */
+    public string $name;
 
     /** @var string[] */
     public array $rankedChoices;
@@ -17,7 +17,7 @@ class Ballot
     /**
      * @param string[] $rankedChoices
      */
-    public function __construct(?string $name, array $rankedChoices, int $selectedChoice = 0, ?int $lastChoice = null)
+    public function __construct(string $name, array $rankedChoices, int $selectedChoice = 0, ?int $lastChoice = null)
     {
         if (!isset($rankedChoices[0])) {
             throw new \Exception("Ballot for '{$name}' has no ranked choices");

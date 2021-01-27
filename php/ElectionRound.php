@@ -51,26 +51,48 @@ class ElectionRound
         $this->eliminated = (count($this->elected) === 0) ? $this->getCandidatesWithFewestVotes() : [];
     }
 
-    public function getSummary(): string
+    public function getSummaryHtml(): string
     {
-        $summary = PHP_EOL . "Round #{$this->round}" . PHP_EOL;
-        $summary .= '--------' . PHP_EOL;
+        $summary = "\n<hr class=\"w-50 my-4 mx-auto\"/>\n";
+        $summary .= "<h2 class=\"mb-3\">Round #{$this->round}</h2>\n";
         $transfers = $this->getTransfers();
 
         if (count($transfers) !== 0) {
-            $summary .= PHP_EOL . 'Transfers:' . PHP_EOL;
+            $summary .= "<h4>🔀 Transfers</h4>\n";
+            $summary .= "<ul>\n";
 
             foreach ($transfers as $candidate => $transfer) {
-                $summary .= "{$candidate}: +{$transfer}" . PHP_EOL;
+                $summary .= "  <li>" . Utils::encodeHtml($candidate) . ": <b>+{$transfer}</b></li>\n";
             }
+
+            $summary .= "</ul>\n";
         }
 
-        $summary .= PHP_EOL . 'Tally:' . PHP_EOL;
+        $summary .= <<<tallyTable
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Candidate</th>
+              <th scope="col">Tally</th>
+            </tr>
+          </thead>
+          <tbody>
+
+        tallyTable;
 
         foreach ($this->tally as $candidate => $count) {
-            $summary .= "{$candidate}: {$count}" . PHP_EOL;
+            $encoded = Utils::encodeHtml($candidate);
+            $summary .= <<<candidateRow
+                <tr>
+                  <td>{$encoded}</td>
+                  <td>{$count}</td>
+                </tr>
+
+            candidateRow;
         }
 
+        $summary .= "  </tbody>\n</table>\n";
         return $summary;
     }
 
@@ -152,7 +174,7 @@ class ElectionRound
         foreach ($elected as $candidate) {
             foreach ($candidate->transfers as $transfer) {
                 for ($i = 0; $i < $transfer->count; $i++) {
-                    $ballots[] = new Ballot(null, [$transfer->candidate]);
+                    $ballots[] = new Ballot('', [$transfer->candidate]);
                 }
             }
         }
