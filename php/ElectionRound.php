@@ -53,8 +53,7 @@ class ElectionRound
 
     public function getSummaryHtml(): string
     {
-        $summary = "\n<hr class=\"w-50 my-4 mx-auto\"/>\n";
-        $summary .= "<h2 class=\"mb-3\">Round #{$this->round}</h2>\n";
+        $summary = "<h2 class=\"mb-3\">Round #{$this->round}</h2>\n";
         $transfers = $this->getTransfers();
 
         if (count($transfers) !== 0) {

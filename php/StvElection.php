@@ -46,6 +46,7 @@ class StvElection
         $lastIndex = count($rounds) - 1;
 
         foreach ($rounds as $index => $round) {
+            $output .= "\n<div class=\"container p-3 mb-4 shadow-sm\">\n";
             $output .= $round->getSummaryHtml() . "\n";
 
             foreach ($round->elected as $candidate) {
@@ -83,6 +84,8 @@ class StvElection
 
                 $output .= "</ul>\n";
             }
+
+            $output .= "</div>\n";
         }
 
         return $output;
