@@ -109,7 +109,7 @@ class StvElection
         $votes = count($this->validBallots);
         $summary .= <<<infoTable
 
-        <h2>🔵 Info</h2>
+        <h2>💡 Info</h2>
         <table class="table">
           <tr>
             <th scope="row">Votes</th>
