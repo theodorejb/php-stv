@@ -65,7 +65,11 @@ class WikiParser
         $line = strtok($html, $separator);
 
         while ($line !== false) {
-            if (strpos($line, ">STV<") !== false) {
+            if (
+                strpos($line, ">STV<") !== false ||
+                // for https://wiki.php.net/todo/php81
+                strpos($line, 'Single Transferrable Vote') !== false
+            ) {
                 return $lineNum;
             }
 
