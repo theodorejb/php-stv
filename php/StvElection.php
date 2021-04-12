@@ -26,13 +26,16 @@ class StvElection
     /** @var Ballot[] */
     public array $invalidBallots;
 
+    private bool $countInvalid;
+
     /**
-     * @param Poll[] $preferenceVotes
+     * @param Poll[] $polls
      */
-    public function __construct(array $preferenceVotes, int $seats, bool $keepInvalidBallots = false)
+    public function __construct(array $polls, int $seats, bool $countInvalid = false)
     {
         $this->seats = $seats;
-        $this->setBallots($preferenceVotes, $keepInvalidBallots);
+        $this->countInvalid = $countInvalid;
+        $this->setBallots($polls);
 
         $votesCast = count($this->validBallots);
         // Droop quota formula
@@ -104,6 +107,16 @@ class StvElection
 
         if (count($this->invalidBallots) > 0 && $showInvalid) {
             $summary .= Utils::getBallotsHtml($this->invalidBallots, 'Invalid Ballots ❌');
+
+            if ($this->countInvalid) {
+                $summary .= <<<countInfo
+
+                <div class="alert alert-secondary" role="alert">
+                  ⚠️ Only the highest preference expressed for each candidate is counted.
+                </div>
+
+                countInfo;
+            }
         }
 
         $votes = count($this->validBallots);
@@ -200,7 +213,7 @@ class StvElection
     /**
      * @param Poll[] $polls
      */
-    private function setBallots(array $polls, bool $keepInvalidBallots): void
+    private function setBallots(array $polls): void
     {
         if (count($polls) === 0) {
             throw new Exception('Failed to find any votes');
@@ -226,10 +239,10 @@ class StvElection
             }
         }
 
-        $this->setValidBallots($keepInvalidBallots);
+        $this->setValidBallots();
     }
 
-    private function setValidBallots(bool $keepInvalidBallots): void
+    private function setValidBallots(): void
     {
         $this->validBallots = [];
         $this->invalidBallots = [];
@@ -241,14 +254,14 @@ class StvElection
             foreach ($ballot as $preference) {
                 if (isset($unique[$preference])) {
                     $isValid = false;
-                    break;
+                    continue;
                 }
 
                 $unique[$preference] = true;
             }
 
-            if ($isValid || $keepInvalidBallots) {
-                // if invalid, only include preferences prior to duplicate
+            if ($isValid || $this->countInvalid) {
+                // if invalid, only count highest preference for each candidate
                 $this->validBallots[] = new Ballot((string) $username, array_keys($unique));
             }
 
