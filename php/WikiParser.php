@@ -196,9 +196,7 @@ class WikiParser
             throw new Exception('Failed to find candidates');
         }
 
-        /** @var int $lineNo */
-        $lineNo = $table->getLineNo();
-        return new Poll($name, $candidates, $votes, $pollClosed, $lineNo);
+        return new Poll($name, $candidates, $votes, $pollClosed, $table->getLineNo());
     }
 
     /**
