@@ -2,7 +2,7 @@
 
 # Add PHP ppa and install PHP
 sudo add-apt-repository ppa:ondrej/php
-sudo apt-get install php7.4-fpm php7.4-xml php7.4-mysql php7.4-mbstring
+sudo apt install php8.0-fpm php8.0-xml php8.0-mysql php8.0-mbstring
 
 # install nginx and zip/unzip
 sudo apt install nginx

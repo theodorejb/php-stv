@@ -10,7 +10,7 @@ with the fewest votes are eliminated. No tie-breaking logic is implemented.
 
 ## Requirements
 
-PHP 7.4+ with DOM extension.
+PHP 8.0+ with DOM extension.
 
 ## CLI usage
 

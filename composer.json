@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=7.4",
+        "php": ">=8.0",
         "ext-dom": "*",
         "ext-libxml": "*"
     },
@@ -18,8 +18,8 @@
         "psr-4": {"theodorejb\\PhpStv\\": "php/"}
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5",
+        "phpunit/phpunit": "^9.5.8",
         "psalm/plugin-phpunit": "^0.16.1",
-        "vimeo/psalm": "^4.8.1"
+        "vimeo/psalm": "^4.9.3"
     }
 }
