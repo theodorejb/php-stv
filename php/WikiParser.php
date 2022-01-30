@@ -8,17 +8,23 @@ use DOMDocument, DOMNode, DOMNodeList, Exception;
 
 class WikiParser
 {
+    /**
+     * @return non-empty-string
+     */
     public static function getHtml(string $fileOrUrl): string
     {
         $result = @\file_get_contents($fileOrUrl);
 
-        if ($result === false) {
+        if ($result === false || $result === '') {
             throw new Exception('Failed to fetch HTML');
         }
 
         return $result;
     }
 
+    /**
+     * @param non-empty-string $html
+     */
     public static function getStvElection(string $html, bool $countInvalid, ?int $seats = null): StvElection
     {
         $stvLineNum = self::getStvLineNum($html);
@@ -45,7 +51,7 @@ class WikiParser
 
             $stvPolls[] = $poll;
 
-            if ($checkForRm && strpos($poll->name, " RM ") !== false) {
+            if ($checkForRm && str_contains($poll->name, " RM ")) {
                 $seats = 2;
                 $checkForRm = false;
             }
@@ -66,9 +72,9 @@ class WikiParser
 
         while ($line !== false) {
             if (
-                strpos($line, ">STV<") !== false ||
+                str_contains($line, ">STV<") ||
                 // for https://wiki.php.net/todo/php81
-                strpos($line, 'Single Transferrable Vote') !== false
+                str_contains($line, 'Single Transferrable Vote')
             ) {
                 return $lineNum;
             }
@@ -81,6 +87,7 @@ class WikiParser
     }
 
     /**
+     * @param non-empty-string $html
      * @return Poll[]
      */
     public static function getPollsFromHtml(string $html): array
