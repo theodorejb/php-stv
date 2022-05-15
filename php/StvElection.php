@@ -192,7 +192,7 @@ class StvElection
                 }
             }
 
-            $round = new ElectionRound($roundNum, $ballots, $baseTally, $allEliminated, $this);
+            $round = new ElectionRound($roundNum, $ballots, $baseTally, $allElected, $allEliminated, $this);
             $pastRounds[] = $round;
             $elected = $round->elected;
 

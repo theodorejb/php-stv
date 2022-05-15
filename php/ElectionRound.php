@@ -20,12 +20,14 @@ class ElectionRound
     /**
      * @param Ballot[] $ballots
      * @param array<string, int> $baseTally
+     * @param array<string, true> $allElected
      * @param array<string, true> $allEliminated
      */
     public function __construct(
         public int $round,
         public array $ballots,
         array $baseTally,
+        private array $allElected,
         private array $allEliminated,
         private StvElection $election,
     ) {
@@ -202,10 +204,11 @@ class ElectionRound
     private function getNextPreferenceTally(string $candidate): array
     {
         $tally = [];
+        $excluded = array_merge($this->allElected, $this->allEliminated);
 
         foreach ($this->ballots as $ballot) {
             if ($ballot->getCandidate() === $candidate) {
-                $nextPreference = $ballot->getNextPreference($this->allEliminated);
+                $nextPreference = $ballot->getNextPreference($excluded);
 
                 if ($nextPreference !== null) {
                     $nextCandidate = $nextPreference->getCandidate();
