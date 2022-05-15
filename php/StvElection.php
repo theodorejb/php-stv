@@ -57,7 +57,7 @@ class StvElection
                 $output .= <<<elected
 
                 <p class="alert alert-success" role="alert">
-                  <b>{$encodedName}</b> elected with {$candidate->surplus} surplus votes 🎆
+                  <b>{$encodedName}</b> elected with {$candidate->surplus} surplus votes 🎉
                 </p>
 
                 elected;
@@ -122,7 +122,7 @@ class StvElection
         $votes = count($this->validBallots);
         $summary .= <<<infoTable
 
-        <h2>💡 Info</h2>
+        <h2>🗒️ Info</h2>
         <table class="table">
           <tr>
             <th scope="row">Votes</th>
