@@ -8,34 +8,47 @@ use Exception;
 
 class StvElection
 {
-    public int $seats;
     public int $quota;
-    public bool $isClosed;
-
-    /** @var string[] */
-    public array $candidates;
-
-    /**
-     * @var array<mixed, string[]>
-     */
-    public array $allBallots;
 
     /** @var Ballot[] */
-    public array $validBallots;
+    public array $validBallots = [];
 
     /** @var Ballot[] */
-    public array $invalidBallots;
-
-    private bool $countInvalid;
+    public array $invalidBallots = [];
 
     /**
-     * @param Poll[] $polls
+     * @param Ballot[] $ballots
+     * @param string[] $candidates
      */
-    public function __construct(array $polls, int $seats, bool $countInvalid = false)
-    {
-        $this->seats = $seats;
-        $this->countInvalid = $countInvalid;
-        $this->setBallots($polls);
+    public function __construct(
+        array $ballots,
+        public array $candidates,
+        public int $seats,
+        public bool $isClosed,
+        private bool $countInvalid,
+    ) {
+        foreach ($ballots as $ballot) {
+            $unique = [];
+            $isValid = true;
+
+            foreach ($ballot->rankedChoices as $preference) {
+                if (isset($unique[$preference])) {
+                    $isValid = false;
+                    continue;
+                }
+
+                $unique[$preference] = true;
+            }
+
+            if ($isValid || $countInvalid) {
+                // if invalid, only count the highest preference for each candidate
+                $this->validBallots[] = new Ballot($ballot->name, array_keys($unique));
+            }
+
+            if (!$isValid) {
+                $this->invalidBallots[] = $ballot;
+            }
+        }
 
         $votesCast = count($this->validBallots);
         // Droop quota formula
@@ -179,10 +192,6 @@ class StvElection
                 }
             }
 
-            if (count($baseTally) === 0) {
-                break;
-            }
-
             $round = new ElectionRound($roundNum, $ballots, $baseTally, $allEliminated, $this);
             $pastRounds[] = $round;
             $elected = $round->elected;
@@ -213,61 +222,39 @@ class StvElection
     /**
      * @param Poll[] $polls
      */
-    private function setBallots(array $polls): void
+    public static function fromPolls(array $polls, int $seats, bool $countInvalid): self
     {
         if (count($polls) === 0) {
             throw new Exception('Failed to find any votes');
         }
 
-        $this->isClosed = true;
-        $this->candidates = [];
-        $this->allBallots = [];
+        $isClosed = true;
+        $candidates = [];
+        /** @var array<string|int, list<string>> $allBallots */
+        $allBallots = [];
 
         foreach ($polls as $poll) {
-            if ($this->candidates === []) {
-                $this->candidates = $poll->candidates;
-            } elseif ($poll->candidates !== $this->candidates) {
+            if ($candidates === []) {
+                $candidates = $poll->candidates;
+            } elseif ($poll->candidates !== $candidates) {
                 throw new Exception("Candidate list doesn't match for {$poll->name} vote");
             }
 
             if (!$poll->isClosed) {
-                $this->isClosed = false;
+                $isClosed = false;
             }
 
             foreach ($poll->votes as $vote) {
-                $this->allBallots[$vote->username][] = $this->candidates[$vote->candidateIndex];
+                $allBallots[$vote->username][] = $candidates[$vote->candidateIndex];
             }
         }
 
-        $this->setValidBallots();
-    }
+        $ballots = [];
 
-    private function setValidBallots(): void
-    {
-        $this->validBallots = [];
-        $this->invalidBallots = [];
-
-        foreach ($this->allBallots as $username => $ballot) {
-            $unique = [];
-            $isValid = true;
-
-            foreach ($ballot as $preference) {
-                if (isset($unique[$preference])) {
-                    $isValid = false;
-                    continue;
-                }
-
-                $unique[$preference] = true;
-            }
-
-            if ($isValid || $this->countInvalid) {
-                // if invalid, only count highest preference for each candidate
-                $this->validBallots[] = new Ballot((string) $username, array_keys($unique));
-            }
-
-            if (!$isValid) {
-                $this->invalidBallots[] = new Ballot((string) $username, $ballot);
-            }
+        foreach ($allBallots as $username => $rankedChoices) {
+            $ballots[] = new Ballot((string) $username, $rankedChoices);
         }
+
+        return new self($ballots, $candidates, $seats, $isClosed, $countInvalid);
     }
 }

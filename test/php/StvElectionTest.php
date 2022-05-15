@@ -12,57 +12,14 @@ class StvElectionTest extends TestCase
     {
         $candidates = ['Oranges', 'Pears', 'Chocolate', 'Strawberries', 'Hamburgers'];
 
-        $preferenceVotes = [
-            new Poll('1st preference', $candidates, [
-                // 4 ballots with oranges as 1st pref and no 2nd
-                new Vote('1', 0),
-                new Vote('2', 0),
-                new Vote('3', 0),
-                new Vote('4', 0),
-                // 2 ballots with pears as first and oranges as 2nd
-                new Vote('5', 1),
-                new Vote('6', 1),
-                // 8 ballots with chocolate as 1st and strawberries as 2nd
-                new Vote('7', 2),
-                new Vote('8', 2),
-                new Vote('9', 2),
-                new Vote('10', 2),
-                new Vote('11', 2),
-                new Vote('12', 2),
-                new Vote('13', 2),
-                new Vote('14', 2),
-                // 4 ballots with chocolate as first and hamburgers as 2nd
-                new Vote('15', 2),
-                new Vote('16', 2),
-                new Vote('17', 2),
-                new Vote('18', 2),
-                // 1 ballot with strawberries as 1st and no 2nd
-                new Vote('19', 3),
-                // 1 ballot with hamburgers as 1st and no 2nd
-                new Vote('20', 4),
-            ]),
-            new Poll('2nd preference', $candidates, [
-                // 2 second preferences for oranges
-                new Vote('5', 0),
-                new Vote('6', 0),
-                // 8 second preferences for strawberries
-                new Vote('7', 3),
-                new Vote('8', 3),
-                new Vote('9', 3),
-                new Vote('10', 3),
-                new Vote('11', 3),
-                new Vote('12', 3),
-                new Vote('13', 3),
-                new Vote('14', 3),
-                // 4 second preferences for hamburgers
-                new Vote('15', 4),
-                new Vote('16', 4),
-                new Vote('17', 4),
-                new Vote('18', 4),
-            ]),
-        ];
+        $ballots = self::getBallots(4, ['Oranges']);
+        array_push($ballots, ...self::getBallots(2, ['Pears', 'Oranges']));
+        array_push($ballots, ...self::getBallots(8, ['Chocolate', 'Strawberries']));
+        array_push($ballots, ...self::getBallots(4, ['Chocolate', 'Hamburgers']));
+        $ballots[] =  new Ballot('', ['Strawberries']);
+        $ballots[] = new Ballot('', ['Hamburgers']);
 
-        $election = new StvElection($preferenceVotes, 3);
+        $election = new StvElection($ballots, $candidates, 3, true, false);
         $this->assertSame(6, $election->quota);
         $this->assertEmpty($election->invalidBallots);
         $rounds = $election->runElection();
@@ -117,6 +74,7 @@ class StvElectionTest extends TestCase
         $secondElected = $thirdRound->elected[0];
         $this->assertSame('Oranges', $secondElected->name);
         $this->assertSame(0, $secondElected->surplus);
+        $this->assertEmpty($secondElected->transfers);
 
         $this->assertSame([
             'Oranges' => 6,
@@ -150,5 +108,20 @@ class StvElectionTest extends TestCase
         $this->assertSame([
             'Strawberries' => 5,
         ], $fifthRound->tally);
+    }
+
+    /**
+     * @param string[] $candidates
+     * @return Ballot[]
+     */
+    private static function getBallots(int $num, array $candidates): array
+    {
+        $ballots = [];
+
+        for ($i = 0; $i < $num; $i++) {
+            $ballots[] = new Ballot('', $candidates);
+        }
+
+        return $ballots;
     }
 }

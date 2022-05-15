@@ -61,7 +61,7 @@ class WikiParser
             }
         }
 
-        return new StvElection($stvPolls, $seats, $countInvalid);
+        return StvElection::fromPolls($stvPolls, $seats, $countInvalid);
     }
 
     public static function getStvLineNum(string $html): ?int
