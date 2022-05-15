@@ -6,17 +6,8 @@ namespace theodorejb\PhpStv;
 
 class ElectionRound
 {
-    public int $round;
-
-    /** @var Ballot[] */
-    public array $ballots;
-
-    /** @var array<string, true> */
-    private array $allEliminated;
-
     /** @var array<string, int> */
     public array $tally;
-    private StvElection $election;
 
     /** @var ElectedCandidate[] */
     public array $elected;
@@ -31,12 +22,13 @@ class ElectionRound
      * @param array<string, int> $baseTally
      * @param array<string, true> $allEliminated
      */
-    public function __construct(int $round, array $ballots, array $baseTally, array $allEliminated, StvElection $election)
-    {
-        $this->round = $round;
-        $this->ballots = $ballots;
-        $this->allEliminated = $allEliminated;
-        $this->election = $election;
+    public function __construct(
+        public int $round,
+        public array $ballots,
+        array $baseTally,
+        private array $allEliminated,
+        private StvElection $election,
+    ) {
         $this->tally = $baseTally;
 
         foreach ($this->ballots as $ballot) {
@@ -132,22 +124,21 @@ class ElectionRound
                 continue;
             }
 
-            $electedCandidate = new ElectedCandidate($candidate, $surplus);
-
             // tally next preferences of each voter for this candidate
             $nextTally = $this->getNextPreferenceTally($candidate);
             $transferable = array_sum($nextTally);
+            $transfers = [];
 
             foreach ($nextTally as $nextCandidate => $nextCount) {
                 $toTransfer = (int) floor(($nextCount / $transferable) * $surplus);
                 $details = "floor(({$nextCount} / {$transferable}) * {$surplus})";
 
                 if ($toTransfer !== 0) {
-                    $electedCandidate->transfers[] = new CandidateCount($nextCandidate, $toTransfer, $details);
+                    $transfers[] = new CandidateCount($nextCandidate, $toTransfer, $details);
                 }
             }
 
-            $elected[] = $electedCandidate;
+            $elected[] = new ElectedCandidate($candidate, $surplus, $transfers);
         }
 
         return $elected;
