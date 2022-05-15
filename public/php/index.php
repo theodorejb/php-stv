@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="h-100" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>PHP STV results</title>
@@ -8,13 +8,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 </head>
-<body>
-<nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">🐘 STV results</span>
-    </div>
-</nav>
-<div class="container">
+<body class="d-flex flex-column h-100">
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">🐘 STV results</span>
+        </div>
+    </nav>
+</header>
+<main class="flex-shrink-0">
+    <div class="container">
 <?php
 
 use theodorejb\PhpStv\WikiParser;
@@ -60,14 +63,17 @@ try {
 }
 
 ?>
-</div>
-<nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid">
+    </div>
+</main>
+<footer class="footer mt-auto">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
         <span class="navbar-text">
           Created with ❤️ by Theodore Brown
         </span>
-        <a class="navbar-text" href="https://github.com/theodorejb/php-stv">Source</a>
-    </div>
-</nav>
+            <a class="navbar-text" href="https://github.com/theodorejb/php-stv">Source</a>
+        </div>
+    </nav>
+</footer>
 </body>
 </html>
