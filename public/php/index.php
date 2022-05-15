@@ -22,7 +22,7 @@ use theodorejb\PhpStv\WikiParser;
 require '../../vendor/autoload.php';
 
 try {
-    $countInvalid = (bool) ($_GET['countInvalid'] ?? false);
+    $countInvalid = (bool) ($_GET['countInvalid'] ?? true);
     $showInvalid = (bool) ($_GET['showInvalid'] ?? false);
     $showCounted = (bool) ($_GET['showCounted'] ?? false);
     $rfc = $_GET['rfc'] ?? null;
