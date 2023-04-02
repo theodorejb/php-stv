@@ -2,13 +2,18 @@
 <psalm
     errorLevel="1"
     resolveFromConfigFile="true"
+    findUnusedBaselineEntry="true"
+    findUnusedCode="true"
+    findUnusedPsalmSuppress="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
 >
     <projectFiles>
         <directory name="php"/>
+        <directory name="public"/>
         <directory name="test"/>
+        <file name="stv.php"/>
         <ignoreFiles>
             <directory name="vendor"/>
         </ignoreFiles>

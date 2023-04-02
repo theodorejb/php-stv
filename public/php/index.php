@@ -28,8 +28,10 @@ try {
     $countInvalid = (bool) ($_GET['countInvalid'] ?? true);
     $showInvalid = (bool) ($_GET['showInvalid'] ?? false);
     $showCounted = (bool) ($_GET['showCounted'] ?? false);
-    $rfc = $_GET['rfc'] ?? null;
-    $electionUrl = $_GET['election'] ?? null;
+    /** @var string $rfc */
+    $rfc = $_GET['rfc'] ?? '';
+    /** @var string $electionUrl */
+    $electionUrl = $_GET['election'] ?? '';
 
     if ($rfc) {
         if (!preg_match('/^\w+$/', $rfc)) {
