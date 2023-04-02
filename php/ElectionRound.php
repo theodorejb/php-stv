@@ -70,7 +70,7 @@ class ElectionRound
               <th scope="col">Tally</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="table-group-divider">
 
         tallyTable;
 
