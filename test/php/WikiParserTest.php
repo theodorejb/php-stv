@@ -75,6 +75,55 @@ class WikiParserTest extends TestCase
         ], $thirdRound->tally);
     }
 
+    public function testRmElection83WithTie(): void
+    {
+        $html = WikiParser::getHtml('test/cases/rm_election_83_before_finish.html');
+        $election = WikiParser::getStvElection($html, false);
+
+        $this->assertFalse($election->isClosed);
+        $this->assertCount(3, $election->candidates);
+        $this->assertCount(20, $election->validBallots);
+        $this->assertSame(7, $election->quota);
+
+        $rounds = $election->runElection();
+        $this->assertCount(2, $rounds);
+
+        // round 1
+        $firstRound = $rounds[0];
+        $this->assertEmpty($firstRound->getTransfers());
+        $this->assertEmpty($firstRound->eliminated);
+
+        $firstElected = $firstRound->elected[0];
+        $this->assertSame('J Zelenka', $firstElected->name);
+        $this->assertSame(10, $firstElected->surplus);
+
+        $this->assertSame([
+            'E Mann' => 3,
+            'C Buckley' => 0,
+            'J Zelenka' => 17,
+        ], $firstRound->tally);
+
+        $this->assertEquals([
+            new CandidateCount('C Buckley', 6, 'floor((11 / 16) * 10)'),
+            new CandidateCount('E Mann', 3, 'floor((5 / 16) * 10)'),
+        ], $firstElected->transfers);
+
+        // round 2
+        $secondRound = $rounds[1];
+        $this->assertEmpty($secondRound->getTransfers());
+        $this->assertEmpty($secondRound->elected);
+
+        $this->assertEquals([
+            new CandidateCount('E Mann', 6),
+            new CandidateCount('C Buckley', 6),
+        ], $secondRound->eliminated);
+
+        $this->assertSame([
+            'E Mann' => 6,
+            'C Buckley' => 6,
+        ], $secondRound->tally);
+    }
+
     public function testShorterAttributeSyntax(): void
     {
         $html = WikiParser::getHtml('test/cases/shorter_attribute_syntax.html');

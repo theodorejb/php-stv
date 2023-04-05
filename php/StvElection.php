@@ -192,6 +192,10 @@ class StvElection
                 }
             }
 
+            if (count($baseTally) === 0) {
+                break; // there was a tie
+            }
+
             $round = new ElectionRound($roundNum, $ballots, $baseTally, $allElected, $allEliminated, $this);
             $pastRounds[] = $round;
             $elected = $round->elected;
