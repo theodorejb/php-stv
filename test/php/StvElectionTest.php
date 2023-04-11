@@ -43,8 +43,8 @@ class StvElectionTest extends TestCase
         ], $firstRound->tally);
 
         $this->assertEquals([
-            new CandidateCount('Strawberries', 4, 'floor((8 / 12) * 6)'),
-            new CandidateCount('Hamburgers', 2, 'floor((4 / 12) * 6)'),
+            new CandidateCount('Strawberries', 4, 'floor(8 * (6 / 12))'),
+            new CandidateCount('Hamburgers', 2, 'floor(4 * (6 / 12))'),
         ], $firstElected->transfers);
 
         // round 2
@@ -137,7 +137,7 @@ class StvElectionTest extends TestCase
         $this->assertSame(19, $firstElected->surplus);
 
         $this->assertEquals([
-            new CandidateCount('S', 19, 'floor((40 / 40) * 19)'),
+            new CandidateCount('S', 19, 'floor(40 * (19 / 40))'),
         ], $firstElected->transfers);
 
         $this->assertEmpty($firstRound->eliminated);
@@ -161,8 +161,8 @@ class StvElectionTest extends TestCase
         $this->assertSame(16, $secondElected->surplus);
 
         $this->assertEquals([
-            new CandidateCount('T', 8, 'floor((9 / 18) * 16)'),
-            new CandidateCount('U', 8, 'floor((9 / 18) * 16)'),
+            new CandidateCount('T', 8, 'floor(9 * (16 / 18))'),
+            new CandidateCount('U', 8, 'floor(9 * (16 / 18))'),
         ], $secondElected->transfers);
 
         $this->assertEmpty($secondRound->eliminated);

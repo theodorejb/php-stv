@@ -129,18 +129,19 @@ class ElectionRound
             // tally next preferences of each voter for this candidate
             $nextTally = $this->getNextPreferenceTally($candidate);
             $transferable = array_sum($nextTally);
+            $transferValue = ($transferable !== 0) ? $surplus / $transferable : 0;
             $transfers = [];
 
             foreach ($nextTally as $nextCandidate => $nextCount) {
-                $toTransfer = (int) floor(($nextCount / $transferable) * $surplus);
-                $details = "floor(({$nextCount} / {$transferable}) * {$surplus})";
+                $toTransfer = (int) floor($nextCount * $transferValue);
+                $details = "floor({$nextCount} * ({$surplus} / {$transferable}))";
 
                 if ($toTransfer !== 0) {
                     $transfers[] = new CandidateCount($nextCandidate, $toTransfer, $details);
                 }
             }
 
-            $elected[] = new ElectedCandidate($candidate, $surplus, $transfers);
+            $elected[] = new ElectedCandidate($candidate, $surplus, $transferable, $transfers);
         }
 
         return $elected;

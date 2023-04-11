@@ -9,6 +9,7 @@ use Exception;
 class StvElection
 {
     public int $quota;
+    public string $quotaFormula;
 
     /** @var Ballot[] */
     public array $validBallots = [];
@@ -53,6 +54,7 @@ class StvElection
         $votesCast = count($this->validBallots);
         // Droop quota formula
         $this->quota = (int) floor($votesCast / ($this->seats + 1)) + 1;
+        $this->quotaFormula = "floor({$votesCast} / ({$this->seats} + 1)) + 1";
     }
 
     public function getResultsHtml(bool $showInvalid, bool $showCounted): string
@@ -77,7 +79,7 @@ class StvElection
 
                 if ($index !== $lastIndex) {
                     if (count($candidate->transfers) !== 0) {
-                        $output .= "\n<p>➕ Distributing surplus votes...</p>\n";
+                        $output .= "\n<p>➕ Distributing surplus with {$candidate->transferable} transferable ballots:</p>\n";
                         $output .= "<ul>\n";
 
                         foreach ($candidate->transfers as $transfer) {
@@ -147,7 +149,7 @@ class StvElection
           </tr>
           <tr>
             <th scope="row">Quota</th>
-            <td>floor({$votes} / ({$this->seats} + 1)) + 1 = <b>{$this->quota}</b></td>
+            <td>{$this->quotaFormula} = <b>{$this->quota}</b></td>
           </tr>
         </table>
 

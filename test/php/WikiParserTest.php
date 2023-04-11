@@ -38,8 +38,8 @@ class WikiParserTest extends TestCase
         ], $firstRound->tally);
 
         $this->assertEquals([
-            new CandidateCount('Gabriel Caruso', 11, 'floor((18 / 29) * 18)'),
-            new CandidateCount('Ben Ramsey', 6, 'floor((11 / 29) * 18)'),
+            new CandidateCount('Gabriel Caruso', 11, 'floor(18 * (18 / 29))'),
+            new CandidateCount('Ben Ramsey', 6, 'floor(11 * (18 / 29))'),
         ], $firstElected->transfers);
 
         // round 2
@@ -104,8 +104,8 @@ class WikiParserTest extends TestCase
         ], $firstRound->tally);
 
         $this->assertEquals([
-            new CandidateCount('C Buckley', 6, 'floor((11 / 16) * 10)'),
-            new CandidateCount('E Mann', 3, 'floor((5 / 16) * 10)'),
+            new CandidateCount('C Buckley', 6, 'floor(11 * (10 / 16))'),
+            new CandidateCount('E Mann', 3, 'floor(5 * (10 / 16))'),
         ], $firstElected->transfers);
 
         // round 2
