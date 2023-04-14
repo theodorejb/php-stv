@@ -145,6 +145,7 @@ class WikiParserTest extends TestCase
         $firstElected = $firstRound->elected[0];
         $this->assertSame('@@', $firstElected->name);
         $this->assertSame(3, $firstElected->surplus);
+        $this->assertEmpty($firstElected->transfers);
 
         $this->assertSame([
             '@@' => 34,

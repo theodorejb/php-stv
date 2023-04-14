@@ -61,9 +61,8 @@ class StvElection
     {
         $output = $this->getSummaryHtml($showCounted, $showInvalid);
         $rounds = $this->runElection();
-        $lastIndex = count($rounds) - 1;
 
-        foreach ($rounds as $index => $round) {
+        foreach ($rounds as $round) {
             $output .= "\n<div class=\"container p-3 mb-4 shadow-sm\">\n";
             $output .= $round->getSummaryHtml() . "\n";
 
@@ -77,18 +76,16 @@ class StvElection
 
                 elected;
 
-                if ($index !== $lastIndex) {
-                    if (count($candidate->transfers) !== 0) {
-                        $output .= "\n<p>➕ Distributing surplus with {$candidate->transferable} transferable ballots:</p>\n";
-                        $output .= "<ul>\n";
+                if (count($candidate->transfers) !== 0) {
+                    $output .= "\n<p>➕ Distributing surplus with {$candidate->transferable} transferable ballots:</p>\n";
+                    $output .= "<ul>\n";
 
-                        foreach ($candidate->transfers as $transfer) {
-                            $output .= "  <li>" . Utils::encodeHtml($transfer->candidate) . ": <b>+{$transfer->count}</b>";
-                            $output .= "  " . Utils::encodeHtml($transfer->details) . "</li>\n";
-                        }
-
-                        $output .= "</ul>\n";
+                    foreach ($candidate->transfers as $transfer) {
+                        $output .= "  <li>" . Utils::encodeHtml($transfer->candidate) . ": <b>+{$transfer->count}</b>";
+                        $output .= "  " . Utils::encodeHtml($transfer->details) . "</li>\n";
                     }
+
+                    $output .= "</ul>\n";
                 }
             }
 
@@ -184,7 +181,7 @@ class StvElection
         $allEliminated = [];
         $allElected = [];
 
-        while (count($allElected) < $this->seats && count($candidates) !== 0) {
+        while (count($candidates) !== 0) {
             $roundNum++;
             $baseTally = [];
 
@@ -198,11 +195,10 @@ class StvElection
                 break; // there was a tie
             }
 
-            $round = new ElectionRound($roundNum, $ballots, $baseTally, $allElected, $allEliminated, $this);
+            $round = new ElectionRound($roundNum, $ballots, $baseTally, $this);
             $pastRounds[] = $round;
-            $elected = $round->elected;
 
-            foreach ($elected as $e) {
+            foreach ($round->elected as $e) {
                 $allElected[$e->name] = true;
             }
 
@@ -210,6 +206,11 @@ class StvElection
                 $allEliminated[$cc->candidate] = true;
             }
 
+            if (count($allElected) === $this->seats) {
+                break; // don't set transfers if all seats filled
+            }
+
+            $round->setElectedTransfers(array_merge($allElected, $allEliminated));
             $newCandidates = [];
 
             foreach ($candidates as $candidate) {
@@ -219,7 +220,7 @@ class StvElection
             }
 
             $candidates = $newCandidates;
-            $ballots = $round->getNewBallots($elected, $allElected, $allEliminated);
+            $ballots = $round->getNewBallots($round->elected, $allElected, $allEliminated);
         }
 
         return $pastRounds;

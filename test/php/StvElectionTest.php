@@ -104,6 +104,7 @@ class StvElectionTest extends TestCase
         $thirdElected = $fifthRound->elected[0];
         $this->assertSame('Strawberries', $thirdElected->name);
         $this->assertSame(-1, $thirdElected->surplus);
+        $this->assertEmpty($thirdElected->transfers);
 
         $this->assertSame([
             'Strawberries' => 5,
@@ -201,6 +202,7 @@ class StvElectionTest extends TestCase
         $thirdElected = $fourthRound->elected[0];
         $this->assertSame('T', $thirdElected->name);
         $this->assertSame(2, $thirdElected->surplus);
+        $this->assertEmpty($thirdElected->transfers);
 
         $this->assertEmpty($fourthRound->eliminated);
 
@@ -208,6 +210,75 @@ class StvElectionTest extends TestCase
             'T' => 23,
             'U' => 15,
         ], $fourthRound->tally);
+    }
+
+    public function testMultipleElectedInRound(): void
+    {
+        $candidates = ['Amy', 'Bob', 'Chad', 'Deb', 'Eva'];
+        $ballots = self::getBallots(10, ['Amy', 'Bob', 'Eva', 'Deb', 'Chad']);
+        array_push($ballots, ...self::getBallots(9, $candidates));
+        array_push($ballots, ...self::getBallots(8, ['Bob', 'Amy', 'Deb', 'Chad', 'Eva']));
+        array_push($ballots, ...self::getBallots(11, ['Bob', 'Chad', 'Eva', 'Deb', 'Amy']));
+        array_push($ballots, ...self::getBallots(5, ['Chad', 'Deb', 'Amy', 'Bob', 'Eva']));
+        array_push($ballots, ...self::getBallots(3, ['Chad', 'Bob', 'Deb', 'Eva', 'Amy']));
+        array_push($ballots, ...self::getBallots(2, ['Deb', 'Eva', 'Chad', 'Amy', 'Bob']));
+
+        $election = new StvElection($ballots, $candidates, 3, true, false);
+        $this->assertSame(13, $election->quota);
+        $this->assertEmpty($election->invalidBallots);
+        $rounds = $election->runElection();
+        $this->assertCount(2, $rounds);
+
+        // round 1
+        $firstRound = $rounds[0];
+        $this->assertEmpty($firstRound->getTransfers());
+        $this->assertCount(2, $firstRound->elected);
+
+        $firstElected = $firstRound->elected[0];
+        $this->assertSame('Amy', $firstElected->name);
+        $this->assertSame(6, $firstElected->surplus);
+
+        $this->assertEquals([
+            new CandidateCount('Eva', 3, 'floor(10 * (6 / 19))'),
+            new CandidateCount('Chad', 2, 'floor(9 * (6 / 19))'),
+        ], $firstElected->transfers);
+
+        $secondElected = $firstRound->elected[1];
+        $this->assertSame('Bob', $secondElected->name);
+        $this->assertSame(6, $secondElected->surplus);
+
+        $this->assertEquals([
+            new CandidateCount('Deb', 2, 'floor(8 * (6 / 19))'),
+            new CandidateCount('Chad', 3, 'floor(11 * (6 / 19))'),
+        ], $secondElected->transfers);
+
+        $this->assertEmpty($firstRound->eliminated);
+
+        $this->assertSame([
+            'Amy' => 19,
+            'Bob' => 19,
+            'Chad' => 8,
+            'Deb' => 2,
+            'Eva' => 0,
+        ], $firstRound->tally);
+
+        // round 2
+        $secondRound = $rounds[1];
+
+        $this->assertEmpty($secondRound->getTransfers());
+        $this->assertCount(1, $secondRound->elected);
+
+        $thirdElected = $secondRound->elected[0];
+        $this->assertSame('Chad', $thirdElected->name);
+        $this->assertSame(0, $thirdElected->surplus);
+
+        $this->assertEmpty($secondRound->eliminated);
+
+        $this->assertSame([
+            'Chad' => 13,
+            'Deb' => 4,
+            'Eva' => 3,
+        ], $secondRound->tally);
     }
 
     /**

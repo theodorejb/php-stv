@@ -20,15 +20,11 @@ class ElectionRound
     /**
      * @param Ballot[] $ballots
      * @param array<string, int> $baseTally
-     * @param array<string, true> $allElected
-     * @param array<string, true> $allEliminated
      */
     public function __construct(
         public int $round,
         public array $ballots,
         array $baseTally,
-        private array $allElected,
-        private array $allEliminated,
         private StvElection $election,
     ) {
         $this->tally = $baseTally;
@@ -126,22 +122,7 @@ class ElectionRound
                 continue;
             }
 
-            // tally next preferences of each voter for this candidate
-            $nextTally = $this->getNextPreferenceTally($candidate);
-            $transferable = array_sum($nextTally);
-            $transferValue = ($transferable !== 0) ? $surplus / $transferable : 0;
-            $transfers = [];
-
-            foreach ($nextTally as $nextCandidate => $nextCount) {
-                $toTransfer = (int) floor($nextCount * $transferValue);
-                $details = "floor({$nextCount} * ({$surplus} / {$transferable}))";
-
-                if ($toTransfer !== 0) {
-                    $transfers[] = new CandidateCount($nextCandidate, $toTransfer, $details);
-                }
-            }
-
-            $elected[] = new ElectedCandidate($candidate, $surplus, $transferable, $transfers);
+            $elected[] = new ElectedCandidate($candidate, $surplus);
         }
 
         return $elected;
@@ -200,12 +181,35 @@ class ElectionRound
     }
 
     /**
+     * @param array<string, true> $excluded
+     */
+    public function setElectedTransfers(array $excluded): void
+    {
+        foreach ($this->elected as $e) {
+            // tally next preferences of each voter for this candidate
+            $nextTally = $this->getNextPreferenceTally($e->name, $excluded);
+            $e->transferable = array_sum($nextTally);
+            $transferValue = ($e->transferable !== 0) ? $e->surplus / $e->transferable : 0;
+            $e->transfers = [];
+
+            foreach ($nextTally as $nextCandidate => $nextCount) {
+                $toTransfer = (int) floor($nextCount * $transferValue);
+                $details = "floor({$nextCount} * ({$e->surplus} / {$e->transferable}))";
+
+                if ($toTransfer !== 0) {
+                    $e->transfers[] = new CandidateCount($nextCandidate, $toTransfer, $details);
+                }
+            }
+        }
+    }
+
+    /**
+     * @param array<string, true> $excluded
      * @return array<string, int>
      */
-    private function getNextPreferenceTally(string $candidate): array
+    private function getNextPreferenceTally(string $candidate, array $excluded): array
     {
         $tally = [];
-        $excluded = array_merge($this->allElected, $this->allEliminated);
 
         foreach ($this->ballots as $ballot) {
             if ($ballot->getCandidate() === $candidate) {

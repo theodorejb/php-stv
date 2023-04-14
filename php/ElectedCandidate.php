@@ -12,8 +12,8 @@ class ElectedCandidate
     public function __construct(
         public string $name,
         public int $surplus,
-        public int $transferable,
-        public array $transfers,
+        public int $transferable = 0,
+        public array $transfers = [],
     ) {
     }
 }
