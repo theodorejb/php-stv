@@ -73,8 +73,8 @@ class WikiParser
         while ($line !== false) {
             if (
                 str_contains($line, ">STV<") ||
-                // for https://wiki.php.net/todo/php81
-                str_contains($line, 'Single Transferrable Vote')
+                // for https://wiki.php.net/todo/php81, https://wiki.php.net/todo/php82, https://wiki.php.net/todo/php83
+                str_contains($line, 'Single Transferable Vote')
             ) {
                 return $lineNum;
             }
