@@ -180,10 +180,6 @@ class StvElectionTest extends TestCase
         // round 3
         $thirdRound = $rounds[2];
 
-        $this->assertEquals([
-            new CandidateCount('U', 9.48275862068966),
-        ], $thirdRound->eliminated);
-
         $this->assertEmpty($thirdRound->getTransfers());
         $this->assertEmpty($thirdRound->elected);
 
@@ -192,6 +188,10 @@ class StvElectionTest extends TestCase
             'U' => 9.48275862068966,
             'V' => 12.275862068965507,
         ], $thirdRound->tally);
+
+        $this->assertEquals([
+            new CandidateCount('U', 9.48275862068966),
+        ], $thirdRound->eliminated);
 
         // round 4
         $fourthRound = $rounds[3];
@@ -203,13 +203,13 @@ class StvElectionTest extends TestCase
         $this->assertCount(0, $fourthRound->elected);
 
         $this->assertEquals([
-            new CandidateCount('V', 12.275862068965507),
-        ], $fourthRound->eliminated);
-
-        $this->assertEquals([
             'V' => 12.275862068965507,
             'T' => 19.931034482758662,
         ], $fourthRound->tally);
+
+        $this->assertEquals([
+            new CandidateCount('V', 12.275862068965507),
+        ], $fourthRound->eliminated);
 
         // round 5
         $fifthRound = $rounds[4];
