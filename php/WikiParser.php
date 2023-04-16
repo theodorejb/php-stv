@@ -25,7 +25,7 @@ class WikiParser
     /**
      * @param non-empty-string $html
      */
-    public static function getStvElection(string $html, bool $countInvalid, ?int $seats = null): StvElection
+    public static function getStvElection(string $html, bool $countInvalid = true, ?int $seats = null): StvElection
     {
         $stvLineNum = self::getStvLineNum($html);
 

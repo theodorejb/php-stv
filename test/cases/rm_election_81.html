@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PHP: todo:php81</title>
+
+  <meta name="generator" content="DokuWiki"/>
+<meta name="robots" content="noindex,nofollow"/>
+<meta name="keywords" content="todo,php81"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/lib/exe/opensearch.php" title="PHP Wiki"/>
+<link rel="start" href="/"/>
+<link rel="contents" href="/todo/php81?do=index" title="Sitemap"/>
+<link rel="manifest" href="/lib/exe/manifest.php"/>
+<link rel="alternate" type="application/rss+xml" title="Recent Changes" href="/feed.php"/>
+<link rel="alternate" type="application/rss+xml" title="Current namespace" href="/feed.php?mode=list&amp;ns=todo"/>
+<link rel="alternate" type="text/html" title="Plain HTML" href="/_export/xhtml/todo/php81"/>
+<link rel="alternate" type="text/plain" title="Wiki Markup" href="/_export/raw/todo/php81"/>
+<link rel="canonical" href="https://wiki.php.net/todo/php81"/>
+<link rel="stylesheet" href="/lib/exe/css.php?t=phpnet&amp;tseed=05de81390ffb5ca1647fb36efb92497c"/>
+<!--[if gte IE 9]><!-->
+<script >/*<![CDATA[*/var NS='todo';var JSINFO = {"id":"todo:php81","namespace":"todo","ACT":"show","useHeadingNavigation":0,"useHeadingContent":0};
+/*!]]>*/</script>
+<script src="/lib/exe/jquery.php?tseed=34a552433bc33cc9c3bc32527289a0b2" defer="defer"></script>
+<script src="/lib/exe/js.php?t=phpnet&amp;tseed=05de81390ffb5ca1647fb36efb92497c" defer="defer"></script>
+<!--<![endif]-->
+  <link media='all' rel='stylesheet' href='//shared.php.net/styles/defaults.css?filemtime=1630005818'/>
+  <link media='all' rel='stylesheet' href='//shared.php.net/styles/wiki.css?filemtime=1630005818'/>
+
+  <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic,600italic|Source+Code+Pro&amp;subset=latin,latin-ext" rel="stylesheet">
+  <link rel="shortcut icon" href="//php.net/favicon.ico">
+<!--[if lt IE 9]>
+  <script src="//shared.php.net/js/html5shiv.js"></script>
+<![endif]-->
+  </head>
+<body id="">
+
+<div class="wrap">
+<header class='clearfix'>
+  <div id="mainmenu-toggle-overlay"></div>
+  <input type="checkbox" id="mainmenu-toggle">
+  <nav class="fullscreen">
+    <div class="mainscreen">
+      <a href="/" class="home"><img src="//php.net/images/logo.php?" width="48" height="24" alt="php"><span class="subdomain"></span></a>
+      <ul>
+        <li><a href="?do=login">Login</a></li>
+        <li><a href="?do=register">Register</a></li>
+      </ul>
+    </div>
+    <div class="secondscreen">
+      <form method="get" action="/start">
+        <input type="search" placeholder="Search" name="id" class="search">
+        <input type="hidden" name="do" value="search">
+      </form>
+    </div>
+  </nav>
+</header>
+<div id="flash-message"></div>
+<nav id="megadropdown"></nav>
+
+<section class="fullscreen clearfix">
+
+
+
+<section id="breadcrumbs">
+<nav>
+<span class="bchead">You are here: </span><span class="home"><bdi><a href="/start" class="wikilink1" title="start" data-wiki-id="start">start</a></bdi></span> › <bdi><a href="/todo" class="wikilink1" title="todo" data-wiki-id="todo">todo</a></bdi> › <bdi><a href="/todo/php81" class="wikilink1" title="todo:php81" data-wiki-id="todo:php81">php81</a></bdi></nav>
+</section>
+<section class="mainscreen">
+    <!--[if lte IE 7 ]><div id="IE7"><![endif]--><!--[if IE 8 ]><div id="IE8"><![endif]-->
+    <div id="dokuwiki__site"><div id="dokuwiki__top" class="site dokuwiki mode_show tpl_phpnet     ">
+
+
+        <div class="wrapper group">
+
+            
+            <!-- ********** CONTENT ********** -->
+            <div id="dokuwiki__content"><div class="pad group">
+
+                <div class="pageId"><span>todo:php81</span></div>
+
+                <div class="page group">
+                                                            <!-- wikipage start -->
+                                        
+<h2 class="sectionedit1" id="php_81_preparation_tasks">PHP 8.1 Preparation Tasks</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Elect managers</div>
+</li>
+<li class="level1"><div class="li"> Triage bugs.php.net for PHP 8.1</div>
+</li>
+<li class="level1"><div class="li"> Triage github pull requests</div>
+</li>
+<li class="level1"><div class="li"> Push appropriate <abbr title="Request for Comments">RFC</abbr> at appropriate time</div>
+</li>
+</ul>
+
+</div>
+
+<h2 class="sectionedit2" id="timetable">Timetable</h2>
+<div class="level2">
+
+<p>
+Based upon a target GA in late November.  Individual releases may be added or removed to accommodate development progress.
+</p>
+<ul>
+<li class="level1"><div class="li"> Tag on Tuesday, release on Thursday</div>
+</li>
+<li class="level1"><div class="li"> 6 months pre-release phase</div>
+</li>
+</ul>
+<div class="table sectionedit3"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 leftalign"> Date           </th><th class="col1"> Release </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0 leftalign"> Jun 10 2021    </td><td class="col1"> Alpha 1 <a href="https://www.php.net/archive/2021.php#2021-06-10-1" class="urlextern" title="https://www.php.net/archive/2021.php#2021-06-10-1" rel="ugc nofollow">Announce</a> <a href="https://downloads.php.net/~patrickallaert/" class="urlextern" title="https://downloads.php.net/~patrickallaert/" rel="ugc nofollow">Files</a> </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0 leftalign"> Jun 24 2021    </td><td class="col1"> Alpha 2 <a href="https://externals.io/message/115119" class="urlextern" title="https://externals.io/message/115119" rel="ugc nofollow">Announce</a> <a href="https://downloads.php.net/~patrickallaert/" class="urlextern" title="https://downloads.php.net/~patrickallaert/" rel="ugc nofollow">Files</a> </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0 leftalign"> Jul 08 2021    </td><td class="col1"> Alpha 3 <a href="https://www.php.net/archive/2021.php#2021-07-08-1" class="urlextern" title="https://www.php.net/archive/2021.php#2021-07-08-1" rel="ugc nofollow">Announce</a> <a href="https://downloads.php.net/~ramsey/" class="urlextern" title="https://downloads.php.net/~ramsey/" rel="ugc nofollow">Files</a> </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0 leftalign"> Jul 20 2021    </td><td class="col1"> Feature freeze </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0 leftalign"> Jul 22 2021    </td><td class="col1"> Beta 1 <a href="https://www.php.net/archive/2021.php#2021-07-22-1" class="urlextern" title="https://www.php.net/archive/2021.php#2021-07-22-1" rel="ugc nofollow">Announce</a> <a href="https://downloads.php.net/~ramsey/" class="urlextern" title="https://downloads.php.net/~ramsey/" rel="ugc nofollow">Files</a> </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0 leftalign"> Aug 05 2021    </td><td class="col1"> Beta 2 <a href="https://www.php.net/archive/2021.php#2021-08-05-2" class="urlextern" title="https://www.php.net/archive/2021.php#2021-08-05-2" rel="ugc nofollow">Announce</a> <a href="https://downloads.php.net/~ramsey/" class="urlextern" title="https://downloads.php.net/~ramsey/" rel="ugc nofollow">Files</a> </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0 leftalign"> Aug 19 2021    </td><td class="col1"> Beta 3 <a href="https://www.php.net/archive/2021.php#2021-08-19-1" class="urlextern" title="https://www.php.net/archive/2021.php#2021-08-19-1" rel="ugc nofollow">Announce</a> <a href="https://downloads.php.net/~ramsey/" class="urlextern" title="https://downloads.php.net/~ramsey/" rel="ugc nofollow">Files</a> </td>
+	</tr>
+	<tr class="row8">
+		<td class="col0 leftalign"> Sep 02 2021    </td><td class="col1"> RC 1 <a href="https://www.php.net/archive/2021.php#2021-09-02-1" class="urlextern" title="https://www.php.net/archive/2021.php#2021-09-02-1" rel="ugc nofollow">Announce</a> <a href="https://downloads.php.net/~patrickallaert/" class="urlextern" title="https://downloads.php.net/~patrickallaert/" rel="ugc nofollow">Files</a> </td>
+	</tr>
+	<tr class="row9">
+		<td class="col0 leftalign"> Sep 16 2021    </td><td class="col1"> RC 2 <a href="https://www.php.net/archive/2021.php#2021-09-16-1" class="urlextern" title="https://www.php.net/archive/2021.php#2021-09-16-1" rel="ugc nofollow">Announce</a> <a href="https://downloads.php.net/~patrickallaert/" class="urlextern" title="https://downloads.php.net/~patrickallaert/" rel="ugc nofollow">Files</a> </td>
+	</tr>
+	<tr class="row10">
+		<td class="col0 leftalign"> Sep 30 2021    </td><td class="col1"> RC 3 <a href="https://www.php.net/archive/2021.php#2021-09-30-1" class="urlextern" title="https://www.php.net/archive/2021.php#2021-09-30-1" rel="ugc nofollow">Announce</a> <a href="https://downloads.php.net/~ramsey/" class="urlextern" title="https://downloads.php.net/~ramsey/" rel="ugc nofollow">Files</a> </td>
+	</tr>
+	<tr class="row11">
+		<td class="col0 leftalign"> Oct 14 2021    </td><td class="col1"> RC 4 <a href="https://www.php.net/archive/2021.php#2021-10-14-1" class="urlextern" title="https://www.php.net/archive/2021.php#2021-10-14-1" rel="ugc nofollow">Announce</a> <a href="https://downloads.php.net/~ramsey/" class="urlextern" title="https://downloads.php.net/~ramsey/" rel="ugc nofollow">Files</a> </td>
+	</tr>
+	<tr class="row12">
+		<td class="col0 leftalign"> Oct 28 2021    </td><td class="col1"> RC 5 <a href="https://www.php.net/archive/2021.php#2021-10-28-2" class="urlextern" title="https://www.php.net/archive/2021.php#2021-10-28-2" rel="ugc nofollow">Announce</a> <a href="https://downloads.php.net/~patrickallaert/" class="urlextern" title="https://downloads.php.net/~patrickallaert/" rel="ugc nofollow">Files</a> </td>
+	</tr>
+	<tr class="row13">
+		<td class="col0 leftalign"> Nov 11 2021    </td><td class="col1"> RC 6 <a href="https://www.php.net/archive/2021.php#2021-11-11-1" class="urlextern" title="https://www.php.net/archive/2021.php#2021-11-11-1" rel="ugc nofollow">Announce</a> <a href="https://downloads.php.net/~ramsey/" class="urlextern" title="https://downloads.php.net/~ramsey/" rel="ugc nofollow">Files</a> </td>
+	</tr>
+	<tr class="row14">
+		<td class="col0 leftalign"> Nov 25 2021    </td><td class="col1"> GA </td>
+	</tr>
+</table></div>
+
+</div>
+
+<h2 class="sectionedit4" id="release_managers">Release Managers</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Veteran: Joe Watkins</div>
+</li>
+<li class="level1"><div class="li"> Rookie 1: Ben Ramsey</div>
+</li>
+<li class="level1"><div class="li"> Rookie A: Patrick Allaert</div>
+</li>
+</ul>
+
+</div>
+
+<h3 class="sectionedit5" id="volunteers">Volunteers</h3>
+<div class="level3">
+
+<p>
+This list only contains individuals who have formally and publicly volunteered via the internals mailing list.
+</p>
+
+<p>
+Veteran volunteer(s):
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="https://news-web.php.net/php.internals/113882" class="urlextern" title="https://news-web.php.net/php.internals/113882" rel="ugc nofollow">Joe Watkins</a></div>
+</li>
+</ul>
+
+<p>
+Rookie candidates listed in the order in which they formally volunteered:
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="https://news-web.php.net/php.internals/113335" class="urlextern" title="https://news-web.php.net/php.internals/113335" rel="ugc nofollow">Adiel Cristo</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://news-web.php.net/php.internals/113438" class="urlextern" title="https://news-web.php.net/php.internals/113438" rel="ugc nofollow">Gunnard Engebreth</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://news-web.php.net/php.internals/113706" class="urlextern" title="https://news-web.php.net/php.internals/113706" rel="ugc nofollow">Harm Smits</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://news-web.php.net/php.internals/113728" class="urlextern" title="https://news-web.php.net/php.internals/113728" rel="ugc nofollow">Eric Van Johnson</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://news-web.php.net/php.internals/113737" class="urlextern" title="https://news-web.php.net/php.internals/113737" rel="ugc nofollow">Patrick Allaert</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://news-web.php.net/php.internals/113760" class="urlextern" title="https://news-web.php.net/php.internals/113760" rel="ugc nofollow">Sergey Panteleev</a> | <a href="https://github.com/saundefined" class="urlextern" title="https://github.com/saundefined" rel="ugc nofollow">GitHub</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://news-web.php.net/php.internals/113782" class="urlextern" title="https://news-web.php.net/php.internals/113782" rel="ugc nofollow">Ben Ramsey</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://news-web.php.net/php.internals/113887" class="urlextern" title="https://news-web.php.net/php.internals/113887" rel="ugc nofollow">Saif Eddin Gmati</a></div>
+</li>
+</ul>
+
+</div>
+
+<h2 class="sectionedit6" id="voting">Voting</h2>
+<div class="level2">
+
+<p>
+With eight candidates and two seats available, it may be necessary to go out to sixth preference before finding two elections. 
+ While this is unlikely, you are encouraged to use all six votes.  If you vote for the same person twice, this will not help that person&#039;s chances, it will only throw away one of your votes and deprioritize the remaining ones, so please cast <em>unique</em> votes.
+</p>
+
+<p>
+Voting using STV (Single Transferable Vote) started on April 12th, 2021.  Voting will be open until April 26th, 2021.
+Tie breaking will be at the discretion of the prior branch RMs.
+</p>
+
+</div>
+
+<h3 class="sectionedit7" id="st_preference">1st Preference</h3>
+<div class="level3">
+
+<p>
+Select your first preference for 8.1 Release Manager here.
+</p>
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__php_8.1_rm_1st_preference" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="todo:php81" >
+<input type="hidden" name="formId" value="doodle__form__php_8.1_rm_1st_preference" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="9">
+        PHP 8.1 RM 1st Preference      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">A Cristo</td>
+        <td class="centeralign">G Engebreth</td>
+        <td class="centeralign">H Smits</td>
+        <td class="centeralign">E vJohnson</td>
+        <td class="centeralign">P Allaert</td>
+        <td class="centeralign">S Panteleev</td>
+        <td class="centeralign">B Ramsey</td>
+        <td class="centeralign">S E Gmati</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/alec">alec</a>&nbsp;(alec)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/23 13:53"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/beberlei">beberlei</a>&nbsp;(beberlei)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/13 07:19"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/brzuchal">brzuchal</a>&nbsp;(brzuchal)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/26 03:29"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/bwoebi">bwoebi</a>&nbsp;(bwoebi)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/13 10:47"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/carusogabriel">carusogabriel</a>&nbsp;(carusogabriel)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 23:17"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/cmb">cmb</a>&nbsp;(cmb)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/13 23:16"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/daverandom">daverandom</a>&nbsp;(daverandom)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 19:58"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/derick">derick</a>&nbsp;(derick)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 20:09"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ehrhardt">ehrhardt</a>&nbsp;(ehrhardt)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 21:09"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/felipe">felipe</a>&nbsp;(felipe)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 20:37"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/geekcom">geekcom</a>&nbsp;(geekcom)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/13 15:51"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/heiglandreas">heiglandreas</a>&nbsp;(heiglandreas)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/26 06:41"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/hirokawa">hirokawa</a>&nbsp;(hirokawa)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/25 03:43"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ilutov">ilutov</a>&nbsp;(ilutov)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/19 13:16"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kalle">kalle</a>&nbsp;(kalle)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 19:45"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kocsismate">kocsismate</a>&nbsp;(kocsismate)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 20:54"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/levim">levim</a>&nbsp;(levim)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/13 00:03"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mbeccati">mbeccati</a>&nbsp;(mbeccati)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/23 14:04"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/nicolasgrekas">nicolasgrekas</a>&nbsp;(nicolasgrekas)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/23 13:49"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/nikic">nikic</a>&nbsp;(nikic)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/19 14:16"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ocramius">ocramius</a>&nbsp;(ocramius)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/19 16:27"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pajoye">pajoye</a>&nbsp;(pajoye)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/14 03:51"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/patrickallaert">patrickallaert</a>&nbsp;(patrickallaert)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 21:13"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pierrick">pierrick</a>&nbsp;(pierrick)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 21:14"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pollita">pollita</a>&nbsp;(pollita)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/23 13:48"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ralphschindler">ralphschindler</a>&nbsp;(ralphschindler)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/17 17:01"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ramsey">ramsey</a>&nbsp;(ramsey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 19:53"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sammyk">sammyk</a>&nbsp;(sammyk)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/24 18:27"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sebastian">sebastian</a>&nbsp;(sebastian)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/26 05:05"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sergey">sergey</a>&nbsp;(sergey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/20 08:21"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/stas">stas</a>&nbsp;(stas)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 23:07"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/svpernova09">svpernova09</a>&nbsp;(svpernova09)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/16 18:28"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/theodorejb">theodorejb</a>&nbsp;(theodorejb)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 19:54"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/trowski">trowski</a>&nbsp;(trowski)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/14 23:52"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/yunosh">yunosh</a>&nbsp;(yunosh)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/16 20:07"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>2</b></th>
+        <th class="centeralign"><b>13</b></th>
+        <th class="centeralign"><b>2</b></th>
+        <th class="centeralign"><b>15</b></th>
+        <th class="centeralign"><b>2</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="9">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+</div>
+
+<h3 class="sectionedit8" id="nd_preference">2nd Preference</h3>
+<div class="level3">
+
+<p>
+Select your second preference for 8.1 Release Manager here.
+If your first preference is eliminated in round 1, your vote will be reallocated
+based on second preference.
+</p>
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__php_8.1_rm_2nd_preference" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="todo:php81" >
+<input type="hidden" name="formId" value="doodle__form__php_8.1_rm_2nd_preference" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="9">
+        PHP 8.1 RM 2nd Preference      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">A Cristo</td>
+        <td class="centeralign">G Engebreth</td>
+        <td class="centeralign">H Smits</td>
+        <td class="centeralign">E vJohnson</td>
+        <td class="centeralign">P Allaert</td>
+        <td class="centeralign">S Panteleev</td>
+        <td class="centeralign">B Ramsey</td>
+        <td class="centeralign">S E Gmati</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/beberlei">beberlei</a>&nbsp;(beberlei)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/13 07:19"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/brzuchal">brzuchal</a>&nbsp;(brzuchal)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/26 03:29"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/bwoebi">bwoebi</a>&nbsp;(bwoebi)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/13 10:48"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/carusogabriel">carusogabriel</a>&nbsp;(carusogabriel)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 23:17"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/cmb">cmb</a>&nbsp;(cmb)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/13 23:17"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/daverandom">daverandom</a>&nbsp;(daverandom)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 19:58"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/derick">derick</a>&nbsp;(derick)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 20:09"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ehrhardt">ehrhardt</a>&nbsp;(ehrhardt)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 21:10"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/felipe">felipe</a>&nbsp;(felipe)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 20:37"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/geekcom">geekcom</a>&nbsp;(geekcom)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/13 15:57"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/heiglandreas">heiglandreas</a>&nbsp;(heiglandreas)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/26 06:41"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ilutov">ilutov</a>&nbsp;(ilutov)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/19 13:17"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kalle">kalle</a>&nbsp;(kalle)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 19:46"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kocsismate">kocsismate</a>&nbsp;(kocsismate)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 20:55"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/levim">levim</a>&nbsp;(levim)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/13 00:04"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mbeccati">mbeccati</a>&nbsp;(mbeccati)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/23 14:05"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/nicolasgrekas">nicolasgrekas</a>&nbsp;(nicolasgrekas)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/23 13:50"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/nikic">nikic</a>&nbsp;(nikic)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/19 14:17"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ocramius">ocramius</a>&nbsp;(ocramius)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/19 16:28"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pajoye">pajoye</a>&nbsp;(pajoye)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/15 01:43"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/patrickallaert">patrickallaert</a>&nbsp;(patrickallaert)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 21:14"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pierrick">pierrick</a>&nbsp;(pierrick)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 21:15"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pollita">pollita</a>&nbsp;(pollita)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/23 13:48"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ralphschindler">ralphschindler</a>&nbsp;(ralphschindler)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/17 17:01"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ramsey">ramsey</a>&nbsp;(ramsey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 19:53"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sammyk">sammyk</a>&nbsp;(sammyk)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/24 18:27"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sebastian">sebastian</a>&nbsp;(sebastian)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/26 05:05"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sergey">sergey</a>&nbsp;(sergey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/20 08:21"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/stas">stas</a>&nbsp;(stas)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 23:07"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/svpernova09">svpernova09</a>&nbsp;(svpernova09)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/16 18:29"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/theodorejb">theodorejb</a>&nbsp;(theodorejb)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 19:55"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/trowski">trowski</a>&nbsp;(trowski)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/14 23:52"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/yunosh">yunosh</a>&nbsp;(yunosh)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/16 20:07"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>12</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>14</b></th>
+        <th class="centeralign"><b>3</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="9">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+</div>
+
+<h3 class="sectionedit9" id="rd_preference">3rd Preference</h3>
+<div class="level3">
+
+<p>
+Select your third preference for 8.1 Release Manager here.
+If both your first and second preferences are eliminated in earlier rounds,
+your vote will be reallocated based on your third preference.
+</p>
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__php_8.1_rm_3rd_preference" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="todo:php81" >
+<input type="hidden" name="formId" value="doodle__form__php_8.1_rm_3rd_preference" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="9">
+        PHP 8.1 RM 3rd Preference      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">A Cristo</td>
+        <td class="centeralign">G Engebreth</td>
+        <td class="centeralign">H Smits</td>
+        <td class="centeralign">E vJohnson</td>
+        <td class="centeralign">P Allaert</td>
+        <td class="centeralign">S Panteleev</td>
+        <td class="centeralign">B Ramsey</td>
+        <td class="centeralign">S E Gmati</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/beberlei">beberlei</a>&nbsp;(beberlei)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/13 07:22"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/brzuchal">brzuchal</a>&nbsp;(brzuchal)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/26 03:30"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/bwoebi">bwoebi</a>&nbsp;(bwoebi)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/13 10:48"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/carusogabriel">carusogabriel</a>&nbsp;(carusogabriel)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 23:18"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/cmb">cmb</a>&nbsp;(cmb)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/13 23:17"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/daverandom">daverandom</a>&nbsp;(daverandom)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/21 21:46"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/derick">derick</a>&nbsp;(derick)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 20:11"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ehrhardt">ehrhardt</a>&nbsp;(ehrhardt)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 21:13"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/geekcom">geekcom</a>&nbsp;(geekcom)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/13 16:01"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/heiglandreas">heiglandreas</a>&nbsp;(heiglandreas)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/26 06:42"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ilutov">ilutov</a>&nbsp;(ilutov)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/19 13:17"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kalle">kalle</a>&nbsp;(kalle)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 19:49"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kocsismate">kocsismate</a>&nbsp;(kocsismate)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 20:55"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/levim">levim</a>&nbsp;(levim)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/13 01:05"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mbeccati">mbeccati</a>&nbsp;(mbeccati)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/23 14:06"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/nicolasgrekas">nicolasgrekas</a>&nbsp;(nicolasgrekas)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/23 13:50"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/nikic">nikic</a>&nbsp;(nikic)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/19 14:17"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ocramius">ocramius</a>&nbsp;(ocramius)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/19 16:28"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pajoye">pajoye</a>&nbsp;(pajoye)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/15 01:44"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/patrickallaert">patrickallaert</a>&nbsp;(patrickallaert)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 21:24"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pollita">pollita</a>&nbsp;(pollita)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 20:04"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ralphschindler">ralphschindler</a>&nbsp;(ralphschindler)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/17 17:01"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ramsey">ramsey</a>&nbsp;(ramsey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 19:54"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sammyk">sammyk</a>&nbsp;(sammyk)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/24 18:28"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sergey">sergey</a>&nbsp;(sergey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/17 05:30"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/stas">stas</a>&nbsp;(stas)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 23:07"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/svpernova09">svpernova09</a>&nbsp;(svpernova09)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/16 18:29"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/theodorejb">theodorejb</a>&nbsp;(theodorejb)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 19:55"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/trowski">trowski</a>&nbsp;(trowski)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/14 23:52"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/yunosh">yunosh</a>&nbsp;(yunosh)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/16 20:07"></td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>3</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>3</b></th>
+        <th class="centeralign"><b>10</b></th>
+        <th class="centeralign"><b>5</b></th>
+        <th class="centeralign"><b>7</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="9">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+</div>
+
+<h3 class="sectionedit10" id="th_preference">4th Preference</h3>
+<div class="level3">
+
+<p>
+Select your fourth preference for 8.1 Release Manager here.
+If your top three preferences are eliminated in earlier rounds,
+your vote will be reallocated based on your fourth preference.
+</p>
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__php_8.1_rm_4th_preference" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="todo:php81" >
+<input type="hidden" name="formId" value="doodle__form__php_8.1_rm_4th_preference" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="9">
+        PHP 8.1 RM 4th Preference      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">A Cristo</td>
+        <td class="centeralign">G Engebreth</td>
+        <td class="centeralign">H Smits</td>
+        <td class="centeralign">E vJohnson</td>
+        <td class="centeralign">P Allaert</td>
+        <td class="centeralign">S Panteleev</td>
+        <td class="centeralign">B Ramsey</td>
+        <td class="centeralign">S E Gmati</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/beberlei">beberlei</a>&nbsp;(beberlei)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/13 07:22"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/brzuchal">brzuchal</a>&nbsp;(brzuchal)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/26 03:30"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/carusogabriel">carusogabriel</a>&nbsp;(carusogabriel)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 23:18"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/cmb">cmb</a>&nbsp;(cmb)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/13 23:17"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/derick">derick</a>&nbsp;(derick)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 20:11"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/geekcom">geekcom</a>&nbsp;(geekcom)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/13 16:01"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/heiglandreas">heiglandreas</a>&nbsp;(heiglandreas)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/26 06:43"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kocsismate">kocsismate</a>&nbsp;(kocsismate)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 20:55"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mbeccati">mbeccati</a>&nbsp;(mbeccati)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/23 14:06"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ocramius">ocramius</a>&nbsp;(ocramius)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/19 16:30"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pajoye">pajoye</a>&nbsp;(pajoye)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/15 01:44"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/patrickallaert">patrickallaert</a>&nbsp;(patrickallaert)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 21:25"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pollita">pollita</a>&nbsp;(pollita)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 20:04"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ralphschindler">ralphschindler</a>&nbsp;(ralphschindler)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/17 17:01"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ramsey">ramsey</a>&nbsp;(ramsey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 20:03"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sammyk">sammyk</a>&nbsp;(sammyk)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/24 18:32"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sergey">sergey</a>&nbsp;(sergey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 20:00"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/svpernova09">svpernova09</a>&nbsp;(svpernova09)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/16 18:29"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/theodorejb">theodorejb</a>&nbsp;(theodorejb)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 19:55"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/trowski">trowski</a>&nbsp;(trowski)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/14 23:58"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/yunosh">yunosh</a>&nbsp;(yunosh)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/16 20:08"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>2</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>4</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>9</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>2</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="9">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+</div>
+
+<h3 class="sectionedit11" id="th_preference1">5th Preference</h3>
+<div class="level3">
+
+<p>
+Select your fifth preference for 8.1 Release Manager here.
+If your top four preferences are eliminated in earlier rounds,
+your vote will be reallocated based on your fifth preference.
+</p>
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__php_8.1_rm_5th_preference" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="todo:php81" >
+<input type="hidden" name="formId" value="doodle__form__php_8.1_rm_5th_preference" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="9">
+        PHP 8.1 RM 5th Preference      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">A Cristo</td>
+        <td class="centeralign">G Engebreth</td>
+        <td class="centeralign">H Smits</td>
+        <td class="centeralign">E vJohnson</td>
+        <td class="centeralign">P Allaert</td>
+        <td class="centeralign">S Panteleev</td>
+        <td class="centeralign">B Ramsey</td>
+        <td class="centeralign">S E Gmati</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/beberlei">beberlei</a>&nbsp;(beberlei)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/13 07:22"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/brzuchal">brzuchal</a>&nbsp;(brzuchal)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/26 03:30"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/carusogabriel">carusogabriel</a>&nbsp;(carusogabriel)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 23:18"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/geekcom">geekcom</a>&nbsp;(geekcom)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/13 16:03"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kocsismate">kocsismate</a>&nbsp;(kocsismate)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 20:56"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mbeccati">mbeccati</a>&nbsp;(mbeccati)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/23 14:06"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ocramius">ocramius</a>&nbsp;(ocramius)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/19 16:32"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pajoye">pajoye</a>&nbsp;(pajoye)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/15 01:44"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/patrickallaert">patrickallaert</a>&nbsp;(patrickallaert)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 21:26"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pollita">pollita</a>&nbsp;(pollita)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/14 18:47"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ramsey">ramsey</a>&nbsp;(ramsey)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 20:04"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sammyk">sammyk</a>&nbsp;(sammyk)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/24 18:33"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sergey">sergey</a>&nbsp;(sergey)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/14 07:00"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/svpernova09">svpernova09</a>&nbsp;(svpernova09)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/16 18:29"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/theodorejb">theodorejb</a>&nbsp;(theodorejb)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 19:56"></td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>3</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>3</b></th>
+        <th class="centeralign"><b>3</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>4</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="9">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+</div>
+
+<h3 class="sectionedit12" id="th_preference2">6th Preference</h3>
+<div class="level3">
+
+<p>
+Select your sixth preference for 8.1 Release Manager here.
+If all other preferences are eliminated in earlier rounds,
+your vote will be reallocated based on your sixth preference.
+</p>
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__php_8.1_rm_6th_preference" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="todo:php81" >
+<input type="hidden" name="formId" value="doodle__form__php_8.1_rm_6th_preference" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="9">
+        PHP 8.1 RM 6th Preference      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">A Cristo</td>
+        <td class="centeralign">G Engebreth</td>
+        <td class="centeralign">H Smits</td>
+        <td class="centeralign">E vJohnson</td>
+        <td class="centeralign">P Allaert</td>
+        <td class="centeralign">S Panteleev</td>
+        <td class="centeralign">B Ramsey</td>
+        <td class="centeralign">S E Gmati</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/beberlei">beberlei</a>&nbsp;(beberlei)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/13 07:22"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/brzuchal">brzuchal</a>&nbsp;(brzuchal)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/26 03:31"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/carusogabriel">carusogabriel</a>&nbsp;(carusogabriel)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 23:18"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/geekcom">geekcom</a>&nbsp;(geekcom)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/13 16:05"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mbeccati">mbeccati</a>&nbsp;(mbeccati)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/23 14:06"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ocramius">ocramius</a>&nbsp;(ocramius)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/19 16:32"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pajoye">pajoye</a>&nbsp;(pajoye)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/15 01:45"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/patrickallaert">patrickallaert</a>&nbsp;(patrickallaert)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 21:26"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pollita">pollita</a>&nbsp;(pollita)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/14 18:47"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ramsey">ramsey</a>&nbsp;(ramsey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 20:05"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sergey">sergey</a>&nbsp;(sergey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 20:02"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/svpernova09">svpernova09</a>&nbsp;(svpernova09)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/16 18:30"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/theodorejb">theodorejb</a>&nbsp;(theodorejb)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/04/12 19:56"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>3</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>2</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>2</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>3</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="9">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+</div>
+
+                    <!-- wikipage stop -->
+                                    </div>
+
+                <div class="docInfo"><bdi>todo/php81.txt</bdi> · Last modified: 2023/04/14 22:32 by <bdi>theodorejb</bdi></div>
+
+                            </div></div><!-- /content -->
+
+            <hr class="a11y" />
+
+            <!-- PAGE ACTIONS -->
+            <div id="dokuwiki__pagetools">
+                <h3 class="a11y">Page Tools</h3>
+                <div class="tools">
+                    <ul>
+                        <li><a href="/todo/php81?do=edit"  class="action source" accesskey="v" rel="nofollow" title="Show pagesource [V]"><span>Show pagesource</span></a></li><li><a href="/todo/php81?do=revisions"  class="action revs" accesskey="o" rel="nofollow" title="Old revisions [O]"><span>Old revisions</span></a></li><li><a href="/todo/php81?do=backlink"  class="action backlink" rel="nofollow" title="Backlinks"><span>Backlinks</span></a></li><li><a href="#dokuwiki__top"  class="action top" accesskey="t" rel="nofollow" title="Back to top [T]"><span>Back to top</span></a></li>                    </ul>
+                </div>
+            </div>
+        </div><!-- /wrapper -->
+
+    </div></div><!-- /site -->
+
+    <div class="no"><img src="/lib/exe/taskrunner.php?id=todo%3Aphp81&amp;1681661920" width="2" height="1" alt="" /></div>
+    <div id="screen__mode" class="no"></div>    <!--[if ( lte IE 7 | IE 8 ) ]></div><![endif]-->
+</section>
+
+﻿<section class="secondscreen">
+  <!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#php_81_preparation_tasks">PHP 8.1 Preparation Tasks</a></div></li>
+<li class="level2"><div class="li"><a href="#timetable">Timetable</a></div></li>
+<li class="level2"><div class="li"><a href="#release_managers">Release Managers</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#volunteers">Volunteers</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#voting">Voting</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#st_preference">1st Preference</a></div></li>
+<li class="level3"><div class="li"><a href="#nd_preference">2nd Preference</a></div></li>
+<li class="level3"><div class="li"><a href="#rd_preference">3rd Preference</a></div></li>
+<li class="level3"><div class="li"><a href="#th_preference">4th Preference</a></div></li>
+<li class="level3"><div class="li"><a href="#th_preference1">5th Preference</a></div></li>
+<li class="level3"><div class="li"><a href="#th_preference2">6th Preference</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+</section>
+</section><!-- .fullscreen -->
+<footer>
+  <nav class="fullscreen">
+    <ul>
+      <li><a href="//php.net/copyright">Copyright © 2001-2023 The PHP Group</a></li>
+      <li><a href="//php.net/sites">Other PHP.net sites</a></li>
+      <li><a href="//php.net/privacy">Privacy policy</a></li>
+    </ul>
+  </nav>
+</footer>
+
+</div><!-- .wrap -->
+</body>
+</html>

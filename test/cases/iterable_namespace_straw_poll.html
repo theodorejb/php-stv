@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PHP: rfc:any_all_on_iterable_straw_poll_namespace</title>
+
+  <meta name="generator" content="DokuWiki"/>
+<meta name="robots" content="index,follow"/>
+<meta name="keywords" content="rfc,any_all_on_iterable_straw_poll_namespace"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/lib/exe/opensearch.php" title="PHP Wiki"/>
+<link rel="start" href="/"/>
+<link rel="contents" href="/rfc/any_all_on_iterable_straw_poll_namespace?do=index" title="Sitemap"/>
+<link rel="manifest" href="/lib/exe/manifest.php"/>
+<link rel="alternate" type="application/rss+xml" title="Recent Changes" href="/feed.php"/>
+<link rel="alternate" type="application/rss+xml" title="Current namespace" href="/feed.php?mode=list&amp;ns=rfc"/>
+<link rel="alternate" type="text/html" title="Plain HTML" href="/_export/xhtml/rfc/any_all_on_iterable_straw_poll_namespace"/>
+<link rel="alternate" type="text/plain" title="Wiki Markup" href="/_export/raw/rfc/any_all_on_iterable_straw_poll_namespace"/>
+<link rel="canonical" href="https://wiki.php.net/rfc/any_all_on_iterable_straw_poll_namespace"/>
+<link rel="stylesheet" href="/lib/exe/css.php?t=phpnet&amp;tseed=05de81390ffb5ca1647fb36efb92497c"/>
+<!--[if gte IE 9]><!-->
+<script >/*<![CDATA[*/var NS='rfc';var JSINFO = {"id":"rfc:any_all_on_iterable_straw_poll_namespace","namespace":"rfc","ACT":"show","useHeadingNavigation":0,"useHeadingContent":0};
+/*!]]>*/</script>
+<script src="/lib/exe/jquery.php?tseed=34a552433bc33cc9c3bc32527289a0b2" defer="defer"></script>
+<script src="/lib/exe/js.php?t=phpnet&amp;tseed=05de81390ffb5ca1647fb36efb92497c" defer="defer"></script>
+<!--<![endif]-->
+  <link media='all' rel='stylesheet' href='//shared.php.net/styles/defaults.css?filemtime=1630005818'/>
+  <link media='all' rel='stylesheet' href='//shared.php.net/styles/wiki.css?filemtime=1630005818'/>
+
+  <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic,600italic|Source+Code+Pro&amp;subset=latin,latin-ext" rel="stylesheet">
+  <link rel="shortcut icon" href="//php.net/favicon.ico">
+<!--[if lt IE 9]>
+  <script src="//shared.php.net/js/html5shiv.js"></script>
+<![endif]-->
+  </head>
+<body id="">
+
+<div class="wrap">
+<header class='clearfix'>
+  <div id="mainmenu-toggle-overlay"></div>
+  <input type="checkbox" id="mainmenu-toggle">
+  <nav class="fullscreen">
+    <div class="mainscreen">
+      <a href="/" class="home"><img src="//php.net/images/logo.php?" width="48" height="24" alt="php"><span class="subdomain"></span></a>
+      <ul>
+        <li><a href="?do=login">Login</a></li>
+        <li><a href="?do=register">Register</a></li>
+      </ul>
+    </div>
+    <div class="secondscreen">
+      <form method="get" action="/start">
+        <input type="search" placeholder="Search" name="id" class="search">
+        <input type="hidden" name="do" value="search">
+      </form>
+    </div>
+  </nav>
+</header>
+<div id="flash-message"></div>
+<nav id="megadropdown"></nav>
+
+<section class="fullscreen clearfix">
+
+
+
+<section id="breadcrumbs">
+<nav>
+<span class="bchead">You are here: </span><span class="home"><bdi><a href="/start" class="wikilink1" title="start" data-wiki-id="start">start</a></bdi></span> › <bdi><a href="/rfc" class="wikilink1" title="rfc" data-wiki-id="rfc">rfc</a></bdi> › <bdi><a href="/rfc/any_all_on_iterable_straw_poll_namespace" class="wikilink1" title="rfc:any_all_on_iterable_straw_poll_namespace" data-wiki-id="rfc:any_all_on_iterable_straw_poll_namespace">any_all_on_iterable_straw_poll_namespace</a></bdi></nav>
+</section>
+<section class="mainscreen">
+    <!--[if lte IE 7 ]><div id="IE7"><![endif]--><!--[if IE 8 ]><div id="IE8"><![endif]-->
+    <div id="dokuwiki__site"><div id="dokuwiki__top" class="site dokuwiki mode_show tpl_phpnet     ">
+
+
+        <div class="wrapper group">
+
+            
+            <!-- ********** CONTENT ********** -->
+            <div id="dokuwiki__content"><div class="pad group">
+
+                <div class="pageId"><span>rfc:any_all_on_iterable_straw_poll_namespace</span></div>
+
+                <div class="page group">
+                                                            <!-- wikipage start -->
+                                        
+<h1 class="sectionedit1" id="straw_pollusing_namespaces_for_any_and_all_on_iterables">Straw poll: Using namespaces for *any() and *all() on iterables</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> Version: 0.2</div>
+</li>
+<li class="level1"><div class="li"> Date: 2021-01-05</div>
+</li>
+<li class="level1"><div class="li"> Author: Tyson Andre, tandre@php.net</div>
+</li>
+<li class="level1"><div class="li"> Status: Closed</div>
+</li>
+<li class="level1"><div class="li"> First Published at: <a href="http://wiki.php.net/rfc/any_all_on_iterable_straw_poll_namespace" class="urlextern" title="http://wiki.php.net/rfc/any_all_on_iterable_straw_poll_namespace" rel="ugc nofollow">http://wiki.php.net/rfc/any_all_on_iterable_straw_poll_namespace</a></div>
+</li>
+</ul>
+
+</div>
+
+<h2 class="sectionedit2" id="introduction">Introduction</h2>
+<div class="level2">
+
+<p>
+The primitives <code>*any*()</code> and <code>*all*()</code> are a common part of many programming languages and help in avoiding verbosity or unnecessary abstractions.
+</p>
+<ol>
+<li class="level1"><div class="li"> Haskell: <a href="https://hackage.haskell.org/package/base-4.14.0.0/docs/Prelude.html#v:any" class="urlextern" title="https://hackage.haskell.org/package/base-4.14.0.0/docs/Prelude.html#v:any" rel="ugc nofollow">https://hackage.haskell.org/package/base-4.14.0.0/docs/Prelude.html#v:any</a></div>
+</li>
+<li class="level1"><div class="li"> JavaScript: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some" class="urlextern" title="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some" rel="ugc nofollow">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some</a></div>
+</li>
+<li class="level1"><div class="li"> Python: <a href="https://docs.python.org/3/library/functions.html#all" class="urlextern" title="https://docs.python.org/3/library/functions.html#all" rel="ugc nofollow">https://docs.python.org/3/library/functions.html#all</a></div>
+</li>
+<li class="level1"><div class="li"> Ruby: <a href="https://apidock.com/ruby/Enumerable/any%3F" class="urlextern" title="https://apidock.com/ruby/Enumerable/any%3F" rel="ugc nofollow">https://apidock.com/ruby/Enumerable/any%3F</a></div>
+</li>
+<li class="level1"><div class="li"> Java 8(Stream): <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#allMatch-java.util.function.Predicate" class="urlextern" title="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#allMatch-java.util.function.Predicate" rel="ugc nofollow">https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#allMatch-java.util.function.Predicate</a>-</div>
+</li>
+<li class="level1"><div class="li"> C++: <a href="https://www.cplusplus.com/reference/algorithm/any_of/" class="urlextern" title="https://www.cplusplus.com/reference/algorithm/any_of/" rel="ugc nofollow">https://www.cplusplus.com/reference/algorithm/any_of/</a></div>
+</li>
+</ol>
+
+<p>
+Before adding this, I&#039;d like to see what others think about the choice of naming pattern.
+In a previous poll, the option <code>iterable_any()</code> was preferred over <code>iter_any()</code>/<code>any()</code>, but several responses were moderately or strongly in favor of namespaces.
+</p>
+<ol>
+<li class="level1"><div class="li"> I plan to propose additional internal functions for working with iterables if this succeeds, and would want to be sure this is the best name choice going forwards.</div>
+</li>
+<li class="level1"><div class="li"> Additionally, this has been an opportunity for measuring overall interest in adopting namespaces for brand new categories of functionality - existing methods work on Traversables (<code>iterator_*</code>) or arrays (<code>array_*</code>), but generally not both.</div>
+</li>
+</ol>
+
+</div>
+
+<h2 class="sectionedit3" id="discussion">Discussion</h2>
+<div class="level2">
+
+</div>
+
+<h3 class="sectionedit4" id="arguments_for_voting_again_on_namespaces">Arguments for voting again on namespaces</h3>
+<div class="level3">
+
+<p>
+<a href="https://externals.io/message/112558" class="urlextern" title="https://externals.io/message/112558" rel="ugc nofollow">https://externals.io/message/112558</a>
+</p>
+<blockquote class="blockquote-plugin">
+<p>
+From Levi Morrison:
+</p>
+
+<p>
+I want to re-iterate my opinion on this discussion thread: anything
+with a prefix is a hard-no from me. Namespaces are literally designed
+for this, and I will not vote “yes” to <code>iter_all</code>, <code>iterable_all</code>,
+etc, no matter what the prefix is. Anything without a namespace is a
+no from me.
+</p>
+
+<p>
+I&#039;m flexible on many other points, but not this one. It&#039;s 2020 (almost
+2021); let&#039;s use namespaces for what they were designed for. This is a
+perfect opportunity; they work on more than just arrays so using the
+<code>array_</code> prefix for consistency doesn&#039;t apply.
+</p>
+
+</blockquote>
+<p>
+<a href="https://externals.io/message/112558#112588" class="urlextern" title="https://externals.io/message/112558#112588" rel="ugc nofollow">https://externals.io/message/112558#112588</a>
+</p>
+<blockquote class="blockquote-plugin">
+<p>
+Hey Tyson,
+</p>
+
+<p>
+I know I&#039;m being stubborn, but we have namespaces, but also an “old guard”
+that doesn&#039;t understand its own programming language 🤷‍♀️
+</p>
+
+</blockquote><blockquote class="blockquote-plugin">
+<p>
+The main thing I&#039;m concerned about is that once we start extending this
+area (I assume that any &amp; all are not going to be the last additions in
+this space) we will quickly run into function names that are either too
+generic or outright collide. For example, what if we want to add an
+iterator-based version of range()? Do we really want to be forced to pull
+a Python and call it xrange()? That&#039;s about as good as real_range()...
+</p>
+
+<p>
+As such, I think it&#039;s important to prefix these somehow, though I don&#039;t
+care strongly how. Could be iter_all() or iterable_all(). We might even
+make it iterator_all() if we also adjust other existing iterator_*
+functions to accept iterables. I&#039;d also be happy with iter\all() or
+iterable\all(), but that gets us back into namespacing discussions :)
+</p>
+
+<p>
+Regards,
+Nikita
+</p>
+
+</blockquote>
+</div>
+
+<h3 class="sectionedit5" id="arguments_for_spl">Arguments for Spl\</h3>
+<div class="level3">
+
+<p>
+This poll includes one of the naming options suggested by Levi Morrison and uses the suggested namespace for alternative options.
+</p>
+<blockquote class="blockquote-plugin"><blockquote><div class="no">
+ I could start a second straw poll and wait for those results if you had a proposal for (a namespace) in mind.</div></blockquote>
+
+<p>
+Simply `Spl\all_values`. I don&#039;t think there&#039;s a need for another
+namespace component:
+</p>
+
+<p>
+ 1) The SPL can disambiguate within itself.
+</p>
+
+<p>
+ 2) It _shouldn&#039;t_ become the dumping ground of PHP.
+</p>
+
+</blockquote>
+<p>
+<code>Spl</code> was chosen as a namespace because:
+</p>
+<ol>
+<li class="level1"><div class="li"> Existing iterator/iterable functionality such as <code>iterator_*</code> and data structures were placed in the <code>spl</code> extension, and any/all would be as well.</div>
+</li>
+<li class="level1"><div class="li"> Existing classes are named SplObjectStorage, SplFixedArray, etc. (e.g. for <code>ReflectionClass-&gt;getName()</code>) - using the <code>Spl</code> casing would be consistent within the <a href="https://www.php.net/spl" class="urlextern" title="https://www.php.net/spl" rel="ugc nofollow">|spl module</a>.</div>
+</li>
+<li class="level1"><div class="li"> It is less prone to conflicts than <code>iter</code> - e.g. <a href="https://github.com/nikic/iter" class="urlextern" title="https://github.com/nikic/iter" rel="ugc nofollow">https://github.com/nikic/iter</a>.</div>
+</li>
+<li class="level1"><div class="li"> The <code>Spl\</code> namespace can be reused for new classes/functions if they belong in the <code>spl</code> module. (I have no plans to move existing functions/classes to that namespace)</div>
+</li>
+</ol>
+
+<p>
+<a href="https://externals.io/message/112558#112834" class="urlextern" title="https://externals.io/message/112558#112834" rel="ugc nofollow">https://externals.io/message/112558#112834</a>
+</p>
+<blockquote class="blockquote-plugin">
+<p>
+From Levi Morrison:
+</p>
+
+<p>
+I want to make a case for `Spl`. Aside from autoloading (which really
+ought to be in core but since “spl” is literally in the name of those
+functions it&#039;s kind of stuck), the SPL is mostly data structures and
+iterator related functionality. It makes perfect sense to me that
+iterator related behavior like these iterable functions being proposed
+should be included in the SPL. The `Spl` namespace is short, and its
+brevity doesn&#039;t lose any meaning because the SPL has been around in
+core since PHP 5.3 (I think?).
+</p>
+
+<p>
+...
+</p>
+
+<p>
+One of the arguments against using the SPL is that much of its
+existing design is... well, weird and sub-optimal in many cases. At
+least a few people recommend against using SPL data structures and
+iterators because of this. However, I think the `Spl` namespace can
+separate these well enough.
+</p>
+
+</blockquote>
+</div>
+
+<h3 class="sectionedit6" id="arguments_for_php">Arguments for PHP\</h3>
+<div class="level3">
+
+<p>
+<a href="https://www.php.net/manual/en/language.namespaces.rationale.php" class="urlextern" title="https://www.php.net/manual/en/language.namespaces.rationale.php" rel="ugc nofollow">https://www.php.net/manual/en/language.namespaces.rationale.php</a> reserved the uppercase namespace PHP\ for internal use.
+</p>
+
+<p>
+<a href="https://wiki.php.net/rfc/php_namespace_policy" class="urlextern" title="https://wiki.php.net/rfc/php_namespace_policy" rel="ugc nofollow">https://wiki.php.net/rfc/php_namespace_policy</a> was an earlier (declined) proposal that had suggested the use of PHP\SubNS for internal features.
+</p>
+
+<p>
+<a href="https://externals.io/message/112558#112841" class="urlextern" title="https://externals.io/message/112558#112841" rel="ugc nofollow">https://externals.io/message/112558#112841</a>
+</p>
+<blockquote class="blockquote-plugin">
+<p>
+FWIW as iterables and the likes relate to engine features, the PHP
+namespace policy <abbr title="Request for Comments">RFC</abbr> would have considered them ideal candidates for
+\PHP\SubNS rather than \Ext\SubNS
+</p>
+
+<p>
+Mark Randall
+</p>
+
+</blockquote>
+<p>
+From Nikita Popov: <a href="https://externals.io/message/112558#112780" class="urlextern" title="https://externals.io/message/112558#112780" rel="ugc nofollow">https://externals.io/message/112558#112780</a>
+</p>
+<blockquote class="blockquote-plugin">
+<p>
+Using just the SPL namespace (that is, SPL\any) makes the SPL namespace a
+dumping ground for everything, as you said. Once you introduce an
+additional meaningful namespace in the form of SPL\iterable\any, you are
+better off either dropping the SPL part and arriving at iterable\any, or
+replacing SPL with something more sensible and arriving at PHP\iterable\any.
+</p>
+
+</blockquote>
+</div>
+
+<h3 class="sectionedit7" id="arguments_foragainst_iterable_in_namespace">Arguments for/against iterable\ in namespace</h3>
+<div class="level3">
+
+<p>
+<a href="https://externals.io/message/112558#112773" class="urlextern" title="https://externals.io/message/112558#112773" rel="ugc nofollow">https://externals.io/message/112558#112773</a>
+</p>
+<blockquote class="blockquote-plugin">
+<p>
+I&#039;m happy to have these functions namespaced, but I&#039;m not sure the
+suggestion to namespace them under Spl makes sense. This functionality has
+fairly little to do with the SPL as it is now and to be honest, by now
+there is quite a bit of ... stigma associated with functionality that
+resides in SPL.
+</p>
+
+<p>
+I would suggest using iterable\any and iterable\all as the names if we want
+to go down this route. iterable_any and iterable_all were the by far most
+popular choices on the previous poll, and these are just the namespaced
+variants thereof.
+</p>
+
+<p>
+Regards,
+Nikita
+</p>
+
+</blockquote>
+<p>
+From <a href="https://externals.io/message/112558#112832" class="urlextern" title="https://externals.io/message/112558#112832" rel="ugc nofollow">https://externals.io/message/112558#112832</a>
+</p>
+
+<p>
+I&#039;ve also realized that <code>use prefix\iterable</code> would be mildly inconvenient for users of PHP and for tooling (refactoring tools, IDEs, etc) for PHP,
+but still include it as an option because it&#039;s <strong>unlikely to be a problem in practice  and the non-namespaced prefix iterable_ was preferred in the previous poll.</strong>
+</p>
+<pre class="code php">php <span class="sy0">&gt;</span> <span class="kw2">namespace</span> iterable <span class="br0">&#123;</span> <span class="kw2">function</span> my_any<span class="br0">&#40;</span><span class="sy0">...</span><span class="re0">$args</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="kw1">echo</span> <span class="st0">&quot;in my_any() polyfill<span class="es1">\n</span>&quot;</span><span class="sy0">;</span><span class="br0">&#125;</span><span class="br0">&#125;</span>
+php <span class="sy0">&gt;</span> \iterable\my_any<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// can be called with the fully qualified name</span>
+in my_any<span class="br0">&#40;</span><span class="br0">&#41;</span> polyfill
+php <span class="sy0">&gt;</span> <span class="kw2">namespace</span> X <span class="br0">&#123;</span> <span class="kw2">use</span> iterable\my_any<span class="sy0">;</span> my_any<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="coMULTI">/* using individual functions works and is how namespaced functions are often used */</span> <span class="br0">&#125;</span>
+in my_any<span class="br0">&#40;</span><span class="br0">&#41;</span> polyfill
+php <span class="sy0">&gt;</span> <span class="kw2">namespace</span> <span class="br0">&#123;</span> iterable\my_any<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="br0">&#125;</span>
+in my_any<span class="br0">&#40;</span><span class="br0">&#41;</span> polyfill
+&nbsp;
+&nbsp;
+&nbsp;
+php <span class="sy0">&gt;</span> <span class="kw2">namespace</span> W <span class="br0">&#123;</span> <span class="kw1">echo</span> iterable<span class="sy0">::</span><span class="kw2">class</span><span class="sy0">;</span> <span class="coMULTI">/* Edge cases that should not be a problem in practice, but mentioned for completeness */</span> <span class="br0">&#125;</span>
+W\iterable
+php <span class="sy0">&gt;</span> <span class="kw2">namespace</span> X <span class="br0">&#123;</span> <span class="kw2">use</span> iterable<span class="sy0">;</span> <span class="br0">&#125;</span>
+&nbsp;
+Fatal error<span class="sy0">:</span> Cannot <span class="kw2">use</span> iterable <span class="kw1">as</span> iterable because <span class="st_h">'iterable'</span> is a special <span class="kw2">class</span> name in php shell code on line <span class="nu0">1</span>
+php <span class="sy0">&gt;</span> <span class="kw2">namespace</span> X <span class="br0">&#123;</span> <span class="kw2">use</span> PHP\iterable<span class="sy0">;</span> <span class="br0">&#125;</span>
+&nbsp;
+Fatal error<span class="sy0">:</span> Cannot <span class="kw2">use</span> PHP\iterable <span class="kw1">as</span> iterable because <span class="st_h">'iterable'</span> is a special <span class="kw2">class</span> name in php shell code on line <span class="nu0">1</span>
+&nbsp;
+php <span class="sy0">&gt;</span> <span class="kw2">namespace</span> X <span class="br0">&#123;</span> <span class="kw2">use</span> iterable <span class="kw1">as</span> iter<span class="sy0">;</span> iter\my_any<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="br0">&#125;</span>
+in my_any<span class="br0">&#40;</span><span class="br0">&#41;</span> polyfill</pre>
+
+</div>
+
+<h2 class="sectionedit8" id="vote">Vote</h2>
+<div class="level2">
+
+<p>
+Voting started on 2021-01-19 and ended on 2021-02-02. Of the top two options, 12 voters had ranked “PHP\iterable” before the global namespace (including not listing the latter in their vote). 11 voters had ranked the global namespace ahead of “PHP\iterable” (including not listing the latter in the vote). One voter had ranked neither option.
+</p>
+
+<p>
+This vote will influence the name choice for the <abbr title="Request for Comments">RFC</abbr> <a href="https://wiki.php.net/rfc/any_all_on_iterable" class="urlextern" title="https://wiki.php.net/rfc/any_all_on_iterable" rel="ugc nofollow">https://wiki.php.net/rfc/any_all_on_iterable</a>
+</p>
+
+<p>
+This is a ranked-choice poll (following <a href="https://en.wikipedia.org/wiki/Single_transferable_vote#Example" class="urlextern" title="https://en.wikipedia.org/wiki/Single_transferable_vote#Example" rel="ugc nofollow">STV</a>) between the naming alternatives.
+</p>
+
+<p>
+With STV you SHOULD rank all the choices in order (but are not required to). Don&#039;t pick the same option more than once, as that invalidates your vote.
+</p>
+
+<p>
+<strong>Clicking on vote will only submit your vote for the above question, not for all of them.</strong> You may want to write down your choices to avoid losing track of them. To quickly return to the vote section, click on “Vote” in the Table of Contents on the right.
+</p>
+<ul>
+<li class="level1"><div class="li"> no namespace: iterable_any()/iterable_all()</div>
+</li>
+<li class="level1"><div class="li"> iter\ (conflicts with <a href="https://github.com/nikic/iter" class="urlextern" title="https://github.com/nikic/iter" rel="ugc nofollow">nikic/iter</a> but was among Nikita&#039;s suggestions)</div>
+</li>
+<li class="level1"><div class="li"> iterable\ (see <a href="#arguments_foragainst_iterable_in_namespace" title="rfc:any_all_on_iterable_straw_poll_namespace ↵" class="wikilink1">section on iterable\ </a> , also suggested by Nikita)</div>
+</li>
+<li class="level1"><div class="li"> PHP\ (see <a href="#arguments_for_php" title="rfc:any_all_on_iterable_straw_poll_namespace ↵" class="wikilink1">Arguments for PHP\</a>)</div>
+</li>
+<li class="level1"><div class="li"> PHP\Spl\ (see <a href="#arguments_for_php" title="rfc:any_all_on_iterable_straw_poll_namespace ↵" class="wikilink1">Arguments for PHP\</a>)</div>
+</li>
+<li class="level1"><div class="li"> PHP\iter\ (see <a href="#arguments_for_php" title="rfc:any_all_on_iterable_straw_poll_namespace ↵" class="wikilink1">Arguments for PHP\</a>)</div>
+</li>
+<li class="level1"><div class="li"> PHP\iterable\ (see <a href="#arguments_for_php" title="rfc:any_all_on_iterable_straw_poll_namespace ↵" class="wikilink1">Arguments for PHP\</a>)</div>
+</li>
+<li class="level1"><div class="li"> Ext\Spl, as one interpretation of <a href="https://wiki.php.net/rfc/php_namespace_policy" class="urlextern" title="https://wiki.php.net/rfc/php_namespace_policy" rel="ugc nofollow">https://wiki.php.net/rfc/php_namespace_policy</a> . Also see <a href="#arguments_for_php" title="rfc:any_all_on_iterable_straw_poll_namespace ↵" class="wikilink1">Arguments for PHP\</a> for PHP\Spl since this the new functions would be built in.</div>
+</li>
+<li class="level1"><div class="li"> Spl\ (see <a href="#arguments_for_spl" title="rfc:any_all_on_iterable_straw_poll_namespace ↵" class="wikilink1">Arguments for Spl\ </a> - suggested by Levi Morrison)</div>
+</li>
+<li class="level1"><div class="li"> Spl\iter\</div>
+</li>
+<li class="level1"><div class="li"> Spl\iterable\ </div>
+</li>
+</ul>
+
+<p>
+First choice:
+</p>
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__straw_poll:favorite_choice_of_namespace" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="rfc:any_all_on_iterable_straw_poll_namespace" >
+<input type="hidden" name="formId" value="doodle__form__straw_poll:favorite_choice_of_namespace" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="12">
+        Straw poll: Favorite choice of namespace      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">iterable_any() and iterable_all()</td>
+        <td class="centeralign">iter\</td>
+        <td class="centeralign">iterable\</td>
+        <td class="centeralign">PHP\</td>
+        <td class="centeralign">PHP\Spl\</td>
+        <td class="centeralign">PHP\iter\</td>
+        <td class="centeralign">PHP\iterable\</td>
+        <td class="centeralign">Ext\Spl\</td>
+        <td class="centeralign">Spl\</td>
+        <td class="centeralign">Spl\iter\</td>
+        <td class="centeralign">Spl\iterable\</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/alec">alec</a>&nbsp;(alec)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 06:56"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/as">as</a>&nbsp;(as)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 04:40"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/28 14:16"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/bmajdak">bmajdak</a>&nbsp;(bmajdak)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/21 17:10"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/brzuchal">brzuchal</a>&nbsp;(brzuchal)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/02/02 08:25"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/bwoebi">bwoebi</a>&nbsp;(bwoebi)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/26 16:27"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/crell">crell</a>&nbsp;(crell)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 22:45"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/derick">derick</a>&nbsp;(derick)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/21 10:02"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/dharman">dharman</a>&nbsp;(dharman)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 19:07"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/duncan3dc">duncan3dc</a>&nbsp;(duncan3dc)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/24 21:40"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/galvao">galvao</a>&nbsp;(galvao)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 02:00"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jasny">jasny</a>&nbsp;(jasny)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 00:21"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kinncj">kinncj</a>&nbsp;(kinncj)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/21 15:54"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/levim">levim</a>&nbsp;(levim)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 04:09"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/marandall">marandall</a>&nbsp;(marandall)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 00:34"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/nicolasgrekas">nicolasgrekas</a>&nbsp;(nicolasgrekas)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 08:40"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ocramius">ocramius</a>&nbsp;(ocramius)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 08:33"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ramsey">ramsey</a>&nbsp;(ramsey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 16:32"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/reywob">reywob</a>&nbsp;(reywob)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 12:58"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sergey">sergey</a>&nbsp;(sergey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 06:38"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/svpernova09">svpernova09</a>&nbsp;(svpernova09)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/26 14:19"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/theodorejb">theodorejb</a>&nbsp;(theodorejb)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/26 19:12"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/trowski">trowski</a>&nbsp;(trowski)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/26 16:08"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/villfa">villfa</a>&nbsp;(villfa)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/25 14:53"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>9</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>9</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>3</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>1</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="12">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+<p>
+Second choice:
+</p>
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__straw_poll:second_favorite_choice_of_namespace" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="rfc:any_all_on_iterable_straw_poll_namespace" >
+<input type="hidden" name="formId" value="doodle__form__straw_poll:second_favorite_choice_of_namespace" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="12">
+        Straw poll: Second favorite choice of namespace      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">iterable_any() and iterable_all()</td>
+        <td class="centeralign">iter\</td>
+        <td class="centeralign">iterable\</td>
+        <td class="centeralign">PHP\</td>
+        <td class="centeralign">PHP\Spl\</td>
+        <td class="centeralign">PHP\iter\</td>
+        <td class="centeralign">PHP\iterable\</td>
+        <td class="centeralign">Ext\Spl\</td>
+        <td class="centeralign">Spl\</td>
+        <td class="centeralign">Spl\iter\</td>
+        <td class="centeralign">Spl\iterable\</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/alec">alec</a>&nbsp;(alec)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 06:56"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/as">as</a>&nbsp;(as)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 04:41"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/28 14:16"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/bmajdak">bmajdak</a>&nbsp;(bmajdak)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/21 17:11"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/brzuchal">brzuchal</a>&nbsp;(brzuchal)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/02/02 08:26"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/crell">crell</a>&nbsp;(crell)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 22:45"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/derick">derick</a>&nbsp;(derick)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/21 10:02"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/dharman">dharman</a>&nbsp;(dharman)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 19:08"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/duncan3dc">duncan3dc</a>&nbsp;(duncan3dc)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/24 21:41"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/galvao">galvao</a>&nbsp;(galvao)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 02:02"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jasny">jasny</a>&nbsp;(jasny)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 00:21"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kinncj">kinncj</a>&nbsp;(kinncj)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/21 15:55"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/levim">levim</a>&nbsp;(levim)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 04:09"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/marandall">marandall</a>&nbsp;(marandall)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 00:35"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/nicolasgrekas">nicolasgrekas</a>&nbsp;(nicolasgrekas)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 08:40"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ocramius">ocramius</a>&nbsp;(ocramius)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 08:33"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ramsey">ramsey</a>&nbsp;(ramsey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 16:32"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/reywob">reywob</a>&nbsp;(reywob)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 12:58"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sergey">sergey</a>&nbsp;(sergey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 06:39"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/svpernova09">svpernova09</a>&nbsp;(svpernova09)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/26 14:19"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/theodorejb">theodorejb</a>&nbsp;(theodorejb)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/26 21:38"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/trowski">trowski</a>&nbsp;(trowski)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/26 16:08"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/villfa">villfa</a>&nbsp;(villfa)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/25 14:53"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>2</b></th>
+        <th class="centeralign"><b>5</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>2</b></th>
+        <th class="centeralign"><b>6</b></th>
+        <th class="centeralign"><b>4</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>4</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="12">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+<p>
+Third choice:
+</p>
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__straw_poll:third_favorite_choice_of_namespace" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="rfc:any_all_on_iterable_straw_poll_namespace" >
+<input type="hidden" name="formId" value="doodle__form__straw_poll:third_favorite_choice_of_namespace" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="12">
+        Straw poll: Third favorite choice of namespace      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">iterable_any() and iterable_all()</td>
+        <td class="centeralign">iter\</td>
+        <td class="centeralign">iterable\</td>
+        <td class="centeralign">PHP\</td>
+        <td class="centeralign">PHP\Spl\</td>
+        <td class="centeralign">PHP\iter\</td>
+        <td class="centeralign">PHP\iterable\</td>
+        <td class="centeralign">Ext\Spl\</td>
+        <td class="centeralign">Spl\</td>
+        <td class="centeralign">Spl\iter\</td>
+        <td class="centeralign">Spl\iterable\</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/as">as</a>&nbsp;(as)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 04:41"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/28 14:16"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/crell">crell</a>&nbsp;(crell)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 22:46"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/dharman">dharman</a>&nbsp;(dharman)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 19:08"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/duncan3dc">duncan3dc</a>&nbsp;(duncan3dc)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/24 21:41"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/galvao">galvao</a>&nbsp;(galvao)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 02:03"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jasny">jasny</a>&nbsp;(jasny)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 00:21"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kinncj">kinncj</a>&nbsp;(kinncj)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/21 15:55"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/marandall">marandall</a>&nbsp;(marandall)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 00:36"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ocramius">ocramius</a>&nbsp;(ocramius)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 08:34"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ramsey">ramsey</a>&nbsp;(ramsey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 16:32"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sergey">sergey</a>&nbsp;(sergey)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 06:39"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/svpernova09">svpernova09</a>&nbsp;(svpernova09)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/26 14:19"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/theodorejb">theodorejb</a>&nbsp;(theodorejb)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/26 21:43"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/trowski">trowski</a>&nbsp;(trowski)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/26 16:08"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/villfa">villfa</a>&nbsp;(villfa)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/25 14:53"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>10</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>2</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>3</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="12">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+<p>
+Fourth choice:
+</p>
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__straw_poll:fourth_favorite_choice_of_namespace" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="rfc:any_all_on_iterable_straw_poll_namespace" >
+<input type="hidden" name="formId" value="doodle__form__straw_poll:fourth_favorite_choice_of_namespace" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="12">
+        Straw poll: Fourth favorite choice of namespace      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">iterable_any() and iterable_all()</td>
+        <td class="centeralign">iter\</td>
+        <td class="centeralign">iterable\</td>
+        <td class="centeralign">PHP\</td>
+        <td class="centeralign">PHP\Spl\</td>
+        <td class="centeralign">PHP\iter\</td>
+        <td class="centeralign">PHP\iterable\</td>
+        <td class="centeralign">Ext\Spl\</td>
+        <td class="centeralign">Spl\</td>
+        <td class="centeralign">Spl\iter\</td>
+        <td class="centeralign">Spl\iterable\</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/28 14:16"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/crell">crell</a>&nbsp;(crell)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 22:47"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/dharman">dharman</a>&nbsp;(dharman)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 19:08"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jasny">jasny</a>&nbsp;(jasny)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 00:21"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ocramius">ocramius</a>&nbsp;(ocramius)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 08:34"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ramsey">ramsey</a>&nbsp;(ramsey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 16:33"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/svpernova09">svpernova09</a>&nbsp;(svpernova09)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/26 14:20"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>5</b></th>
+        <th class="centeralign"><b>0</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="12">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+<p>
+Fifth choice:
+</p>
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__straw_poll:fifth_favorite_choice_of_namespace" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="rfc:any_all_on_iterable_straw_poll_namespace" >
+<input type="hidden" name="formId" value="doodle__form__straw_poll:fifth_favorite_choice_of_namespace" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="12">
+        Straw poll: Fifth favorite choice of namespace      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">iterable_any() and iterable_all()</td>
+        <td class="centeralign">iter\</td>
+        <td class="centeralign">iterable\</td>
+        <td class="centeralign">PHP\</td>
+        <td class="centeralign">PHP\Spl\</td>
+        <td class="centeralign">PHP\iter\</td>
+        <td class="centeralign">PHP\iterable\</td>
+        <td class="centeralign">Ext\Spl\</td>
+        <td class="centeralign">Spl\</td>
+        <td class="centeralign">Spl\iter\</td>
+        <td class="centeralign">Spl\iterable\</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/28 14:16"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/crell">crell</a>&nbsp;(crell)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 22:49"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/dharman">dharman</a>&nbsp;(dharman)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 19:09"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jasny">jasny</a>&nbsp;(jasny)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 00:22"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>2</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="12">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+<p>
+Sixth choice:
+</p>
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__straw_poll:sixth_favorite_choice_of_namespace" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="rfc:any_all_on_iterable_straw_poll_namespace" >
+<input type="hidden" name="formId" value="doodle__form__straw_poll:sixth_favorite_choice_of_namespace" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="12">
+        Straw poll: Sixth favorite choice of namespace      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">iterable_any() and iterable_all()</td>
+        <td class="centeralign">iter\</td>
+        <td class="centeralign">iterable\</td>
+        <td class="centeralign">PHP\</td>
+        <td class="centeralign">PHP\Spl\</td>
+        <td class="centeralign">PHP\iter\</td>
+        <td class="centeralign">PHP\iterable\</td>
+        <td class="centeralign">Ext\Spl\</td>
+        <td class="centeralign">Spl\</td>
+        <td class="centeralign">Spl\iter\</td>
+        <td class="centeralign">Spl\iterable\</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/28 14:16"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jasny">jasny</a>&nbsp;(jasny)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 00:22"></td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>1</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="12">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+<p>
+Seventh choice:
+</p>
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__straw_poll:seventh_favorite_choice_of_namespace" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="rfc:any_all_on_iterable_straw_poll_namespace" >
+<input type="hidden" name="formId" value="doodle__form__straw_poll:seventh_favorite_choice_of_namespace" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="12">
+        Straw poll: Seventh favorite choice of namespace      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">iterable_any() and iterable_all()</td>
+        <td class="centeralign">iter\</td>
+        <td class="centeralign">iterable\</td>
+        <td class="centeralign">PHP\</td>
+        <td class="centeralign">PHP\Spl\</td>
+        <td class="centeralign">PHP\iter\</td>
+        <td class="centeralign">PHP\iterable\</td>
+        <td class="centeralign">Ext\Spl\</td>
+        <td class="centeralign">Spl\</td>
+        <td class="centeralign">Spl\iter\</td>
+        <td class="centeralign">Spl\iterable\</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/28 14:16"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jasny">jasny</a>&nbsp;(jasny)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 00:22"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>0</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="12">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+<p>
+Eighth choice:
+</p>
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__straw_poll:eighth_favorite_choice_of_namespace" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="rfc:any_all_on_iterable_straw_poll_namespace" >
+<input type="hidden" name="formId" value="doodle__form__straw_poll:eighth_favorite_choice_of_namespace" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="12">
+        Straw poll: Eighth favorite choice of namespace      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">iterable_any() and iterable_all()</td>
+        <td class="centeralign">iter\</td>
+        <td class="centeralign">iterable\</td>
+        <td class="centeralign">PHP\</td>
+        <td class="centeralign">PHP\Spl\</td>
+        <td class="centeralign">PHP\iter\</td>
+        <td class="centeralign">PHP\iterable\</td>
+        <td class="centeralign">Ext\Spl\</td>
+        <td class="centeralign">Spl\</td>
+        <td class="centeralign">Spl\iter\</td>
+        <td class="centeralign">Spl\iterable\</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/28 14:16"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jasny">jasny</a>&nbsp;(jasny)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 00:23"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>2</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="12">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+<p>
+Ninth choice:
+</p>
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__straw_poll:ninth_favorite_choice_of_namespace" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="rfc:any_all_on_iterable_straw_poll_namespace" >
+<input type="hidden" name="formId" value="doodle__form__straw_poll:ninth_favorite_choice_of_namespace" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="12">
+        Straw poll: Ninth favorite choice of namespace      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">iterable_any() and iterable_all()</td>
+        <td class="centeralign">iter\</td>
+        <td class="centeralign">iterable\</td>
+        <td class="centeralign">PHP\</td>
+        <td class="centeralign">PHP\Spl\</td>
+        <td class="centeralign">PHP\iter\</td>
+        <td class="centeralign">PHP\iterable\</td>
+        <td class="centeralign">Ext\Spl\</td>
+        <td class="centeralign">Spl\</td>
+        <td class="centeralign">Spl\iter\</td>
+        <td class="centeralign">Spl\iterable\</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/28 14:16"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jasny">jasny</a>&nbsp;(jasny)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 00:23"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="12">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+<p>
+Tenth choice:
+</p>
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__straw_poll:tenth_favorite_choice_of_namespace" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="rfc:any_all_on_iterable_straw_poll_namespace" >
+<input type="hidden" name="formId" value="doodle__form__straw_poll:tenth_favorite_choice_of_namespace" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="12">
+        Straw poll: Tenth favorite choice of namespace      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">iterable_any() and iterable_all()</td>
+        <td class="centeralign">iter\</td>
+        <td class="centeralign">iterable\</td>
+        <td class="centeralign">PHP\</td>
+        <td class="centeralign">PHP\Spl\</td>
+        <td class="centeralign">PHP\iter\</td>
+        <td class="centeralign">PHP\iterable\</td>
+        <td class="centeralign">Ext\Spl\</td>
+        <td class="centeralign">Spl\</td>
+        <td class="centeralign">Spl\iter\</td>
+        <td class="centeralign">Spl\iterable\</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/28 14:16"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jasny">jasny</a>&nbsp;(jasny)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 00:23"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="12">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+<p>
+Eleventh choice:
+</p>
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__straw_poll:eleventh_favorite_choice_of_namespace" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="rfc:any_all_on_iterable_straw_poll_namespace" >
+<input type="hidden" name="formId" value="doodle__form__straw_poll:eleventh_favorite_choice_of_namespace" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="12">
+        Straw poll: Eleventh favorite choice of namespace      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">iterable_any() and iterable_all()</td>
+        <td class="centeralign">iter\</td>
+        <td class="centeralign">iterable\</td>
+        <td class="centeralign">PHP\</td>
+        <td class="centeralign">PHP\Spl\</td>
+        <td class="centeralign">PHP\iter\</td>
+        <td class="centeralign">PHP\iterable\</td>
+        <td class="centeralign">Ext\Spl\</td>
+        <td class="centeralign">Spl\</td>
+        <td class="centeralign">Spl\iter\</td>
+        <td class="centeralign">Spl\iterable\</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/28 14:16"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/jasny">jasny</a>&nbsp;(jasny)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2021/01/20 00:23"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>0</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="12">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+</div>
+
+<h2 class="sectionedit9" id="what_the_functions_do">What the functions do</h2>
+<div class="level2">
+
+<p>
+See <a href="https://wiki.php.net/rfc/any_all_on_iterable" class="urlextern" title="https://wiki.php.net/rfc/any_all_on_iterable" rel="ugc nofollow">https://wiki.php.net/rfc/any_all_on_iterable</a>
+</p>
+<pre class="code php"><span class="co4">/** Determines whether any element of the iterable satisfies the predicate. */</span>
+<span class="kw2">function</span><span class="br0">&#40;</span>iterable <span class="re0">$input</span><span class="sy0">,</span> ?callable <span class="re0">$callback</span> <span class="sy0">=</span> <span class="kw4">null</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">foreach</span> <span class="br0">&#40;</span><span class="re0">$input</span> <span class="kw1">as</span> <span class="re0">$v</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$callback</span> <span class="sy0">!==</span> <span class="kw4">null</span> ? <span class="re0">$callback</span><span class="br0">&#40;</span><span class="re0">$v</span><span class="br0">&#41;</span> <span class="sy0">:</span> <span class="re0">$v</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+            <span class="kw1">return</span> <span class="kw4">true</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+    <span class="kw1">return</span> <span class="kw4">false</span><span class="sy0">;</span>
+<span class="br0">&#125;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co4">/** Determines whether all elements of the iterable satisfy the predicate */</span>
+<span class="kw2">function</span><span class="br0">&#40;</span>iterable <span class="re0">$input</span><span class="sy0">,</span> ?callable <span class="re0">$callback</span> <span class="sy0">=</span> <span class="kw4">null</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">foreach</span> <span class="br0">&#40;</span><span class="re0">$input</span> <span class="kw1">as</span> <span class="re0">$v</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">!</span><span class="br0">&#40;</span><span class="re0">$callback</span> <span class="sy0">!==</span> <span class="kw4">null</span> ? <span class="re0">$callback</span><span class="br0">&#40;</span><span class="re0">$v</span><span class="br0">&#41;</span> <span class="sy0">:</span> <span class="re0">$v</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+            <span class="kw1">return</span> <span class="kw4">false</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+    <span class="kw1">return</span> <span class="kw4">true</span><span class="sy0">;</span>
+<span class="br0">&#125;</span><span class="sy0">;</span></pre>
+
+</div>
+
+<h2 class="sectionedit10" id="future_extension_of_anyall">Future extension of any/all</h2>
+<div class="level2">
+
+<p>
+It is possible that functionality to check if any/all keys satisfy a predicate, or any/all combinations of entries add a predicate.
+If this gets added, there are two possibilities
+</p>
+<ol>
+<li class="level1"><div class="li"> Add <code>*any_key</code> for keys, and <code>*any_entry</code>/<code>*any_key_value()</code> for key+value combination</div>
+</li>
+<li class="level1"><div class="li"> Add flags to the <code>*any()</code> method, like <code>array_filter()</code></div>
+</li>
+</ol>
+
+<p>
+There&#039;s precedent for both choices of naming patterns, and I&#039;m fine with either choice. Precedents include array_values() and array_keys(), as well as array_diff() and array_diff_keys().
+</p>
+
+</div>
+
+<h2 class="sectionedit11" id="rejected_choices">Rejected Choices</h2>
+<div class="level2">
+
+<p>
+Using static methods instead of global functions was not considered since it would be impractical to polyfill new functions that get added in future php versions in a standard way. (e.g. <code>IterUtils::all()</code>) 
+</p>
+
+</div>
+
+<h3 class="sectionedit12" id="all_and_iter_all">all() and iter_all()</h3>
+<div class="level3">
+
+<p>
+Those were rejected in <a href="https://wiki.php.net/rfc/any_all_on_iterable_straw_poll#vote" class="urlextern" title="https://wiki.php.net/rfc/any_all_on_iterable_straw_poll#vote" rel="ugc nofollow">https://wiki.php.net/rfc/any_all_on_iterable_straw_poll#vote</a>
+</p>
+
+</div>
+
+<h3 class="sectionedit13" id="existing_iterator_methods">Existing iterator methods</h3>
+<div class="level3">
+
+<p>
+The prefix <code>iterator_</code> was not considered. In PHP, <a href="https://www.php.net/manual/en/class.iterator" class="urlextern" title="https://www.php.net/manual/en/class.iterator" rel="ugc nofollow">Iterator</a> and <a href="https://www.php.net/manual/en/class.iteratoraggregate.php" class="urlextern" title="https://www.php.net/manual/en/class.iteratoraggregate.php" rel="ugc nofollow">IteratorAggregate</a> already exist, and classes that implement Traversable must implement either Iterator or IteratorAggregate. The name <code>iterator_</code> would be misleading for functions that also accept arrays.
+</p>
+<ul>
+<li class="level1"><div class="li"> I don&#039;t want to be in a situation where there are a large number of <code>iterator_*()</code> functions, where some accept <code>Traversable</code> and some accept <code>iterable</code>.</div>
+</li>
+<li class="level1"><div class="li"> I also don&#039;t want to be in a situation where some have $iterator as a named argument (since PHP 8.0, e.g. <code>iterator_to_array()</code>) and others have $iterable.</div>
+</li>
+<li class="level1"><div class="li"> If I was choosing names from scratch, <code>*foo(iterable $iterable, ...)</code> would make more sense than <code>iterator_foo(iterable $iterator, ...)</code></div>
+</li>
+</ul>
+
+<p>
+Changing other iterator functions such as <code>iterator_apply()</code>, <code>iterator_count()</code>, and <code>iterator_to_array()</code> to accept iterator instead of Traversable(Iterator and IteratorAggregate) is out of the scope of the <abbr title="Request for Comments">RFC</abbr> or straw poll.
+</p>
+<ul>
+<li class="level1"><div class="li"> My preference would be to add new <code>iterable_apply()</code>, <code>iterable_count()</code>, and <code>iterable_to_array()</code> functions instead of modifying the existing methods. This would be possible to polyfill, and it would be less likely that code developed for 8.1+ would pass arrays that would be rejected by php 8.0 and older. </div>
+</li>
+<li class="level1"><div class="li"> Any alternative RFCs to change the behaviors of <code>iterator_apply()</code>, <code>iterator_count()</code>, and <code>iterator_to_array()</code> can be done independently of adding <code>*any()</code> and <code>*all()</code>.</div>
+</li>
+</ul>
+
+</div>
+
+<h2 class="sectionedit14" id="references">References</h2>
+<div class="level2">
+<ol>
+<li class="level1"><div class="li"> <a href="https://wiki.php.net/rfc/any_all_on_iterable" class="urlextern" title="https://wiki.php.net/rfc/any_all_on_iterable" rel="ugc nofollow">https://wiki.php.net/rfc/any_all_on_iterable</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://wiki.php.net/rfc/any_all_on_iterable_straw_poll" class="urlextern" title="https://wiki.php.net/rfc/any_all_on_iterable_straw_poll" rel="ugc nofollow">https://wiki.php.net/rfc/any_all_on_iterable_straw_poll</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://externals.io/message/112558" class="urlextern" title="https://externals.io/message/112558" rel="ugc nofollow">https://externals.io/message/112558</a> “Straw poll: Naming for `*any()` and `*all()` on iterables”</div>
+</li>
+<li class="level1"><div class="li"> <a href="https://github.com/php/php-src/pull/6053" class="urlextern" title="https://github.com/php/php-src/pull/6053" rel="ugc nofollow">https://github.com/php/php-src/pull/6053</a></div>
+</li>
+</ol>
+
+</div>
+
+<h2 class="sectionedit15" id="changelog">Changelog</h2>
+<div class="level2">
+
+<p>
+0.2: Switch to a vote on multiple namespaces
+</p>
+
+</div>
+
+                    <!-- wikipage stop -->
+                                    </div>
+
+                <div class="docInfo"><bdi>rfc/any_all_on_iterable_straw_poll_namespace.txt</bdi> · Last modified: 2021/02/03 00:30 by <bdi>tandre</bdi></div>
+
+                            </div></div><!-- /content -->
+
+            <hr class="a11y" />
+
+            <!-- PAGE ACTIONS -->
+            <div id="dokuwiki__pagetools">
+                <h3 class="a11y">Page Tools</h3>
+                <div class="tools">
+                    <ul>
+                        <li><a href="/rfc/any_all_on_iterable_straw_poll_namespace?do=edit"  class="action source" accesskey="v" rel="nofollow" title="Show pagesource [V]"><span>Show pagesource</span></a></li><li><a href="/rfc/any_all_on_iterable_straw_poll_namespace?do=revisions"  class="action revs" accesskey="o" rel="nofollow" title="Old revisions [O]"><span>Old revisions</span></a></li><li><a href="/rfc/any_all_on_iterable_straw_poll_namespace?do=backlink"  class="action backlink" rel="nofollow" title="Backlinks"><span>Backlinks</span></a></li><li><a href="#dokuwiki__top"  class="action top" accesskey="t" rel="nofollow" title="Back to top [T]"><span>Back to top</span></a></li>                    </ul>
+                </div>
+            </div>
+        </div><!-- /wrapper -->
+
+    </div></div><!-- /site -->
+
+    <div class="no"><img src="/lib/exe/taskrunner.php?id=rfc%3Aany_all_on_iterable_straw_poll_namespace&amp;1681662107" width="2" height="1" alt="" /></div>
+    <div id="screen__mode" class="no"></div>    <!--[if ( lte IE 7 | IE 8 ) ]></div><![endif]-->
+</section>
+
+﻿<section class="secondscreen">
+  <!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#straw_pollusing_namespaces_for_any_and_all_on_iterables">Straw poll: Using namespaces for *any() and *all() on iterables</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#introduction">Introduction</a></div></li>
+<li class="level2"><div class="li"><a href="#discussion">Discussion</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#arguments_for_voting_again_on_namespaces">Arguments for voting again on namespaces</a></div></li>
+<li class="level3"><div class="li"><a href="#arguments_for_spl">Arguments for Spl\</a></div></li>
+<li class="level3"><div class="li"><a href="#arguments_for_php">Arguments for PHP\</a></div></li>
+<li class="level3"><div class="li"><a href="#arguments_foragainst_iterable_in_namespace">Arguments for/against iterable\ in namespace</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#vote">Vote</a></div></li>
+<li class="level2"><div class="li"><a href="#what_the_functions_do">What the functions do</a></div></li>
+<li class="level2"><div class="li"><a href="#future_extension_of_anyall">Future extension of any/all</a></div></li>
+<li class="level2"><div class="li"><a href="#rejected_choices">Rejected Choices</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#all_and_iter_all">all() and iter_all()</a></div></li>
+<li class="level3"><div class="li"><a href="#existing_iterator_methods">Existing iterator methods</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#references">References</a></div></li>
+<li class="level2"><div class="li"><a href="#changelog">Changelog</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+</section>
+</section><!-- .fullscreen -->
+<footer>
+  <nav class="fullscreen">
+    <ul>
+      <li><a href="//php.net/copyright">Copyright © 2001-2023 The PHP Group</a></li>
+      <li><a href="//php.net/sites">Other PHP.net sites</a></li>
+      <li><a href="//php.net/privacy">Privacy policy</a></li>
+    </ul>
+  </nav>
+</footer>
+
+</div><!-- .wrap -->
+</body>
+</html>

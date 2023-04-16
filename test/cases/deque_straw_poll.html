@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PHP: rfc:deque_straw_poll</title>
+
+  <meta name="generator" content="DokuWiki"/>
+<meta name="robots" content="index,follow"/>
+<meta name="keywords" content="rfc,deque_straw_poll"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/lib/exe/opensearch.php" title="PHP Wiki"/>
+<link rel="start" href="/"/>
+<link rel="contents" href="/rfc/deque_straw_poll?do=index" title="Sitemap"/>
+<link rel="manifest" href="/lib/exe/manifest.php"/>
+<link rel="alternate" type="application/rss+xml" title="Recent Changes" href="/feed.php"/>
+<link rel="alternate" type="application/rss+xml" title="Current namespace" href="/feed.php?mode=list&amp;ns=rfc"/>
+<link rel="alternate" type="text/html" title="Plain HTML" href="/_export/xhtml/rfc/deque_straw_poll"/>
+<link rel="alternate" type="text/plain" title="Wiki Markup" href="/_export/raw/rfc/deque_straw_poll"/>
+<link rel="canonical" href="https://wiki.php.net/rfc/deque_straw_poll"/>
+<link rel="stylesheet" href="/lib/exe/css.php?t=phpnet&amp;tseed=05de81390ffb5ca1647fb36efb92497c"/>
+<!--[if gte IE 9]><!-->
+<script >/*<![CDATA[*/var NS='rfc';var JSINFO = {"id":"rfc:deque_straw_poll","namespace":"rfc","ACT":"show","useHeadingNavigation":0,"useHeadingContent":0};
+/*!]]>*/</script>
+<script src="/lib/exe/jquery.php?tseed=34a552433bc33cc9c3bc32527289a0b2" defer="defer"></script>
+<script src="/lib/exe/js.php?t=phpnet&amp;tseed=05de81390ffb5ca1647fb36efb92497c" defer="defer"></script>
+<!--<![endif]-->
+  <link media='all' rel='stylesheet' href='//shared.php.net/styles/defaults.css?filemtime=1630005818'/>
+  <link media='all' rel='stylesheet' href='//shared.php.net/styles/wiki.css?filemtime=1630005818'/>
+
+  <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic,600italic|Source+Code+Pro&amp;subset=latin,latin-ext" rel="stylesheet">
+  <link rel="shortcut icon" href="//php.net/favicon.ico">
+<!--[if lt IE 9]>
+  <script src="//shared.php.net/js/html5shiv.js"></script>
+<![endif]-->
+  </head>
+<body id="">
+
+<div class="wrap">
+<header class='clearfix'>
+  <div id="mainmenu-toggle-overlay"></div>
+  <input type="checkbox" id="mainmenu-toggle">
+  <nav class="fullscreen">
+    <div class="mainscreen">
+      <a href="/" class="home"><img src="//php.net/images/logo.php?" width="48" height="24" alt="php"><span class="subdomain"></span></a>
+      <ul>
+        <li><a href="?do=login">Login</a></li>
+        <li><a href="?do=register">Register</a></li>
+      </ul>
+    </div>
+    <div class="secondscreen">
+      <form method="get" action="/start">
+        <input type="search" placeholder="Search" name="id" class="search">
+        <input type="hidden" name="do" value="search">
+      </form>
+    </div>
+  </nav>
+</header>
+<div id="flash-message"></div>
+<nav id="megadropdown"></nav>
+
+<section class="fullscreen clearfix">
+
+
+
+<section id="breadcrumbs">
+<nav>
+<span class="bchead">You are here: </span><span class="home"><bdi><a href="/start" class="wikilink1" title="start" data-wiki-id="start">start</a></bdi></span> › <bdi><a href="/rfc" class="wikilink1" title="rfc" data-wiki-id="rfc">rfc</a></bdi> › <bdi><a href="/rfc/deque_straw_poll" class="wikilink1" title="rfc:deque_straw_poll" data-wiki-id="rfc:deque_straw_poll">deque_straw_poll</a></bdi></nav>
+</section>
+<section class="mainscreen">
+    <!--[if lte IE 7 ]><div id="IE7"><![endif]--><!--[if IE 8 ]><div id="IE8"><![endif]-->
+    <div id="dokuwiki__site"><div id="dokuwiki__top" class="site dokuwiki mode_show tpl_phpnet     ">
+
+
+        <div class="wrapper group">
+
+            
+            <!-- ********** CONTENT ********** -->
+            <div id="dokuwiki__content"><div class="pad group">
+
+                <div class="pageId"><span>rfc:deque_straw_poll</span></div>
+
+                <div class="page group">
+                                                            <!-- wikipage start -->
+                                        
+<h1 class="sectionedit1" id="straw_pollnaming_pattern_to_use_for_deque">Straw poll: Naming pattern to use for Deque</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> Version: 0.3</div>
+</li>
+<li class="level1"><div class="li"> Date: 2022-01-05</div>
+</li>
+<li class="level1"><div class="li"> Author: Tyson Andre, tandre@php.net</div>
+</li>
+<li class="level1"><div class="li"> Status: Closed</div>
+</li>
+<li class="level1"><div class="li"> First Published at: <a href="http://wiki.php.net/rfc/deque_straw_poll" class="urlextern" title="http://wiki.php.net/rfc/deque_straw_poll" rel="ugc nofollow">http://wiki.php.net/rfc/deque_straw_poll</a></div>
+</li>
+</ul>
+
+</div>
+
+<h2 class="sectionedit2" id="introduction">Introduction</h2>
+<div class="level2">
+
+<p>
+Because the naming choice for new datastructures is a question that has been asked about many times,
+this straw poll has been created to gather feedback on the naming pattern to use for future additions of datastructures to PHP,
+with the arguments for and against the naming pattern.
+</p>
+
+<p>
+<a href="https://wiki.php.net/rfc/namespaces_in_bundled_extensions" class="urlextern" title="https://wiki.php.net/rfc/namespaces_in_bundled_extensions" rel="ugc nofollow">https://wiki.php.net/rfc/namespaces_in_bundled_extensions</a> recently passed.
+It permits using the same namespace that is already used in an extension,
+but offers guidance in choosing namespace names and allows for using namespaces in new categories of functionality.
+</p>
+
+<p>
+The options in this straw poll are:
+</p>
+<ul>
+<li class="level1"><div class="li"> <code>\Deque</code>, the name currently used in the <abbr title="Request for Comments">RFC</abbr>/implementation. See <a href="https://wiki.php.net/rfc/deque#global_namespace" class="urlextern" title="https://wiki.php.net/rfc/deque#global_namespace" rel="ugc nofollow">https://wiki.php.net/rfc/deque#global_namespace</a> <br/>
+This was my preference because it was short, making it easy to remember and convenient to use.</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <code>\Collections\Deque</code> - seems like a reasonable choice of name for collections (Deque, and possible future additions such as Vector, Set, Map, Sorted Sets/Maps, etc. <a href="https://wiki.php.net/rfc/namespaces_in_bundled_extensions" class="urlextern" title="https://wiki.php.net/rfc/namespaces_in_bundled_extensions" rel="ugc nofollow">https://wiki.php.net/rfc/namespaces_in_bundled_extensions</a> also allows using sub-namespaces and that may be used for things that aren&#039;t strictly collections, e.g. <code>Collections\Builder\SomethingBuilder</code> or functions operating on collections.</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <code>\SplDeque</code>, similar to datastructures added to the Spl in PHP 5.3. <br/>
+(I don&#039;t prefer that name because SplDoublyLinkedList, SplStack, and SplQueue are subclasses of a doubly linked list with poor performance (accessing the offset in the middle of a linked list requires traversing half the linked list, for example), and this name would easily get confused with them. Also, historically, none of the functionality with that naming pattern has been final. <br/>
+However, good documentation (e.g. suggesting *Deque instead where possible in the manual) would make that less of an issue.) <br/>
+<br/>
+See <a href="https://wiki.php.net/rfc/deque#lack_of_name_prefix" class="urlextern" title="https://wiki.php.net/rfc/deque#lack_of_name_prefix" rel="ugc nofollow">https://wiki.php.net/rfc/deque#lack_of_name_prefix</a> (and arguments for <a href="https://externals.io/message/116100#116111" class="urlextern" title="https://externals.io/message/116100#116111" rel="ugc nofollow">https://externals.io/message/116100#116111</a>)</div>
+</li>
+</ul>
+
+<p>
+While there is considerable division in whether or not members of internals want to adopt namespaces,
+I hope that the final outcome of the poll will be accepted by members of internals
+as what the representative of the majority of the members of internals
+(from diverse backgrounds such as contributors/leaders of userland applications/frameworks/composer libraries written in PHP,
+documentation contributors, PECL authors, php-src maintainers, etc. (all of which I expect are also end users of php))
+want to use as a naming choice in future datastructure additions to PHP.
+(and I hope there is a clear majority)
+</p>
+
+</div>
+
+<h3 class="sectionedit3" id="what_is_the_deque_rfc">What is the Deque RFC?</h3>
+<div class="level3">
+
+<p>
+<a href="/rfc/deque" class="wikilink1" title="rfc:deque" data-wiki-id="rfc:deque">The Deque RFC</a> would add <code>final class *Deque</code> to PHP. From <a href="https://en.m.wikipedia.org/wiki/Double-ended_queue" class="urlextern" title="https://en.m.wikipedia.org/wiki/Double-ended_queue" rel="ugc nofollow">the Wikipedia article for the Double-Ended Queue</a>:
+</p>
+<blockquote class="blockquote-plugin">
+<p>
+In computer science, a <strong>double-ended queue</strong> (abbreviated to <strong>deque</strong>, pronounced deck, like “cheque”) is an abstract data type that generalizes a queue, for which elements can be added to or removed from either the front (head) or back (tail).
+</p>
+
+<p>
+(omitted sections, see article)
+</p>
+
+<p>
+The dynamic array approach uses a variant of a dynamic array that can grow from both ends, sometimes called array deques. These array deques <strong>have all the properties of a dynamic array,</strong> such as constant-time random access, good <a href="https://en.m.wikipedia.org/wiki/Locality_of_reference" class="urlextern" title="https://en.m.wikipedia.org/wiki/Locality_of_reference" rel="ugc nofollow">locality of reference</a>, and inefficient insertion/removal in the middle, <strong>with the addition of amortized constant-time insertion/removal at both ends, instead of just one end.</strong> Three common implementations include:
+</p>
+<ul>
+<li class="level1"><div class="li"> Storing deque contents in a circular buffer, and only resizing when the buffer becomes full. This decreases the frequency of resizings.</div>
+</li>
+<li class="level1"><div class="li"> (omitted, see article)</div>
+</li>
+</ul>
+
+</blockquote>
+<p>
+Similarly to deques in other languages (such as <a href="https://docs.python.org/3/library/collections.html#deque-objects" class="urlextern" title="https://docs.python.org/3/library/collections.html#deque-objects" rel="ugc nofollow">Python collections.deque</a>, <a href="https://cplusplus.com/reference/deque/deque/" class="urlextern" title="https://cplusplus.com/reference/deque/deque/" rel="ugc nofollow">C++ std::deque</a>, <a href="https://doc.rust-lang.org/std/collections/struct.VecDeque.html" class="urlextern" title="https://doc.rust-lang.org/std/collections/struct.VecDeque.html" rel="ugc nofollow">Rust std::collections::VecDeque</a>, etc.) this is backed by a memory-efficient representation with good cache locality and provides constant amortized-time push/pop/shift/unshift operations. (this <abbr title="Request for Comments">RFC</abbr>&#039;s implementation is a circular buffer represented as a raw C array of values with a size, offset, and capacity)
+</p>
+
+</div>
+
+<h3 class="sectionedit4" id="what_is_the_planned_future_scope">What is the planned future scope?</h3>
+<div class="level3">
+
+<p>
+The planned future scope is to add new more efficient datastructures such as Deque, Vector, Set, Map, SortedSet/SortedMap, and potentially immutable data structures to php.
+Those would differ from existing classes in the spl in several ways:
+</p>
+<ul>
+<li class="level1"><div class="li"> Be final classes (or have final methods when extensibility is needed for core functionality) and avoid unpredictable behaviors. Extensibility has been a cause of performance issues and unexpected bugs historically, and makes code harder to reason about. <br/>
+For example, <a href="/rfc/deque#benchmarks" class="wikilink1" title="rfc:deque" data-wiki-id="rfc:deque">Deque would be memory and time efficient compared to SplDoublyLinkedList</a></div>
+</li>
+<li class="level1"><div class="li"> Forbid dynamic properties.</div>
+</li>
+</ul>
+
+</div>
+
+<h2 class="sectionedit5" id="discussion">Discussion</h2>
+<div class="level2">
+
+</div>
+
+<h3 class="sectionedit6" id="arguments_foragainst_deque">Arguments for/against Deque</h3>
+<div class="level3">
+
+<p>
+The global namespace was my preference <strong>because it was short, making it easy to remember and convenient to use.</strong> The majority of existing internal classes use the global namespace.
+</p>
+
+<p>
+<a href="https://wiki.php.net/rfc/namespaces_in_bundled_extensions" class="urlextern" title="https://wiki.php.net/rfc/namespaces_in_bundled_extensions" rel="ugc nofollow">https://wiki.php.net/rfc/namespaces_in_bundled_extensions</a> recently passed.
+It permits using the same namespace that is already used in an extension (in this case, the global namespace),
+but offers guidance in choosing namespace names and allows for using namespaces in new categories of functionality.
+</p>
+
+<p>
+My reason for proposing <code>Deque</code> in the global namespace is:
+</p>
+<blockquote class="blockquote-plugin">
+<p>
+This maintains consistency with the namespace used for general-purpose collections already in the SPL (as well as relatively recent additions such as <code>WeakReference</code> (PHP 7.4) and <code>WeakMap</code> (PHP 8.0)). Other recent additions to PHP such as <code>ReflectionIntersectionType</code> in PHP 8.1 have also continued to use the global namespace when adding classes with functionality related to other classes.
+</p>
+
+<p>
+Additionally, prior polls for namespacing choices of other datastructure functionality showed preferences for namespacing and not namespacing were evenly split <a href="/rfc/cachediterable_straw_poll#namespace_choices" class="wikilink1" title="rfc:cachediterable_straw_poll" data-wiki-id="rfc:cachediterable_straw_poll">in a straw poll for a new iterable type</a>.
+</p>
+
+<p>
+Introducing a new namespace for data structures would also raise the question of whether existing datastructures should be moved to that new namespace (for consistency), and that process of moving namespaces would (if started):
+</p>
+<ol>
+<li class="level1"><div class="li"> Raise the amount of work needed for end users or library/framework/application authors to migrate to new PHP versions.</div>
+</li>
+<li class="level2"><div class="li"> Cause confusion and inconvenience for years about which namespace can or should be used in an application (<code>SplObjectStorage</code> vs <code>Xyz\SplObjectStorage</code>), especially for developers working on projects supporting different php version ranges.</div>
+</li>
+<li class="level2"><div class="li"> Prevent applications/libraries from easily supporting as wide of a range of php versions.</div>
+</li>
+<li class="level2"><div class="li"> Cause serialization/unserialization issues when migrating to different php versions, if the old or new class name in the serialized data did not exist in the other php version and was not aliased. For example, if the older PHP version could not <code>unserialize()</code> <code>Xyz\SplObjectStorage</code> and would silently create a <a href="https://www.php.net/manual/en/language.oop5.serialization.php#language.oop5.serialization" class="urlextern" title="https://www.php.net/manual/en/language.oop5.serialization.php#language.oop5.serialization" rel="ugc nofollow">__PHP_Incomplete_Class_Name</a> without any warnings or notices.</div>
+</li>
+</ol>
+
+</blockquote>
+<p>
+<a href="https://externals.io/message/116100#116111" class="urlextern" title="https://externals.io/message/116100#116111" rel="ugc nofollow">https://externals.io/message/116100#116111</a>
+</p>
+<blockquote class="blockquote-plugin"><blockquote class="blockquote-plugin">
+<p>
+The choice of global namespace maintains consistency with the namespace used for general-purpose collections already in the SPL
+</p>
+
+</blockquote>
+<p>
+I find this argument unconvincing. If the intention is for this to fit
+with existing classes in the SPL, it should be called “SplDeque”, or
+more consistently “SplDoubleEndedQueue”, and the <abbr title="Request for Comments">RFC</abbr> should talk about
+how the design aligns with those existing classes.
+</p>
+
+<p>
+If it is intended to be the first of a new set of data structures which
+are not aligned with the existing SPL types, then putting it in a new
+namespace would make most sense.
+</p>
+
+<p>
+In the <abbr title="Request for Comments">RFC</abbr> and the list you&#039;ve mentioned a few comparisons, but I don&#039;t
+think any of them hold:
+</p>
+<ul>
+<li class="level1"><div class="li"> ArrayObject, WeakReference, and WeakMap are all classes for binding to specific engine behaviour, not generic data structures</div>
+</li>
+<li class="level1"><div class="li"> Iterators all have an “Iterator” suffix (leading to some quite awkward names)</div>
+</li>
+<li class="level1"><div class="li"> Reflection classes all have a “Reflection” prefix</div>
+</li>
+<li class="level1"><div class="li"> Having both “Queue” and “SplQueue”, or both “Stack” and “SplStack” would be a terrible idea, and is a pretty strong argument not to add data structures with such plain names</div>
+</li>
+</ul>
+
+</blockquote>
+</div>
+
+<h3 class="sectionedit7" id="arguments_foragainst_collections_deque">Arguments for/against Collections\Deque</h3>
+<div class="level3">
+
+<p>
+This seems like a reasonable choice of name for collections (Deque, and possible future additions such as Vector, Set, Map, Sorted Sets/Maps, etc.
+<a href="https://wiki.php.net/rfc/namespaces_in_bundled_extensions" class="urlextern" title="https://wiki.php.net/rfc/namespaces_in_bundled_extensions" rel="ugc nofollow">https://wiki.php.net/rfc/namespaces_in_bundled_extensions</a> also allows using sub-namespaces and that may be used for things that aren&#039;t strictly collections, e.g. <code>Collections\Builder\SomethingBuilder</code>.
+</p>
+
+<p>
+Levi Morrison mentions in <a href="https://externals.io/message/116100#116119" class="urlextern" title="https://externals.io/message/116100#116119" rel="ugc nofollow">https://externals.io/message/116100#116119</a>
+</p>
+<blockquote class="blockquote-plugin">
+<p>
+Given that I&#039;ve suggested the most common options for these across
+many languages, it (<code>Collections\</code>) shouldn&#039;t be very controversial. The worst bit
+seems like picking the namespace “Collections” as this will break at
+least one package: <a href="https://github.com/danielgsims/php-collections" class="urlextern" title="https://github.com/danielgsims/php-collections" rel="ugc nofollow">https://github.com/danielgsims/php-collections</a>. We
+should suggest that they vendor it anyway, as “collections” is common
+e.g. “Ramsey\Collections”, “Doctrine\Common\Collections”. I don&#039;t see
+a good alternative here to “Collections”, as we haven&#039;t agreed on very
+much on past namespace proposals.
+</p>
+
+</blockquote>
+<p>
+(note that <a href="https://github.com/danielgsims/php-collections" class="urlextern" title="https://github.com/danielgsims/php-collections" rel="ugc nofollow">https://github.com/danielgsims/php-collections</a> does not declare <code>Collections\Deque</code> anywhere: <a href="https://github.com/danielgsims/php-collections/tree/2.X/src" class="urlextern" title="https://github.com/danielgsims/php-collections/tree/2.X/src" rel="ugc nofollow">https://github.com/danielgsims/php-collections/tree/2.X/src</a>)
+</p>
+
+</div>
+
+<h4 id="why_plural">Why plural?</h4>
+<div class="level4">
+
+<p>
+This proposed namespace is plural because:
+</p>
+<ul>
+<li class="level1"><div class="li"> <code>Collections\Deque</code> feels more natural to write than <code>Collection\Deque</code>.</div>
+</li>
+<li class="level1"><div class="li"> Other languages have also used plural for their standard libraries: <a href="https://docs.python.org/3/library/collections.html" class="urlextern" title="https://docs.python.org/3/library/collections.html" rel="ugc nofollow">https://docs.python.org/3/library/collections.html</a> <a href="https://doc.rust-lang.org/std/collections/index.html" class="urlextern" title="https://doc.rust-lang.org/std/collections/index.html" rel="ugc nofollow">https://doc.rust-lang.org/std/collections/index.html</a> and <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Collections.html" class="urlextern" title="https://docs.oracle.com/javase/7/docs/api/java/util/Collections.html" rel="ugc nofollow">https://docs.oracle.com/javase/7/docs/api/java/util/Collections.html</a></div>
+</li>
+<li class="level1"><div class="li"> php-ds also stands for the plural “PHP Data Structures” - <a href="https://github.com/php-ds" class="urlextern" title="https://github.com/php-ds" rel="ugc nofollow">https://github.com/php-ds</a> - so a Collections namespace may be used for a <code>collections</code> PHP module to match the namespace. (<a href="https://wiki.php.net/rfc/namespaces_in_bundled_extension" class="urlextern" title="https://wiki.php.net/rfc/namespaces_in_bundled_extension" rel="ugc nofollow">https://wiki.php.net/rfc/namespaces_in_bundled_extension</a>)</div>
+</li>
+</ul>
+
+</div>
+
+<h3 class="sectionedit8" id="arguments_foragainst_spldeque">Arguments for/against SplDeque</h3>
+<div class="level3">
+
+<p>
+This would follow the naming convention used by other collections already existing in the SPL. This is included in the straw poll just in case the lack of this option is mentioned as a last-minute objection to the Deque <abbr title="Request for Comments">RFC</abbr> itself.
+</p>
+
+<p>
+I believe the name <code>SplDeque</code> would be a source of frustration and performance issues for users, though. a <code>SplDeque</code> would be confused way too easily with SplDoublyLinkedList and it subclasses SplQueue/SplStack - switching from a SplDeque to a SplStack (linked list) would suddenly make operations such as ArrayAccess much slower and use more memory due to needing to traverse a linked list. See <a href="https://wiki.php.net/rfc/deque#benchmarks" class="urlextern" title="https://wiki.php.net/rfc/deque#benchmarks" rel="ugc nofollow">https://wiki.php.net/rfc/deque#benchmarks</a>
+</p>
+<ul>
+<li class="level1"><div class="li"> Also, people may not realize there&#039;s a difference in performance that would be a reason to migrate existing Spl data structures to <code>*Deque</code> or to adopt <code>*Deque</code> in the first place.</div>
+</li>
+</ul>
+
+</div>
+
+<h2 class="sectionedit9" id="vote">Vote</h2>
+<div class="level2">
+
+<p>
+Voting started on 2022-01-12 and ended on 2022-01-26.
+</p>
+
+<p>
+This vote will influence the name choice for the <a href="/rfc/deque" class="wikilink1" title="rfc:deque" data-wiki-id="rfc:deque">Deque RFC</a>
+</p>
+
+<p>
+This is a ranked-choice poll (following <a href="https://en.wikipedia.org/wiki/Single_transferable_vote#Example" class="urlextern" title="https://en.wikipedia.org/wiki/Single_transferable_vote#Example" rel="ugc nofollow">STV</a>) between the naming alternatives.
+</p>
+
+<p>
+With STV you SHOULD rank all the choices in order (but are not required to). Don&#039;t pick the same option more than once, as that invalidates your vote.
+</p>
+
+<p>
+First choice:
+</p>
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__straw_poll:favorite_choice_of_naming_pattern" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="rfc:deque_straw_poll" >
+<input type="hidden" name="formId" value="doodle__form__straw_poll:favorite_choice_of_naming_pattern" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="4">
+        Straw poll: Favorite choice of naming pattern      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">&#039;&#039;Deque&#039;&#039;</td>
+        <td class="centeralign">&#039;&#039;Collections\Deque&#039;&#039;</td>
+        <td class="centeralign">&#039;&#039;SplDeque&#039;&#039;</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/12 22:00"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/crell">crell</a>&nbsp;(crell)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/12 21:44"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/derick">derick</a>&nbsp;(derick)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/20 18:21"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/dharman">dharman</a>&nbsp;(dharman)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/14 13:55"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kguest">kguest</a>&nbsp;(kguest)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/13 09:47"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kocsismate">kocsismate</a>&nbsp;(kocsismate)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/12 14:59"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/levim">levim</a>&nbsp;(levim)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/12 15:52"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/marandall">marandall</a>&nbsp;(marandall)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/12 14:26"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mauricio">mauricio</a>&nbsp;(mauricio)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/23 19:28"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mcmic">mcmic</a>&nbsp;(mcmic)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/18 07:48"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ocramius">ocramius</a>&nbsp;(ocramius)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/13 06:55"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/santiagolizardo">santiagolizardo</a>&nbsp;(santiagolizardo)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/17 12:24"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sergey">sergey</a>&nbsp;(sergey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/13 10:28"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/svpernova09">svpernova09</a>&nbsp;(svpernova09)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/19 00:59"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/tandre">tandre</a>&nbsp;(tandre)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/12 13:43"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/theodorejb">theodorejb</a>&nbsp;(theodorejb)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/13 02:18"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/twosee">twosee</a>&nbsp;(twosee)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/12 13:56"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>2</b></th>
+        <th class="centeralign"><b>15</b></th>
+        <th class="centeralign"><b>0</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="4">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+<p>
+Second choice:
+</p>
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__straw_poll:second_favorite_choice_of_naming_pattern" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="rfc:deque_straw_poll" >
+<input type="hidden" name="formId" value="doodle__form__straw_poll:second_favorite_choice_of_naming_pattern" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="4">
+        Straw poll: Second favorite choice of naming pattern      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">&#039;&#039;Deque&#039;&#039;</td>
+        <td class="centeralign">&#039;&#039;Collections\Deque&#039;&#039;</td>
+        <td class="centeralign">&#039;&#039;SplDeque&#039;&#039;</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/12 22:00"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/crell">crell</a>&nbsp;(crell)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/12 21:44"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/derick">derick</a>&nbsp;(derick)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/20 18:21"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/dharman">dharman</a>&nbsp;(dharman)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/14 13:55"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kguest">kguest</a>&nbsp;(kguest)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/13 09:47"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/levim">levim</a>&nbsp;(levim)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/12 15:52"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mauricio">mauricio</a>&nbsp;(mauricio)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/23 19:29"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mcmic">mcmic</a>&nbsp;(mcmic)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/18 07:48"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ocramius">ocramius</a>&nbsp;(ocramius)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/13 06:55"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/santiagolizardo">santiagolizardo</a>&nbsp;(santiagolizardo)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/17 12:24"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sergey">sergey</a>&nbsp;(sergey)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/13 10:28"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/svpernova09">svpernova09</a>&nbsp;(svpernova09)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/19 00:59"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/tandre">tandre</a>&nbsp;(tandre)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/12 13:43"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/theodorejb">theodorejb</a>&nbsp;(theodorejb)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/13 02:19"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/twosee">twosee</a>&nbsp;(twosee)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/12 13:57"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>12</b></th>
+        <th class="centeralign"><b>2</b></th>
+        <th class="centeralign"><b>1</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="4">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+<p>
+Third choice:
+</p>
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__straw_poll:third_favorite_choice_of_naming_pattern" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="rfc:deque_straw_poll" >
+<input type="hidden" name="formId" value="doodle__form__straw_poll:third_favorite_choice_of_naming_pattern" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="4">
+        Straw poll: Third favorite choice of naming pattern      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">&#039;&#039;Deque&#039;&#039;</td>
+        <td class="centeralign">&#039;&#039;Collections\Deque&#039;&#039;</td>
+        <td class="centeralign">&#039;&#039;SplDeque&#039;&#039;</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/12 22:00"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/derick">derick</a>&nbsp;(derick)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/20 18:21"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/dharman">dharman</a>&nbsp;(dharman)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/14 13:56"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kguest">kguest</a>&nbsp;(kguest)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/13 09:47"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/levim">levim</a>&nbsp;(levim)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/12 15:53"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mauricio">mauricio</a>&nbsp;(mauricio)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/23 19:29"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mcmic">mcmic</a>&nbsp;(mcmic)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/18 07:48"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ocramius">ocramius</a>&nbsp;(ocramius)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/13 06:55"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/santiagolizardo">santiagolizardo</a>&nbsp;(santiagolizardo)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/17 12:24"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/sergey">sergey</a>&nbsp;(sergey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/13 10:28"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/svpernova09">svpernova09</a>&nbsp;(svpernova09)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/19 00:59"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/theodorejb">theodorejb</a>&nbsp;(theodorejb)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/13 02:19"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/twosee">twosee</a>&nbsp;(twosee)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2022/01/12 13:57"></td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>1</b></th>
+        <th class="centeralign"><b>0</b></th>
+        <th class="centeralign"><b>12</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="4">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+</div>
+
+<h2 class="sectionedit10" id="rejected_options">Rejected options</h2>
+<div class="level2">
+
+<p>
+Several suggestions that have been brought up in the past are forbidden by the accepted policy <abbr title="Request for Comments">RFC</abbr> (<a href="https://wiki.php.net/rfc/namespaces_in_bundled_extensions" class="urlextern" title="https://wiki.php.net/rfc/namespaces_in_bundled_extensions" rel="ugc nofollow">https://wiki.php.net/rfc/namespaces_in_bundled_extensions</a>)
+and can&#039;t be used in an <abbr title="Request for Comments">RFC</abbr>.
+</p>
+<ul>
+<li class="level1"><div class="li"> <code>Spl\</code>, <code>Core\</code>, and <code>Standard\</code> are forbidden: “Because these extensions combine a lot of unrelated or only tangentially related functionality, symbols should not be namespaced under the Core, Standard or Spl namespaces. <br/>
+Instead, these extensions should be considered as a collection of different components, and should be namespaced according to these.”</div>
+</li>
+<li class="level1"><div class="li"> Namespace names should generally follow CamelCase.</div>
+</li>
+</ul>
+
+<p>
+Some other options were also not considered:
+</p>
+<ul>
+<li class="level1"><div class="li"> <code>Ds\</code> is already used by the php-ds extension.</div>
+</li>
+<li class="level1"><div class="li"> <code>DataStructure</code> seems overly generic, and includes much, much more than collections of values. See <a href="https://en.wikipedia.org/wiki/List_of_data_structures" class="urlextern" title="https://en.wikipedia.org/wiki/List_of_data_structures" rel="ugc nofollow">https://en.wikipedia.org/wiki/List_of_data_structures</a></div>
+</li>
+</ul>
+
+</div>
+
+<h2 class="sectionedit11" id="references">References</h2>
+<div class="level2">
+<ol>
+<li class="level1"><div class="li"> <a href="https://wiki.php.net/rfc/deque" class="urlextern" title="https://wiki.php.net/rfc/deque" rel="ugc nofollow">https://wiki.php.net/rfc/deque</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://externals.io/message/116100" class="urlextern" title="https://externals.io/message/116100" rel="ugc nofollow">https://externals.io/message/116100</a> Adding `final class Deque` to PHP</div>
+</li>
+<li class="level1"><div class="li"> <a href="https://externals.io/message/116112" class="urlextern" title="https://externals.io/message/116112" rel="ugc nofollow">https://externals.io/message/116112</a> “(Planned) Straw poll: Naming pattern for <code>*Deque</code>”</div>
+</li>
+</ol>
+
+<p>
+the plural form is proposed because this might grow long-term to contain not just collections, but also functionality related to collections in the future(e.g. helper classes for building classes (e.g. ImmutableSequenceBuilder for building an ImmutableSequence), global functions, traits/interfaces, collections of static methods, etc. <br/>
+(especially since <a href="https://wiki.php.net/rfc/namespaces_in_bundled_extensions" class="urlextern" title="https://wiki.php.net/rfc/namespaces_in_bundled_extensions" rel="ugc nofollow">https://wiki.php.net/rfc/namespaces_in_bundled_extensions</a> prevents more than one level of namespaces)
+</p>
+
+</div>
+
+<h2 class="sectionedit12" id="changelog">Changelog</h2>
+<div class="level2">
+
+<p>
+0.2: Fix description of Collections\Deque naming choice in the introduction.
+0.3: Change introduction sections
+</p>
+
+</div>
+
+                    <!-- wikipage stop -->
+                                    </div>
+
+                <div class="docInfo"><bdi>rfc/deque_straw_poll.txt</bdi> · Last modified: 2022/01/26 14:43 by <bdi>tandre</bdi></div>
+
+                            </div></div><!-- /content -->
+
+            <hr class="a11y" />
+
+            <!-- PAGE ACTIONS -->
+            <div id="dokuwiki__pagetools">
+                <h3 class="a11y">Page Tools</h3>
+                <div class="tools">
+                    <ul>
+                        <li><a href="/rfc/deque_straw_poll?do=edit"  class="action source" accesskey="v" rel="nofollow" title="Show pagesource [V]"><span>Show pagesource</span></a></li><li><a href="/rfc/deque_straw_poll?do=revisions"  class="action revs" accesskey="o" rel="nofollow" title="Old revisions [O]"><span>Old revisions</span></a></li><li><a href="/rfc/deque_straw_poll?do=backlink"  class="action backlink" rel="nofollow" title="Backlinks"><span>Backlinks</span></a></li><li><a href="#dokuwiki__top"  class="action top" accesskey="t" rel="nofollow" title="Back to top [T]"><span>Back to top</span></a></li>                    </ul>
+                </div>
+            </div>
+        </div><!-- /wrapper -->
+
+    </div></div><!-- /site -->
+
+    <div class="no"><img src="/lib/exe/taskrunner.php?id=rfc%3Adeque_straw_poll&amp;1681662304" width="2" height="1" alt="" /></div>
+    <div id="screen__mode" class="no"></div>    <!--[if ( lte IE 7 | IE 8 ) ]></div><![endif]-->
+</section>
+
+﻿<section class="secondscreen">
+  <!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#straw_pollnaming_pattern_to_use_for_deque">Straw poll: Naming pattern to use for Deque</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#introduction">Introduction</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#what_is_the_deque_rfc">What is the Deque RFC?</a></div></li>
+<li class="level3"><div class="li"><a href="#what_is_the_planned_future_scope">What is the planned future scope?</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#discussion">Discussion</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#arguments_foragainst_deque">Arguments for/against Deque</a></div></li>
+<li class="level3"><div class="li"><a href="#arguments_foragainst_collections_deque">Arguments for/against Collections\Deque</a></div></li>
+<li class="level3"><div class="li"><a href="#arguments_foragainst_spldeque">Arguments for/against SplDeque</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#vote">Vote</a></div></li>
+<li class="level2"><div class="li"><a href="#rejected_options">Rejected options</a></div></li>
+<li class="level2"><div class="li"><a href="#references">References</a></div></li>
+<li class="level2"><div class="li"><a href="#changelog">Changelog</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+</section>
+</section><!-- .fullscreen -->
+<footer>
+  <nav class="fullscreen">
+    <ul>
+      <li><a href="//php.net/copyright">Copyright © 2001-2023 The PHP Group</a></li>
+      <li><a href="//php.net/sites">Other PHP.net sites</a></li>
+      <li><a href="//php.net/privacy">Privacy policy</a></li>
+    </ul>
+  </nav>
+</footer>
+
+</div><!-- .wrap -->
+</body>
+</html>

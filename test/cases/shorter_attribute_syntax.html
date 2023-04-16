@@ -7,7 +7,7 @@
   <title>PHP: rfc:shorter_attribute_syntax</title>
 
   <meta name="generator" content="DokuWiki"/>
-<meta name="robots" content="noindex,nofollow"/>
+<meta name="robots" content="index,follow"/>
 <meta name="keywords" content="rfc,shorter_attribute_syntax"/>
 <link rel="search" type="application/opensearchdescription+xml" href="/lib/exe/opensearch.php" title="PHP Wiki"/>
 <link rel="start" href="/"/>
@@ -18,15 +18,15 @@
 <link rel="alternate" type="text/html" title="Plain HTML" href="/_export/xhtml/rfc/shorter_attribute_syntax"/>
 <link rel="alternate" type="text/plain" title="Wiki Markup" href="/_export/raw/rfc/shorter_attribute_syntax"/>
 <link rel="canonical" href="https://wiki.php.net/rfc/shorter_attribute_syntax"/>
-<link rel="stylesheet" type="text/css" href="/lib/exe/css.php?t=phpnet&amp;tseed=bb98a79a04ccfbc5597904792b880cf8"/>
+<link rel="stylesheet" href="/lib/exe/css.php?t=phpnet&amp;tseed=05de81390ffb5ca1647fb36efb92497c"/>
 <!--[if gte IE 9]><!-->
-<script type="text/javascript">/*<![CDATA[*/var NS='rfc';var JSINFO = {"id":"rfc:shorter_attribute_syntax","namespace":"rfc","ACT":"show","useHeadingNavigation":0,"useHeadingContent":0};
+<script >/*<![CDATA[*/var NS='rfc';var JSINFO = {"id":"rfc:shorter_attribute_syntax","namespace":"rfc","ACT":"show","useHeadingNavigation":0,"useHeadingContent":0};
 /*!]]>*/</script>
-<script type="text/javascript" charset="utf-8" src="/lib/exe/jquery.php?tseed=23f888679b4f1dc26eef34902aca964f"></script>
-<script type="text/javascript" charset="utf-8" src="/lib/exe/js.php?t=phpnet&amp;tseed=bb98a79a04ccfbc5597904792b880cf8"></script>
+<script src="/lib/exe/jquery.php?tseed=34a552433bc33cc9c3bc32527289a0b2" defer="defer"></script>
+<script src="/lib/exe/js.php?t=phpnet&amp;tseed=05de81390ffb5ca1647fb36efb92497c" defer="defer"></script>
 <!--<![endif]-->
-  <link media='all' rel='stylesheet' href='//shared.php.net/styles/defaults.css?filemtime=1506087205'/>
-  <link media='all' rel='stylesheet' href='//shared.php.net/styles/wiki.css?filemtime=1550435250'/>
+  <link media='all' rel='stylesheet' href='//shared.php.net/styles/defaults.css?filemtime=1630005818'/>
+  <link media='all' rel='stylesheet' href='//shared.php.net/styles/wiki.css?filemtime=1630005818'/>
 
   <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic,600italic|Source+Code+Pro&amp;subset=latin,latin-ext" rel="stylesheet">
   <link rel="shortcut icon" href="//php.net/favicon.ico">
@@ -65,7 +65,7 @@
 
 <section id="breadcrumbs">
 <nav>
-<span class="bchead">You are here: </span><span class="home"><bdi><a href="/start" class="wikilink1" title="start">start</a></bdi></span> › <bdi><a href="/rfc" class="wikilink1" title="rfc">rfc</a></bdi> › <bdi><span class="curid"><a href="/rfc/shorter_attribute_syntax" class="wikilink1" title="rfc:shorter_attribute_syntax">shorter_attribute_syntax</a></span></bdi></nav>
+<span class="bchead">You are here: </span><span class="home"><bdi><a href="/start" class="wikilink1" title="start" data-wiki-id="start">start</a></bdi></span> › <bdi><a href="/rfc" class="wikilink1" title="rfc" data-wiki-id="rfc">rfc</a></bdi> › <bdi><a href="/rfc/shorter_attribute_syntax" class="wikilink1" title="rfc:shorter_attribute_syntax" data-wiki-id="rfc:shorter_attribute_syntax">shorter_attribute_syntax</a></bdi></nav>
 </section>
 <section class="mainscreen">
     <!--[if lte IE 7 ]><div id="IE7"><![endif]--><!--[if IE 8 ]><div id="IE8"><![endif]-->
@@ -88,17 +88,15 @@
 <ul>
 <li class="level1"><div class="li"> Date: 2020-06-03</div>
 </li>
-<li class="level1"><div class="li"> Author: Theodore Brown <a href="mailto:&#x74;&#x68;&#x65;&#x6f;&#x64;&#x6f;&#x72;&#x65;&#x6a;&#x62;&#x40;&#x6f;&#x75;&#x74;&#x6c;&#x6f;&#x6f;&#x6b;&#x2e;&#x63;&#x6f;&#x6d;" class="mail" title="&#x74;&#x68;&#x65;&#x6f;&#x64;&#x6f;&#x72;&#x65;&#x6a;&#x62;&#x40;&#x6f;&#x75;&#x74;&#x6c;&#x6f;&#x6f;&#x6b;&#x2e;&#x63;&#x6f;&#x6d;">&#x74;&#x68;&#x65;&#x6f;&#x64;&#x6f;&#x72;&#x65;&#x6a;&#x62;&#x40;&#x6f;&#x75;&#x74;&#x6c;&#x6f;&#x6f;&#x6b;&#x2e;&#x63;&#x6f;&#x6d;</a>, Martin Schröder</div>
+<li class="level1"><div class="li"> Author: Theodore Brown <a href="mailto:&#116;&#104;&#101;&#111;&#100;&#111;&#114;&#101;&#106;&#98;&#64;&#111;&#117;&#116;&#108;&#111;&#111;&#107;&#46;&#99;&#111;&#109;" class="mail" title="&#116;&#104;&#101;&#111;&#100;&#111;&#114;&#101;&#106;&#98;&#64;&#111;&#117;&#116;&#108;&#111;&#111;&#107;&#46;&#99;&#111;&#109;">&#116;&#104;&#101;&#111;&#100;&#111;&#114;&#101;&#106;&#98;&#64;&#111;&#117;&#116;&#108;&#111;&#111;&#107;&#46;&#99;&#111;&#109;</a>, Martin Schröder</div>
 </li>
-<li class="level1"><div class="li"> Status: Accepted</div>
+<li class="level1"><div class="li"> Status: Implemented</div>
 </li>
-<li class="level1"><div class="li"> Discussion: <a href="https://externals.io/message/110355" class="urlextern" title="https://externals.io/message/110355" rel="nofollow">https://externals.io/message/110355</a></div>
+<li class="level1"><div class="li"> Discussion: <a href="https://externals.io/message/110355" class="urlextern" title="https://externals.io/message/110355" rel="ugc nofollow">https://externals.io/message/110355</a></div>
 </li>
 <li class="level1"><div class="li"> Target Version: PHP 8.0</div>
 </li>
-<li class="level1"><div class="li"> Implementation for <code>@@</code>: <a href="https://github.com/koolkode/php-src/pull/7" class="urlextern" title="https://github.com/koolkode/php-src/pull/7" rel="nofollow">https://github.com/koolkode/php-src/pull/7</a></div>
-</li>
-<li class="level1"><div class="li"> Implementation for <code>#[]</code>: <a href="https://github.com/koolkode/php-src/pull/5" class="urlextern" title="https://github.com/koolkode/php-src/pull/5" rel="nofollow">https://github.com/koolkode/php-src/pull/5</a></div>
+<li class="level1"><div class="li"> Implementation: <a href="https://github.com/php/php-src/pull/5796" class="urlextern" title="https://github.com/php/php-src/pull/5796" rel="ugc nofollow">https://github.com/php/php-src/pull/5796</a></div>
 </li>
 </ul>
 
@@ -117,7 +115,7 @@ We propose to use <code>@@Attr</code> or <code>#[Attr]</code> as the attribute s
 <div class="level3">
 
 <p>
-Early last month, the <a href="https://wiki.php.net/rfc/attributes_v2" class="urlextern" title="https://wiki.php.net/rfc/attributes_v2" rel="nofollow">Attributes v2</a> <abbr title="Request for Comments">RFC</abbr> was accepted for PHP 8.0. During voting there was a syntax choice between <code>&lt;&lt;Attr&gt;&gt;</code> and <code>@:Attr</code>, and the former was preferred by an approximately 3/4 majority.
+Early last month, the <a href="https://wiki.php.net/rfc/attributes_v2" class="urlextern" title="https://wiki.php.net/rfc/attributes_v2" rel="ugc nofollow">Attributes v2</a> <abbr title="Request for Comments">RFC</abbr> was accepted for PHP 8.0. During voting there was a syntax choice between <code>&lt;&lt;Attr&gt;&gt;</code> and <code>@:Attr</code>, and the former was preferred by an approximately 3/4 majority.
 </p>
 
 <p>
@@ -136,7 +134,7 @@ In this example from the <abbr title="Request for Comments">RFC</abbr>, there ar
 <span class="kw2">function</span> foo<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span></pre>
 
 <p>
-Especially once more than one attribute needs to be added, the syntax can get quite noisy and difficult to read at a glance. To alleviate this, the <a href="https://wiki.php.net/rfc/attribute_amendments" class="urlextern" title="https://wiki.php.net/rfc/attribute_amendments" rel="nofollow">Attribute Amendments</a> <abbr title="Request for Comments">RFC</abbr> proposes to allow grouping multiple attributes between one pair of <code>&lt;&lt;</code> and <code>&gt;&gt;</code> tokens:
+Especially once more than one attribute needs to be added, the syntax can get quite noisy and difficult to read at a glance. To alleviate this, the <a href="https://wiki.php.net/rfc/attribute_amendments" class="urlextern" title="https://wiki.php.net/rfc/attribute_amendments" rel="ugc nofollow">Attribute Amendments</a> <abbr title="Request for Comments">RFC</abbr> proposes to allow grouping multiple attributes between one pair of <code>&lt;&lt;</code> and <code>&gt;&gt;</code> tokens:
 </p>
 <pre class="code php"><span class="sy0">&lt;&lt;</span>Attr1<span class="br0">&#40;</span><span class="st0">&quot;foo&quot;</span><span class="br0">&#41;</span><span class="sy0">,</span>
   Attr2<span class="br0">&#40;</span><span class="st0">&quot;bar&quot;</span><span class="br0">&#41;</span><span class="sy0">&gt;&gt;</span>
@@ -161,7 +159,7 @@ But now two extra lines are needed for the <code>&lt;&lt;</code> and <code>&gt;&
 <div class="level3">
 
 <p>
-Nested annotations are quite common in apps using Doctrine. Here&#039;s an example <a href="https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/association-mapping.html#mapping-defaults" class="urlextern" title="https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/association-mapping.html#mapping-defaults" rel="nofollow">from the documentation</a>:
+Nested annotations are quite common in apps using Doctrine. Here&#039;s an example <a href="https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/association-mapping.html#mapping-defaults" class="urlextern" title="https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/association-mapping.html#mapping-defaults" rel="ugc nofollow">from the documentation</a>:
 </p>
 <pre class="code">@JoinTable(
     name=&quot;User_Group&quot;,
@@ -341,8 +339,8 @@ Note: JavaScript syntax highlighting is used so <code>#</code> doesn&#039;t appe
     <span class="co1">// with potential nesting in future</span>
     #<span class="br0">&#91;</span>JoinTable<span class="br0">&#40;</span>
         <span class="st0">&quot;User_Group&quot;</span><span class="sy0">,</span>
-        #JoinColumn<span class="br0">&#40;</span><span class="st0">&quot;User_id&quot;</span><span class="sy0">,</span> <span class="st0">&quot;id&quot;</span><span class="br0">&#41;</span><span class="sy0">,</span>
-        #JoinColumn<span class="br0">&#40;</span><span class="st0">&quot;Group_id&quot;</span><span class="sy0">,</span> <span class="st0">&quot;id&quot;</span><span class="br0">&#41;</span><span class="sy0">,</span>
+        #<span class="br0">&#91;</span>JoinColumn<span class="br0">&#40;</span><span class="st0">&quot;User_id&quot;</span><span class="sy0">,</span> <span class="st0">&quot;id&quot;</span><span class="br0">&#41;</span><span class="br0">&#93;</span><span class="sy0">,</span>
+        #<span class="br0">&#91;</span>JoinColumn<span class="br0">&#40;</span><span class="st0">&quot;Group_id&quot;</span><span class="sy0">,</span> <span class="st0">&quot;id&quot;</span><span class="br0">&#41;</span><span class="br0">&#93;</span><span class="sy0">,</span>
     <span class="br0">&#41;</span><span class="br0">&#93;</span>
     <span class="kw3">private</span> $groups<span class="sy0">;</span>
 &nbsp;
@@ -440,23 +438,23 @@ To some extent this may be true. However, in this case we believe there are also
 Most other languages with attributes use a variant of <code>[Attr]</code> or <code>@Attr</code> for the syntax. Hack is the only language using <code>&lt;&lt;Attr&gt;&gt;</code>, but apparently they are migrating away from this to <code>@Attr</code> now that compatibility with PHP is no longer a goal.
 </p>
 <ul>
-<li class="level1"><div class="li"> C#: <code>[Attr]</code> <a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/" class="urlextern" title="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/" rel="nofollow">1</a></div>
+<li class="level1"><div class="li"> C#: <code>[Attr]</code> <a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/" class="urlextern" title="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/" rel="ugc nofollow">1</a></div>
 </li>
-<li class="level1"><div class="li"> C++: <code>[[attr]]</code> <a href="https://docs.microsoft.com/en-us/cpp/cpp/attributes?view=vs-2019" class="urlextern" title="https://docs.microsoft.com/en-us/cpp/cpp/attributes?view=vs-2019" rel="nofollow">2</a></div>
+<li class="level1"><div class="li"> C++: <code>[[attr]]</code> <a href="https://docs.microsoft.com/en-us/cpp/cpp/attributes?view=vs-2019" class="urlextern" title="https://docs.microsoft.com/en-us/cpp/cpp/attributes?view=vs-2019" rel="ugc nofollow">2</a></div>
 </li>
-<li class="level1"><div class="li"> Hack: <code>&lt;&lt;Attr&gt;&gt;</code> <a href="https://docs.hhvm.com/hack/attributes/attribute-specification" class="urlextern" title="https://docs.hhvm.com/hack/attributes/attribute-specification" rel="nofollow">3</a> (but migrating to <code>@Attr</code>) <a href="https://github.com/facebook/hhvm/commit/a3f65737996e151ca2f25b3a335b89ef665c75cd" class="urlextern" title="https://github.com/facebook/hhvm/commit/a3f65737996e151ca2f25b3a335b89ef665c75cd" rel="nofollow">4</a></div>
+<li class="level1"><div class="li"> Hack: <code>&lt;&lt;Attr&gt;&gt;</code> <a href="https://docs.hhvm.com/hack/attributes/attribute-specification" class="urlextern" title="https://docs.hhvm.com/hack/attributes/attribute-specification" rel="ugc nofollow">3</a> (but migrating to <code>@Attr</code>) <a href="https://github.com/facebook/hhvm/commit/a3f65737996e151ca2f25b3a335b89ef665c75cd" class="urlextern" title="https://github.com/facebook/hhvm/commit/a3f65737996e151ca2f25b3a335b89ef665c75cd" rel="ugc nofollow">4</a></div>
 </li>
-<li class="level1"><div class="li"> Java: <code>@Attr</code> <a href="https://en.wikipedia.org/wiki/Java_annotation" class="urlextern" title="https://en.wikipedia.org/wiki/Java_annotation" rel="nofollow">5</a></div>
+<li class="level1"><div class="li"> Java: <code>@Attr</code> <a href="https://en.wikipedia.org/wiki/Java_annotation" class="urlextern" title="https://en.wikipedia.org/wiki/Java_annotation" rel="ugc nofollow">5</a></div>
 </li>
-<li class="level1"><div class="li"> Kotlin: <code>@Attr</code> <a href="https://kotlinlang.org/docs/reference/annotations.html" class="urlextern" title="https://kotlinlang.org/docs/reference/annotations.html" rel="nofollow">6</a></div>
+<li class="level1"><div class="li"> Kotlin: <code>@Attr</code> <a href="https://kotlinlang.org/docs/reference/annotations.html" class="urlextern" title="https://kotlinlang.org/docs/reference/annotations.html" rel="ugc nofollow">6</a></div>
 </li>
-<li class="level1"><div class="li"> Python: <code>@attr</code> <a href="https://pythonbasics.org/decorators/" class="urlextern" title="https://pythonbasics.org/decorators/" rel="nofollow">7</a></div>
+<li class="level1"><div class="li"> Python: <code>@attr</code> <a href="https://pythonbasics.org/decorators/" class="urlextern" title="https://pythonbasics.org/decorators/" rel="ugc nofollow">7</a></div>
 </li>
-<li class="level1"><div class="li"> Rust: <code>#[attr]</code> <a href="https://doc.rust-lang.org/reference/attributes.html" class="urlextern" title="https://doc.rust-lang.org/reference/attributes.html" rel="nofollow">8</a></div>
+<li class="level1"><div class="li"> Rust: <code>#[attr]</code> <a href="https://doc.rust-lang.org/reference/attributes.html" class="urlextern" title="https://doc.rust-lang.org/reference/attributes.html" rel="ugc nofollow">8</a></div>
 </li>
-<li class="level1"><div class="li"> Swift: <code>@attr</code> <a href="https://docs.swift.org/swift-book/ReferenceManual/Attributes.html" class="urlextern" title="https://docs.swift.org/swift-book/ReferenceManual/Attributes.html" rel="nofollow">9</a></div>
+<li class="level1"><div class="li"> Swift: <code>@attr</code> <a href="https://docs.swift.org/swift-book/ReferenceManual/Attributes.html" class="urlextern" title="https://docs.swift.org/swift-book/ReferenceManual/Attributes.html" rel="ugc nofollow">9</a></div>
 </li>
-<li class="level1"><div class="li"> TypeScript/JS: <code>@Attr</code> <a href="https://www.typescriptlang.org/docs/handbook/decorators.html" class="urlextern" title="https://www.typescriptlang.org/docs/handbook/decorators.html" rel="nofollow">10</a></div>
+<li class="level1"><div class="li"> TypeScript/JS: <code>@Attr</code> <a href="https://www.typescriptlang.org/docs/handbook/decorators.html" class="urlextern" title="https://www.typescriptlang.org/docs/handbook/decorators.html" rel="ugc nofollow">10</a></div>
 </li>
 </ul>
 
@@ -476,7 +474,7 @@ The alternate <code>#[]</code> syntax presents a larger backwards compatibility 
 </span><span class="re0">$val</span> <span class="sy0">=</span> <span class="br0">&#91;</span><span class="st_h">'new value'</span><span class="br0">&#93;</span><span class="sy0">;</span> <span class="co2">#['old value'];</span></pre>
 
 <p>
-While duplicate error suppression operators aren&#039;t useful, there is a use for comments starting with a left bracket (e.g. making checkboxes or commenting out an array). There is definitely code in the wild like this that would break. <a href="https://grep.app/search?q=%23%5B&amp;filter[lang][0]=PHP" class="urlextern" title="https://grep.app/search?q=%23%5B&amp;filter[lang][0]=PHP" rel="nofollow">11</a>
+While duplicate error suppression operators aren&#039;t useful, there is a use for comments starting with a left bracket (e.g. making checkboxes or commenting out an array). There is definitely code in the wild like this that would break. <a href="https://grep.app/search?q=%23%5B&amp;filter[lang][0]=PHP" class="urlextern" title="https://grep.app/search?q=%23%5B&amp;filter[lang][0]=PHP" rel="ugc nofollow">11</a>
 </p>
 
 </div>
@@ -485,11 +483,11 @@ While duplicate error suppression operators aren&#039;t useful, there is a use f
 <div class="level2">
 
 <p>
-Attributes can still be applied to all the same places outlined in the <a href="https://wiki.php.net/rfc/attributes_v2" class="urlextern" title="https://wiki.php.net/rfc/attributes_v2" rel="nofollow">Attributes v2</a> <abbr title="Request for Comments">RFC</abbr>. Non-syntactical attribute functionality also remains unchanged (e.g. the reflection <abbr title="Application Programming Interface">API</abbr>).
+Attributes can still be applied to all the same places outlined in the <a href="https://wiki.php.net/rfc/attributes_v2" class="urlextern" title="https://wiki.php.net/rfc/attributes_v2" rel="ugc nofollow">Attributes v2</a> <abbr title="Request for Comments">RFC</abbr>. Non-syntactical attribute functionality also remains unchanged (e.g. the reflection <abbr title="Application Programming Interface">API</abbr>).
 </p>
 
 <p>
-Finally, this proposal does not conflict with the <a href="https://wiki.php.net/rfc/attribute_amendments" class="urlextern" title="https://wiki.php.net/rfc/attribute_amendments" rel="nofollow">Attribute Amendments</a> <abbr title="Request for Comments">RFC</abbr>, with the exception that if the <code>@@</code> syntax is accepted, it will supersede the syntax for grouped attributes.
+Finally, this proposal does not conflict with the <a href="https://wiki.php.net/rfc/attribute_amendments" class="urlextern" title="https://wiki.php.net/rfc/attribute_amendments" rel="ugc nofollow">Attribute Amendments</a> <abbr title="Request for Comments">RFC</abbr>, with the exception that if the <code>@@</code> syntax is accepted, it will supersede the syntax for grouped attributes.
 </p>
 
 </div>
@@ -498,7 +496,7 @@ Finally, this proposal does not conflict with the <a href="https://wiki.php.net/
 <div class="level2">
 
 <p>
-On June 10-13 there was a poll on Reddit to see which syntax the community prefers. <a href="https://www.reddit.com/r/PHP/comments/h06bra/community_poll_attribute_syntax/" class="urlextern" title="https://www.reddit.com/r/PHP/comments/h06bra/community_poll_attribute_syntax/" rel="nofollow">12</a>
+On June 10-13 there was a poll on Reddit to see which syntax the community prefers. <a href="https://www.reddit.com/r/PHP/comments/h06bra/community_poll_attribute_syntax/" class="urlextern" title="https://www.reddit.com/r/PHP/comments/h06bra/community_poll_attribute_syntax/" rel="ugc nofollow">12</a>
 </p>
 
 <p>
@@ -861,7 +859,7 @@ Voting started on 2020-06-17 and ended on 2020-07-01.
 <div class="level3">
 
 <p>
-This is a ranked-choice poll (following <a href="https://en.wikipedia.org/wiki/Single_transferable_vote#Example" class="urlextern" title="https://en.wikipedia.org/wiki/Single_transferable_vote#Example" rel="nofollow">STV</a>) between the <code>@@</code>, <code>#[]</code>, and <code>&lt;&lt;&gt;&gt;</code> syntax alternatives. You can vote <strong>three</strong> times, but make sure you select each syntax only once.
+This is a ranked-choice poll (following <a href="https://en.wikipedia.org/wiki/Single_transferable_vote#Example" class="urlextern" title="https://en.wikipedia.org/wiki/Single_transferable_vote#Example" rel="ugc nofollow">STV</a>) between the <code>@@</code>, <code>#[]</code>, and <code>&lt;&lt;&gt;&gt;</code> syntax alternatives. You can vote <strong>three</strong> times, but make sure you select each syntax only once.
 </p>
 
 </div>
@@ -1908,9 +1906,9 @@ This is a ranked-choice poll (following <a href="https://en.wikipedia.org/wiki/S
 <h2 class="sectionedit27" id="references">References</h2>
 <div class="level2">
 <ul>
-<li class="level1"><div class="li"> Previous discussion about nested attributes: <a href="https://externals.io/message/108907#109623" class="urlextern" title="https://externals.io/message/108907#109623" rel="nofollow">https://externals.io/message/108907#109623</a> and <a href="https://externals.io/message/108907#109688" class="urlextern" title="https://externals.io/message/108907#109688" rel="nofollow">https://externals.io/message/108907#109688</a></div>
+<li class="level1"><div class="li"> Previous discussion about nested attributes: <a href="https://externals.io/message/108907#109623" class="urlextern" title="https://externals.io/message/108907#109623" rel="ugc nofollow">https://externals.io/message/108907#109623</a> and <a href="https://externals.io/message/108907#109688" class="urlextern" title="https://externals.io/message/108907#109688" rel="ugc nofollow">https://externals.io/message/108907#109688</a></div>
 </li>
-<li class="level1"><div class="li"> Previous comments in favor of <code>@@</code>: <a href="https://externals.io/message/109713#109742" class="urlextern" title="https://externals.io/message/109713#109742" rel="nofollow">https://externals.io/message/109713#109742</a></div>
+<li class="level1"><div class="li"> Previous comments in favor of <code>@@</code>: <a href="https://externals.io/message/109713#109742" class="urlextern" title="https://externals.io/message/109713#109742" rel="ugc nofollow">https://externals.io/message/109713#109742</a></div>
 </li>
 </ul>
 
@@ -1930,7 +1928,7 @@ This is a ranked-choice poll (following <a href="https://en.wikipedia.org/wiki/S
                     <!-- wikipage stop -->
                                     </div>
 
-                <div class="docInfo"><bdi>rfc/shorter_attribute_syntax.txt</bdi> · Last modified: 2020/07/02 00:01 by <bdi>theodorejb</bdi></div>
+                <div class="docInfo"><bdi>rfc/shorter_attribute_syntax.txt</bdi> · Last modified: 2020/08/12 15:56 by <bdi>theodorejb</bdi></div>
 
                             </div></div><!-- /content -->
 
@@ -1948,7 +1946,7 @@ This is a ranked-choice poll (following <a href="https://en.wikipedia.org/wiki/S
 
     </div></div><!-- /site -->
 
-    <div class="no"><img src="/lib/exe/indexer.php?id=rfc%3Ashorter_attribute_syntax&amp;1593648104" width="2" height="1" alt="" /></div>
+    <div class="no"><img src="/lib/exe/taskrunner.php?id=rfc%3Ashorter_attribute_syntax&amp;1681662152" width="2" height="1" alt="" /></div>
     <div id="screen__mode" class="no"></div>    <!--[if ( lte IE 7 | IE 8 ) ]></div><![endif]-->
 </section>
 
@@ -2013,7 +2011,7 @@ This is a ranked-choice poll (following <a href="https://en.wikipedia.org/wiki/S
 <footer>
   <nav class="fullscreen">
     <ul>
-      <li><a href="//php.net/copyright">Copyright © 2001-2020 The PHP Group</a></li>
+      <li><a href="//php.net/copyright">Copyright © 2001-2023 The PHP Group</a></li>
       <li><a href="//php.net/sites">Other PHP.net sites</a></li>
       <li><a href="//php.net/privacy">Privacy policy</a></li>
     </ul>
