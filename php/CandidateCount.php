@@ -11,7 +11,7 @@ class CandidateCount
 {
     public function __construct(
         public string $candidate,
-        public int $count,
+        public float $count,
         public string $details = '',
     ) {
     }

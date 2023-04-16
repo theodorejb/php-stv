@@ -16,8 +16,9 @@ class CandidateTransfers
     ) {
     }
 
-    public function getValue(): int
+    public function getValue(): float
     {
-        return count($this->ballots);
+        $ballotValues = array_map(fn($b) => $b->value, $this->ballots);
+        return array_sum($ballotValues);
     }
 }

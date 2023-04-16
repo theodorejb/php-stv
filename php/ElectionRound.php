@@ -6,7 +6,7 @@ namespace theodorejb\PhpStv;
 
 class ElectionRound
 {
-    /** @var array<string, int> */
+    /** @var array<string, float> */
     public array $tally;
 
     /** @var ElectedCandidate[] */
@@ -33,7 +33,7 @@ class ElectionRound
             $candidate = $ballot->getCandidate();
 
             if (isset($this->tally[$candidate])) {
-                $this->tally[$candidate]++;
+                $this->tally[$candidate] += $ballot->value;
             }
         }
 
@@ -51,7 +51,8 @@ class ElectionRound
             $summary .= "<ul>\n";
 
             foreach ($transfers as $candidate => $transfer) {
-                $summary .= "  <li>" . Utils::encodeHtml($candidate) . ": <b>+{$transfer}</b></li>\n";
+                $displayValue = round($transfer, 3);
+                $summary .= "  <li>" . Utils::encodeHtml($candidate) . ": <b>+{$displayValue}</b></li>\n";
             }
 
             $summary .= "</ul>\n";
@@ -72,10 +73,11 @@ class ElectionRound
 
         foreach ($this->tally as $candidate => $count) {
             $encoded = Utils::encodeHtml($candidate);
+            $displayCount = round($count, 3);
             $summary .= <<<candidateRow
                 <tr>
                   <td>{$encoded}</td>
-                  <td>{$count}</td>
+                  <td>{$displayCount}</td>
                 </tr>
 
             candidateRow;
@@ -86,7 +88,7 @@ class ElectionRound
     }
 
     /**
-     * @return array<string, int>
+     * @return array<string, float>
      */
     public function getTransfers(): array
     {
@@ -97,9 +99,9 @@ class ElectionRound
                 $candidate = $ballot->getCandidate();
 
                 if (!isset($transfers[$candidate])) {
-                    $transfers[$candidate] = 1;
+                    $transfers[$candidate] = $ballot->value;
                 } else {
-                    $transfers[$candidate]++;
+                    $transfers[$candidate] += $ballot->value;
                 }
             }
         }

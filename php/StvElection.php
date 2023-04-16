@@ -81,7 +81,7 @@ class StvElection
                     $output .= "<ul>\n";
 
                     foreach ($candidate->transfers as $transfer) {
-                        $transferValue = $transfer->getValue();
+                        $transferValue = round($transfer->getValue(), 3);
                         $output .= "  <li>" . Utils::encodeHtml($transfer->candidate) . ": <b>+{$transferValue}</b>";
                         $output .= "  " . Utils::encodeHtml($transfer->details) . "</li>\n";
                     }
@@ -91,7 +91,8 @@ class StvElection
             }
 
             if (count($round->eliminated) !== 0) {
-                $output .= "<h4>⛔ Eliminated (" . $round->eliminated[0]->count . " votes)</h4>\n";
+                $displayCount = round($round->eliminated[0]->count, 3);
+                $output .= "<h4>⛔ Eliminated ({$displayCount} votes)</h4>\n";
                 $output .= "<ul>\n";
 
                 foreach ($round->eliminated as $cc) {

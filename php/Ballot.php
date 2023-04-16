@@ -15,6 +15,7 @@ class Ballot
         public array $rankedChoices,
         public int $selectedChoice = 0,
         public ?int $lastChoice = null,
+        public float $value = 1.0,
     ) {
         if (count($rankedChoices) === 0) {
             throw new \Exception("Ballot for '{$name}' has no ranked choices");
@@ -30,7 +31,7 @@ class Ballot
     {
         if (!isset($eliminated[$this->getCandidate()])) {
             // return new instance so ballot won't appear as transferred
-            return new self($this->name, $this->rankedChoices, $this->selectedChoice);
+            return new self($this->name, $this->rankedChoices, $this->selectedChoice, null, $this->value);
         }
 
         return $this->getNextPreference(array_merge($elected, $eliminated));
@@ -45,7 +46,7 @@ class Ballot
             $candidate = $this->rankedChoices[$index];
 
             if (!isset($eliminated[$candidate])) {
-                return new self($this->name, $this->rankedChoices, $index, $lastChoice);
+                return new self($this->name, $this->rankedChoices, $index, $lastChoice, $this->value);
             }
 
             $index++;
