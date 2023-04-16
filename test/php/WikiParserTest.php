@@ -40,8 +40,8 @@ class WikiParserTest extends TestCase
         ], $firstRound->tally);
 
         $this->assertEquals([
-            new CandidateCount('Gabriel Caruso', 11, 'floor(18 * (18 / 29))'),
-            new CandidateCount('Ben Ramsey', 6, 'floor(11 * (18 / 29))'),
+            new CandidateCount('Gabriel Caruso', 11.172413793103452, '18 * (18 / 29)'),
+            new CandidateCount('Ben Ramsey', 6.827586206896552, '11 * (18 / 29)'),
         ], StvElectionTest::getTransferCandidateCounts($firstElected->transfers));
 
         // round 2
@@ -54,8 +54,8 @@ class WikiParserTest extends TestCase
         ], $secondRound->eliminated);
 
         $this->assertEquals([
-            'Ben Ramsey' => 13,
-            'Gabriel Caruso' => 13,
+            'Ben Ramsey' => 13.827586206896559,
+            'Gabriel Caruso' => 13.172413793103454,
             'Joe Ferguson' => 1,
         ], $secondRound->tally);
 
@@ -68,12 +68,12 @@ class WikiParserTest extends TestCase
         ], $thirdRound->getTransfers());
 
         $this->assertEquals([
-            new CandidateCount('Ben Ramsey', 13),
+            new CandidateCount('Ben Ramsey', 13.827586206896559),
         ], $thirdRound->eliminated);
 
         $this->assertEquals([
-            'Ben Ramsey' => 13,
-            'Gabriel Caruso' => 14,
+            'Ben Ramsey' => 13.827586206896559,
+            'Gabriel Caruso' => 14.172413793103456,
         ], $thirdRound->tally);
 
         // round 4
@@ -82,13 +82,13 @@ class WikiParserTest extends TestCase
         $this->assertCount(1, $fourthRound->elected);
         $elected = $fourthRound->elected[0];
         $this->assertSame('Gabriel Caruso', $elected->name);
-        $this->assertEquals(8, $elected->surplus);
+        $this->assertEquals(7.896551724137929, $elected->surplus);
         $this->assertEmpty($elected->transfers);
 
         $this->assertEmpty($fourthRound->eliminated);
 
         $this->assertEquals([
-            'Gabriel Caruso' => 23,
+            'Gabriel Caruso' => 22.89655172413793,
         ], $fourthRound->tally);
     }
 
@@ -177,7 +177,7 @@ class WikiParserTest extends TestCase
         ], $firstRound->tally);
     }
 
-    public function testRmElection83WithTie(): void
+    public function testRmElection83(): void
     {
         $html = WikiParser::getHtml('test/cases/rm_election_83.html');
         $election = WikiParser::getStvElection($html);
@@ -189,7 +189,7 @@ class WikiParserTest extends TestCase
         $this->assertEmpty($election->invalidBallots);
 
         $rounds = $election->runElection();
-        $this->assertCount(2, $rounds);
+        $this->assertCount(3, $rounds);
 
         // round 1
         $firstRound = $rounds[0];
@@ -207,8 +207,8 @@ class WikiParserTest extends TestCase
         ], $firstRound->tally);
 
         $this->assertEquals([
-            new CandidateCount('C Buckley', 7, 'floor(13 * (11 / 19))'),
-            new CandidateCount('E Mann', 3, 'floor(6 * (11 / 19))'),
+            new CandidateCount('C Buckley', 7.526315789473687, '13 * (11 / 19)'),
+            new CandidateCount('E Mann', 3.473684210526316, '6 * (11 / 19)'),
         ], StvElectionTest::getTransferCandidateCounts($firstElected->transfers));
 
         // round 2
@@ -217,14 +217,31 @@ class WikiParserTest extends TestCase
         $this->assertEmpty($secondRound->elected);
 
         $this->assertEquals([
-            new CandidateCount('E Mann', 7),
-            new CandidateCount('C Buckley', 7),
+            new CandidateCount('E Mann', 7.473684210526319),
         ], $secondRound->eliminated);
 
         $this->assertEquals([
-            'E Mann' => 7,
-            'C Buckley' => 7,
+            'E Mann' => 7.473684210526319,
+            'C Buckley' => 7.526315789473687,
         ], $secondRound->tally);
+
+        // round 3
+        $thirdRound = $rounds[2];
+
+        $this->assertEquals([
+            'C Buckley' => 7.473684210526319,
+        ], $thirdRound->getTransfers());
+
+        $this->assertCount(1, $thirdRound->elected);
+        $secondElected = $thirdRound->elected[0];
+        $this->assertSame('C Buckley', $secondElected->name);
+        $this->assertEquals(6.000000000000009, $secondElected->surplus);
+
+        $this->assertEmpty($thirdRound->eliminated);
+
+        $this->assertEquals([
+            'C Buckley' => 15.000000000000009,
+        ], $thirdRound->tally);
     }
 
     public function testShorterAttributeSyntax(): void

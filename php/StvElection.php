@@ -83,7 +83,7 @@ class StvElection
                     foreach ($candidate->transfers as $transfer) {
                         $transferValue = round($transfer->getValue(), 3);
                         $output .= "  <li>" . Utils::encodeHtml($transfer->candidate) . ": <b>+{$transferValue}</b>";
-                        $output .= "  " . Utils::encodeHtml($transfer->details) . "</li>\n";
+                        $output .= "  (" . Utils::encodeHtml($transfer->details) . ")</li>\n";
                     }
 
                     $output .= "</ul>\n";

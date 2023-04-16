@@ -194,14 +194,15 @@ class ElectionRound
             $e->transfers = [];
 
             foreach ($nextPreferences as $nextCandidate => $ballots) {
-                $nextCount = count($ballots);
-                $toTransfer = (int) floor($nextCount * $transferValue);
-                $details = "floor({$nextCount} * ({$e->surplus} / {$e->transferable}))";
+                $candidateValue = 0;
 
-                if ($toTransfer !== 0) {
-                    $transferBallots = array_slice($ballots, 0, $toTransfer);
-                    $e->transfers[] = new CandidateTransfers($nextCandidate, $details, $transferBallots);
+                foreach ($ballots as $ballot) {
+                    $candidateValue += $ballot->value;
+                    $ballot->value *= $transferValue;
                 }
+
+                $details = "{$candidateValue} * ({$e->surplus} / {$e->transferable})";
+                $e->transfers[] = new CandidateTransfers($nextCandidate, $details, $ballots);
             }
         }
     }
