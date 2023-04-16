@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace theodorejb\PhpStv;
+namespace theodorejb\PhpStv\Tests;
 
 use PHPUnit\Framework\TestCase;
+use theodorejb\PhpStv\{Ballot, CandidateCount, WikiParser};
 
 class WikiParserTest extends TestCase
 {
@@ -41,7 +42,7 @@ class WikiParserTest extends TestCase
         $this->assertEquals([
             new CandidateCount('Gabriel Caruso', 11, 'floor(18 * (18 / 29))'),
             new CandidateCount('Ben Ramsey', 6, 'floor(11 * (18 / 29))'),
-        ], $firstElected->transfers);
+        ], StvElectionTest::getTransferCandidateCounts($firstElected->transfers));
 
         // round 2
         $secondRound = $rounds[1];
@@ -81,13 +82,13 @@ class WikiParserTest extends TestCase
         $this->assertCount(1, $fourthRound->elected);
         $elected = $fourthRound->elected[0];
         $this->assertSame('Gabriel Caruso', $elected->name);
-        $this->assertEquals(4, $elected->surplus);
+        $this->assertEquals(8, $elected->surplus);
         $this->assertEmpty($elected->transfers);
 
         $this->assertEmpty($fourthRound->eliminated);
 
         $this->assertEquals([
-            'Gabriel Caruso' => 19,
+            'Gabriel Caruso' => 23,
         ], $fourthRound->tally);
     }
 
@@ -208,7 +209,7 @@ class WikiParserTest extends TestCase
         $this->assertEquals([
             new CandidateCount('C Buckley', 7, 'floor(13 * (11 / 19))'),
             new CandidateCount('E Mann', 3, 'floor(6 * (11 / 19))'),
-        ], $firstElected->transfers);
+        ], StvElectionTest::getTransferCandidateCounts($firstElected->transfers));
 
         // round 2
         $secondRound = $rounds[1];

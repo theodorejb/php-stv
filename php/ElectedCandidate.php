@@ -7,7 +7,7 @@ namespace theodorejb\PhpStv;
 class ElectedCandidate
 {
     /**
-     * @param CandidateCount[] $transfers
+     * @param CandidateTransfers[] $transfers
      */
     public function __construct(
         public string $name,

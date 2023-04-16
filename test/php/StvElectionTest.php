@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace theodorejb\PhpStv;
+namespace theodorejb\PhpStv\Tests;
 
 use PHPUnit\Framework\TestCase;
+use theodorejb\PhpStv\{Ballot, CandidateCount, CandidateTransfers, StvElection};
 
 class StvElectionTest extends TestCase
 {
@@ -45,7 +46,7 @@ class StvElectionTest extends TestCase
         $this->assertEquals([
             new CandidateCount('Strawberries', 4, 'floor(8 * (6 / 12))'),
             new CandidateCount('Hamburgers', 2, 'floor(4 * (6 / 12))'),
-        ], $firstElected->transfers);
+        ], self::getTransferCandidateCounts($firstElected->transfers));
 
         // round 2
         $secondRound = $rounds[1];
@@ -127,7 +128,7 @@ class StvElectionTest extends TestCase
         $this->assertSame(21, $election->quota);
         $this->assertEmpty($election->invalidBallots);
         $rounds = $election->runElection();
-        $this->assertCount(4, $rounds);
+        $this->assertCount(5, $rounds);
 
         // round 1
         $firstRound = $rounds[0];
@@ -139,7 +140,7 @@ class StvElectionTest extends TestCase
 
         $this->assertEquals([
             new CandidateCount('S', 19, 'floor(40 * (19 / 40))'),
-        ], $firstElected->transfers);
+        ], self::getTransferCandidateCounts($firstElected->transfers));
 
         $this->assertEmpty($firstRound->eliminated);
 
@@ -162,9 +163,10 @@ class StvElectionTest extends TestCase
         $this->assertEquals(16, $secondElected->surplus);
 
         $this->assertEquals([
-            new CandidateCount('T', 8, 'floor(9 * (16 / 18))'),
-            new CandidateCount('U', 8, 'floor(9 * (16 / 18))'),
-        ], $secondElected->transfers);
+            new CandidateCount('T', 3, 'floor(9 * (16 / 37))'),
+            new CandidateCount('U', 3, 'floor(9 * (16 / 37))'),
+            new CandidateCount('V', 8, 'floor(19 * (16 / 37))'),
+        ], self::getTransferCandidateCounts($secondElected->transfers));
 
         $this->assertEmpty($secondRound->eliminated);
 
@@ -179,37 +181,54 @@ class StvElectionTest extends TestCase
         $thirdRound = $rounds[2];
 
         $this->assertEquals([
-            new CandidateCount('V', 9),
+            new CandidateCount('T', 9),
         ], $thirdRound->eliminated);
 
         $this->assertEmpty($thirdRound->getTransfers());
         $this->assertEmpty($thirdRound->elected);
 
         $this->assertEquals([
-            'T' => 14,
-            'U' => 15,
-            'V' => 9,
+            'T' => 9,
+            'U' => 10,
+            'V' => 17,
         ], $thirdRound->tally);
 
         // round 4
         $fourthRound = $rounds[3];
 
         $this->assertEquals([
-            'T' => 9,
+            'U' => 9,
         ], $fourthRound->getTransfers());
 
-        $this->assertCount(1, $fourthRound->elected);
-        $thirdElected = $fourthRound->elected[0];
-        $this->assertSame('T', $thirdElected->name);
-        $this->assertEquals(2, $thirdElected->surplus);
-        $this->assertEmpty($thirdElected->transfers);
-
-        $this->assertEmpty($fourthRound->eliminated);
+        $this->assertCount(0, $fourthRound->elected);
 
         $this->assertEquals([
-            'T' => 23,
-            'U' => 15,
+            new CandidateCount('V', 17),
+        ], $fourthRound->eliminated);
+
+        $this->assertEquals([
+            'U' => 19,
+            'V' => 17,
         ], $fourthRound->tally);
+
+        // round 5
+        $fifthRound = $rounds[4];
+
+        $this->assertEquals([
+            'U' => 17,
+        ], $fifthRound->getTransfers());
+
+        $this->assertCount(1, $fifthRound->elected);
+        $thirdElected = $fifthRound->elected[0];
+        $this->assertSame('U', $thirdElected->name);
+        $this->assertEquals(15, $thirdElected->surplus);
+        $this->assertEmpty($thirdElected->transfers);
+
+        $this->assertEmpty($fifthRound->eliminated);
+
+        $this->assertEquals([
+            'U' => 36,
+        ], $fifthRound->tally);
     }
 
     public function testMultipleElectedInRound(): void
@@ -241,7 +260,7 @@ class StvElectionTest extends TestCase
         $this->assertEquals([
             new CandidateCount('Eva', 3, 'floor(10 * (6 / 19))'),
             new CandidateCount('Chad', 2, 'floor(9 * (6 / 19))'),
-        ], $firstElected->transfers);
+        ], self::getTransferCandidateCounts($firstElected->transfers));
 
         $secondElected = $firstRound->elected[1];
         $this->assertSame('Bob', $secondElected->name);
@@ -250,7 +269,7 @@ class StvElectionTest extends TestCase
         $this->assertEquals([
             new CandidateCount('Deb', 2, 'floor(8 * (6 / 19))'),
             new CandidateCount('Chad', 3, 'floor(11 * (6 / 19))'),
-        ], $secondElected->transfers);
+        ], self::getTransferCandidateCounts($secondElected->transfers));
 
         $this->assertEmpty($firstRound->eliminated);
 
@@ -279,6 +298,21 @@ class StvElectionTest extends TestCase
             'Deb' => 4,
             'Eva' => 3,
         ], $secondRound->tally);
+    }
+
+    /**
+     * @param CandidateTransfers[] $transfers
+     * @return CandidateCount[]
+     */
+    public static function getTransferCandidateCounts(array $transfers): array
+    {
+        $counts = [];
+
+        foreach ($transfers as $transfer) {
+            $counts[] = new CandidateCount($transfer->candidate, $transfer->getValue(), $transfer->details);
+        }
+
+        return $counts;
     }
 
     /**

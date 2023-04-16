@@ -24,6 +24,11 @@
             "theodorejb\\PhpStv\\": "php/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "theodorejb\\PhpStv\\Tests\\": "test/php/"
+        }
+    },
     "scripts": {
         "psalm": "psalm",
         "test": "phpunit"

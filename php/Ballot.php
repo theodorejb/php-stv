@@ -36,15 +36,16 @@ class Ballot
         return $this->getNextPreference(array_merge($elected, $eliminated));
     }
 
-    public function getNextPreference(array $eliminated): ?self
+    public function getNextPreference(array $eliminated, bool $keepLastChoice = true): ?self
     {
         $index = $this->selectedChoice + 1;
+        $lastChoice = $keepLastChoice ? $this->selectedChoice : null;
 
         while (isset($this->rankedChoices[$index])) {
             $candidate = $this->rankedChoices[$index];
 
             if (!isset($eliminated[$candidate])) {
-                return new self($this->name, $this->rankedChoices, $index, $this->selectedChoice);
+                return new self($this->name, $this->rankedChoices, $index, $lastChoice);
             }
 
             $index++;

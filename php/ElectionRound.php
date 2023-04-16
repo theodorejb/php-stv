@@ -147,9 +147,7 @@ class ElectionRound
         // add transfer ballots from any elected candidates
         foreach ($elected as $candidate) {
             foreach ($candidate->transfers as $transfer) {
-                for ($i = 0; $i < $transfer->count; $i++) {
-                    $ballots[] = new Ballot('', [$transfer->candidate]);
-                }
+                array_push($ballots, ...$transfer->ballots);
             }
         }
 
@@ -187,17 +185,20 @@ class ElectionRound
     {
         foreach ($this->elected as $e) {
             // tally next preferences of each voter for this candidate
-            $nextTally = $this->getNextPreferenceTally($e->name, $excluded);
+            $nextPreferences = $this->getNextPreferences($e->name, $excluded);
+            $nextTally = array_map(fn($np) => count($np), $nextPreferences);
             $e->transferable = array_sum($nextTally);
             $transferValue = ($e->transferable !== 0) ? $e->surplus / $e->transferable : 0;
             $e->transfers = [];
 
-            foreach ($nextTally as $nextCandidate => $nextCount) {
+            foreach ($nextPreferences as $nextCandidate => $ballots) {
+                $nextCount = count($ballots);
                 $toTransfer = (int) floor($nextCount * $transferValue);
                 $details = "floor({$nextCount} * ({$e->surplus} / {$e->transferable}))";
 
                 if ($toTransfer !== 0) {
-                    $e->transfers[] = new CandidateCount($nextCandidate, $toTransfer, $details);
+                    $transferBallots = array_slice($ballots, 0, $toTransfer);
+                    $e->transfers[] = new CandidateTransfers($nextCandidate, $details, $transferBallots);
                 }
             }
         }
@@ -205,28 +206,23 @@ class ElectionRound
 
     /**
      * @param array<string, true> $excluded
-     * @return array<string, int>
+     * @return array<string, Ballot[]>
      */
-    private function getNextPreferenceTally(string $candidate, array $excluded): array
+    private function getNextPreferences(string $candidate, array $excluded): array
     {
-        $tally = [];
+        $preferences = [];
 
         foreach ($this->ballots as $ballot) {
             if ($ballot->getCandidate() === $candidate) {
-                $nextPreference = $ballot->getNextPreference($excluded);
+                $nextPreference = $ballot->getNextPreference($excluded, false);
 
                 if ($nextPreference !== null) {
                     $nextCandidate = $nextPreference->getCandidate();
-
-                    if (!isset($tally[$nextCandidate])) {
-                        $tally[$nextCandidate] = 1;
-                    } else {
-                        $tally[$nextCandidate]++;
-                    }
+                    $preferences[$nextCandidate][] = $nextPreference;
                 }
             }
         }
 
-        return $tally;
+        return $preferences;
     }
 }
