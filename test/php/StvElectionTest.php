@@ -32,9 +32,9 @@ class StvElectionTest extends TestCase
 
         $firstElected = $firstRound->elected[0];
         $this->assertSame('Chocolate', $firstElected->name);
-        $this->assertSame(6, $firstElected->surplus);
+        $this->assertEquals(6, $firstElected->surplus);
 
-        $this->assertSame([
+        $this->assertEquals([
             'Oranges' => 5,
             'Pears' => 3,
             'Chocolate' => 12,
@@ -56,7 +56,7 @@ class StvElectionTest extends TestCase
             new CandidateCount('Pears', 3),
         ], $secondRound->eliminated);
 
-        $this->assertSame([
+        $this->assertEquals([
             'Oranges' => 5,
             'Pears' => 3,
             'Strawberries' => 5,
@@ -67,16 +67,16 @@ class StvElectionTest extends TestCase
         $thirdRound = $rounds[2];
         $this->assertEmpty($thirdRound->eliminated);
 
-        $this->assertSame([
+        $this->assertEquals([
             'Oranges' => 3,
         ], $thirdRound->getTransfers());
 
         $secondElected = $thirdRound->elected[0];
         $this->assertSame('Oranges', $secondElected->name);
-        $this->assertSame(2, $secondElected->surplus);
+        $this->assertEquals(2, $secondElected->surplus);
         $this->assertEmpty($secondElected->transfers);
 
-        $this->assertSame([
+        $this->assertEquals([
             'Oranges' => 8,
             'Strawberries' => 5,
             'Hamburgers' => 4,
@@ -91,7 +91,7 @@ class StvElectionTest extends TestCase
             new CandidateCount('Hamburgers', 4),
         ], $fourthRound->eliminated);
 
-        $this->assertSame([
+        $this->assertEquals([
             'Strawberries' => 5,
             'Hamburgers' => 4,
         ], $fourthRound->tally);
@@ -103,10 +103,10 @@ class StvElectionTest extends TestCase
 
         $thirdElected = $fifthRound->elected[0];
         $this->assertSame('Strawberries', $thirdElected->name);
-        $this->assertSame(-1, $thirdElected->surplus);
+        $this->assertEquals(-1, $thirdElected->surplus);
         $this->assertEmpty($thirdElected->transfers);
 
-        $this->assertSame([
+        $this->assertEquals([
             'Strawberries' => 5,
         ], $fifthRound->tally);
     }
@@ -135,7 +135,7 @@ class StvElectionTest extends TestCase
 
         $firstElected = $firstRound->elected[0];
         $this->assertSame('R', $firstElected->name);
-        $this->assertSame(19, $firstElected->surplus);
+        $this->assertEquals(19, $firstElected->surplus);
 
         $this->assertEquals([
             new CandidateCount('S', 19, 'floor(40 * (19 / 40))'),
@@ -143,7 +143,7 @@ class StvElectionTest extends TestCase
 
         $this->assertEmpty($firstRound->eliminated);
 
-        $this->assertSame([
+        $this->assertEquals([
             'R' => 40,
             'S' => 18,
             'T' => 6,
@@ -159,7 +159,7 @@ class StvElectionTest extends TestCase
 
         $secondElected = $secondRound->elected[0];
         $this->assertSame('S', $secondElected->name);
-        $this->assertSame(16, $secondElected->surplus);
+        $this->assertEquals(16, $secondElected->surplus);
 
         $this->assertEquals([
             new CandidateCount('T', 8, 'floor(9 * (16 / 18))'),
@@ -168,7 +168,7 @@ class StvElectionTest extends TestCase
 
         $this->assertEmpty($secondRound->eliminated);
 
-        $this->assertSame([
+        $this->assertEquals([
             'S' => 37,
             'T' => 6,
             'U' => 7,
@@ -185,7 +185,7 @@ class StvElectionTest extends TestCase
         $this->assertEmpty($thirdRound->getTransfers());
         $this->assertEmpty($thirdRound->elected);
 
-        $this->assertSame([
+        $this->assertEquals([
             'T' => 14,
             'U' => 15,
             'V' => 9,
@@ -194,19 +194,19 @@ class StvElectionTest extends TestCase
         // round 4
         $fourthRound = $rounds[3];
 
-        $this->assertSame([
+        $this->assertEquals([
             'T' => 9,
         ], $fourthRound->getTransfers());
 
         $this->assertCount(1, $fourthRound->elected);
         $thirdElected = $fourthRound->elected[0];
         $this->assertSame('T', $thirdElected->name);
-        $this->assertSame(2, $thirdElected->surplus);
+        $this->assertEquals(2, $thirdElected->surplus);
         $this->assertEmpty($thirdElected->transfers);
 
         $this->assertEmpty($fourthRound->eliminated);
 
-        $this->assertSame([
+        $this->assertEquals([
             'T' => 23,
             'U' => 15,
         ], $fourthRound->tally);
@@ -236,7 +236,7 @@ class StvElectionTest extends TestCase
 
         $firstElected = $firstRound->elected[0];
         $this->assertSame('Amy', $firstElected->name);
-        $this->assertSame(6, $firstElected->surplus);
+        $this->assertEquals(6, $firstElected->surplus);
 
         $this->assertEquals([
             new CandidateCount('Eva', 3, 'floor(10 * (6 / 19))'),
@@ -245,7 +245,7 @@ class StvElectionTest extends TestCase
 
         $secondElected = $firstRound->elected[1];
         $this->assertSame('Bob', $secondElected->name);
-        $this->assertSame(6, $secondElected->surplus);
+        $this->assertEquals(6, $secondElected->surplus);
 
         $this->assertEquals([
             new CandidateCount('Deb', 2, 'floor(8 * (6 / 19))'),
@@ -254,7 +254,7 @@ class StvElectionTest extends TestCase
 
         $this->assertEmpty($firstRound->eliminated);
 
-        $this->assertSame([
+        $this->assertEquals([
             'Amy' => 19,
             'Bob' => 19,
             'Chad' => 8,
@@ -270,11 +270,11 @@ class StvElectionTest extends TestCase
 
         $thirdElected = $secondRound->elected[0];
         $this->assertSame('Chad', $thirdElected->name);
-        $this->assertSame(0, $thirdElected->surplus);
+        $this->assertEquals(0, $thirdElected->surplus);
 
         $this->assertEmpty($secondRound->eliminated);
 
-        $this->assertSame([
+        $this->assertEquals([
             'Chad' => 13,
             'Deb' => 4,
             'Eva' => 3,

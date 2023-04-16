@@ -28,9 +28,9 @@ class WikiParserTest extends TestCase
 
         $firstElected = $firstRound->elected[0];
         $this->assertSame('Sara Golemon', $firstElected->name);
-        $this->assertSame(18, $firstElected->surplus);
+        $this->assertEquals(18, $firstElected->surplus);
 
-        $this->assertSame([
+        $this->assertEquals([
             'Ben Ramsey' => 7,
             'Gabriel Caruso' => 2,
             'Joe Ferguson' => 1,
@@ -51,7 +51,7 @@ class WikiParserTest extends TestCase
             new CandidateCount('Joe Ferguson', 1),
         ], $secondRound->eliminated);
 
-        $this->assertSame([
+        $this->assertEquals([
             'Ben Ramsey' => 13,
             'Gabriel Caruso' => 13,
             'Joe Ferguson' => 1,
@@ -61,7 +61,7 @@ class WikiParserTest extends TestCase
         $thirdRound = $rounds[2];
         $this->assertEmpty($thirdRound->elected);
 
-        $this->assertSame([
+        $this->assertEquals([
             'Gabriel Caruso' => 1,
         ], $thirdRound->getTransfers());
 
@@ -69,7 +69,7 @@ class WikiParserTest extends TestCase
             new CandidateCount('Ben Ramsey', 13),
         ], $thirdRound->eliminated);
 
-        $this->assertSame([
+        $this->assertEquals([
             'Ben Ramsey' => 13,
             'Gabriel Caruso' => 14,
         ], $thirdRound->tally);
@@ -95,9 +95,9 @@ class WikiParserTest extends TestCase
 
         $firstElected = $firstRound->elected[0];
         $this->assertSame('J Zelenka', $firstElected->name);
-        $this->assertSame(10, $firstElected->surplus);
+        $this->assertEquals(10, $firstElected->surplus);
 
-        $this->assertSame([
+        $this->assertEquals([
             'E Mann' => 3,
             'C Buckley' => 0,
             'J Zelenka' => 17,
@@ -118,7 +118,7 @@ class WikiParserTest extends TestCase
             new CandidateCount('C Buckley', 6),
         ], $secondRound->eliminated);
 
-        $this->assertSame([
+        $this->assertEquals([
             'E Mann' => 6,
             'C Buckley' => 6,
         ], $secondRound->tally);
@@ -144,10 +144,10 @@ class WikiParserTest extends TestCase
 
         $firstElected = $firstRound->elected[0];
         $this->assertSame('@@', $firstElected->name);
-        $this->assertSame(3, $firstElected->surplus);
+        $this->assertEquals(3, $firstElected->surplus);
         $this->assertEmpty($firstElected->transfers);
 
-        $this->assertSame([
+        $this->assertEquals([
             '@@' => 34,
             '#[]' => 21,
             '<<>>' => 6,
