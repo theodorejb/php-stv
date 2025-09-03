@@ -5,6 +5,11 @@
 
 set -e # exit when any command fails
 
+targetDir="/var/www/php-stv"
+
+# clean up old folders
+find -H /var/www -type d -name "php-stv_*" ! -samefile $targetDir -prune -exec rm -r {} \;
+
 # unzip to new incremented folder
 date=$(date +%Y_%m_%d_%H%M%S)
 folder="/var/www/php-stv_$date"
@@ -14,8 +19,5 @@ unzip -q ~/php-stv.zip -d $folder
 cp --no-clobber $folder/php-stv_prod.conf /etc/nginx/sites-available/php-stv
 
 # create/update nginx symlink to new folder
-ln -sfn $folder /var/www/php-stv
-sudo service nginx restart
-
-# clean up old folders
-find /var/www -type d -name "php-stv_*" ! -name "php-stv_$date" -prune -exec rm -r {} \;
+ln -sfn $folder $targetDir
+sudo systemctl reload nginx
