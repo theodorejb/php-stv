@@ -94,15 +94,16 @@ class WikiParser
     {
         libxml_use_internal_errors(true);
         $doc = new DOMDocument();
-        $doc->loadHTML($html);
+        $doc->loadHTML($html, LIBXML_BIGLINES);
         libxml_use_internal_errors(false);
 
         $forms = $doc->getElementsByTagName('form');
         $rankedVotes = [];
 
         for ($i = 0; $i < $forms->count(); $i++) {
+            /** @var DOMNode $form */
             $form = $forms->item($i);
-            $nameAttr = $form->attributes->getNamedItem('name');
+            $nameAttr = $form->attributes?->getNamedItem('name');
 
             if (!$nameAttr || $nameAttr->nodeValue !== 'doodle__form') {
                 continue;
@@ -123,6 +124,7 @@ class WikiParser
     private static function getFirstTable(DOMNodeList $nodes): ?DOMNode
     {
         for ($i = 0; $i < $nodes->count(); $i++) {
+            /** @var DOMNode $node */
             $node = $nodes->item($i);
 
             if ($node->nodeName === 'table') {
@@ -139,6 +141,7 @@ class WikiParser
         $tbody = null;
 
         for ($i = 0; $i < $children->count(); $i++) {
+            /** @var DOMNode $child */
             $child = $children->item($i);
             if ($child->nodeName === 'tbody') {
                 $tbody = $child;
@@ -162,6 +165,7 @@ class WikiParser
         $votes = [];
 
         for ($i = 0; $i < $rows->count(); $i++) {
+            /** @var DOMNode $row */
             $row = $rows->item($i);
 
             if ($row->nodeName !== 'tr') {
@@ -214,6 +218,7 @@ class WikiParser
         $candidates = [];
 
         for ($i = 0; $i < $row->childNodes->count(); $i++) {
+            /** @var DOMNode $child */
             $child = $row->childNodes->item($i);
 
             if ($child->nodeName === 'td') {
@@ -233,6 +238,7 @@ class WikiParser
         $candidateIndex = 0;
 
         for ($i = 0; $i < $row->childNodes->count(); $i++) {
+            /** @var DOMNode $child */
             $child = $row->childNodes->item($i);
 
             if ($child->nodeName === 'th' &&
@@ -268,6 +274,7 @@ class WikiParser
     private static function containsImg(DOMNode $node): bool
     {
         for ($i = 0; $i < $node->childNodes->count(); $i++) {
+            /** @var DOMNode $child */
             $child = $node->childNodes->item($i);
 
             if ($child->nodeName === 'img') {

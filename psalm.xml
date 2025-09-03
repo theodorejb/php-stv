@@ -21,4 +21,8 @@
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
     </plugins>
+    <issueHandlers>
+        <ClassMustBeFinal errorLevel="suppress" />
+        <InvalidOperand errorLevel="suppress" />
+    </issueHandlers>
 </psalm>
