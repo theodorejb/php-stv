@@ -5,7 +5,7 @@ use theodorejb\PhpStv\Page;
 require '../vendor/autoload.php';
 
 $html = <<<_html
-    <p>Last updated 2023-04-16</p>
+    <p>Last updated 2025-09-02</p>
     
     <div class="container p-3 pb-1 mb-4 shadow-sm">
         <h2>RFCs</h2>
@@ -18,6 +18,8 @@ $html = <<<_html
     <div class="container p-3 pb-1 mb-4 shadow-sm">
         <h2>Release manager elections</h2>
         <ul>
+            <li><a href="/php?election=todo/php85">PHP 8.5</a> (2025-04-02)</li>
+            <li><a href="/php?election=todo/php84">PHP 8.4</a> (2024-04-02)</li>
             <li><a href="/php?election=todo/php83">PHP 8.3</a> (2023-04-01)</li>
             <li><a href="/php?election=todo/php82">PHP 8.2</a> (2022-05-11)</li>
             <li><a href="/php?election=todo/php81">PHP 8.1</a> (2021-04-12)</li>
