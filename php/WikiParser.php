@@ -105,7 +105,7 @@ class WikiParser
             $form = $forms->item($i);
             $nameAttr = $form->attributes?->getNamedItem('name');
 
-            if (!$nameAttr || $nameAttr->nodeValue !== 'doodle__form') {
+            if ($nameAttr?->nodeValue !== 'doodle__form') {
                 continue;
             }
 
@@ -135,33 +135,35 @@ class WikiParser
         return null;
     }
 
-    private static function getRows(DOMNode $table): DOMNodeList
+    private static function getNthChildByName(DOMNode $node, string $name, int $n = 0): DOMNode
     {
-        $children = $table->childNodes;
-        $tbody = null;
+        $children = $node->childNodes;
+        $index = 0;
 
         for ($i = 0; $i < $children->count(); $i++) {
             /** @var DOMNode $child */
             $child = $children->item($i);
-            if ($child->nodeName === 'tbody') {
-                $tbody = $child;
-                break;
+            if ($child->nodeName === $name) {
+                if ($index === $n) {
+                    return $child;
+                }
+                $index++;
             }
         }
 
-        if ($tbody === null) {
-            throw new Exception('No tbody in table');
-        }
-
-        return $tbody->childNodes;
+        throw new Exception("Failed to find child $n $name");
     }
 
     private static function getVoteInfo(DOMNode $table): Poll
     {
-        $rows = self::getRows($table);
-        $name = null;
+        $thead = self::getNthChildByName($table, 'thead');
+        $titleRow = self::getNthChildByName($thead, 'tr');
+        $name = trim($titleRow->textContent);
+        $candidatesRow = self::getNthChildByName($thead, 'tr', 1);
+        $candidates = self::getCandidates($candidatesRow);
+
+        $rows = self::getNthChildByName($table, 'tbody')->childNodes;
         $pollClosed = false;
-        $candidates = null;
         $votes = [];
 
         for ($i = 0; $i < $rows->count(); $i++) {
@@ -172,39 +174,13 @@ class WikiParser
                 continue;
             }
 
-            if ($row->hasAttributes()) {
-                /** @var \DOMNamedNodeMap $attributes */
-                $attributes = $row->attributes;
-                $classAttr = $attributes->getNamedItem('class');
+            $vote = self::getVote($row);
 
-                if (!$classAttr) {
-                    throw new Exception('Missing class attribute for row');
-                }
-
-                if ($classAttr->nodeValue === 'row0') {
-                    $name = trim($row->textContent);
-                } elseif ($classAttr->nodeValue === 'row1') {
-                    $candidates = self::getCandidates($row);
-                } else {
-                    throw new Exception('Unexpected class name for row');
-                }
-            } else {
-                $vote = self::getVote($row);
-
-                if ($vote === false) {
-                    $pollClosed = true;
-                } elseif ($vote !== null) {
-                    $votes[] = $vote;
-                }
+            if ($vote === false) {
+                $pollClosed = true;
+            } elseif ($vote !== null) {
+                $votes[] = $vote;
             }
-        }
-
-        if ($name === null) {
-            throw new Exception('Failed to find vote name');
-        }
-
-        if ($candidates === null) {
-            throw new Exception('Failed to find candidates');
         }
 
         return new Poll($name, $candidates, $votes, $pollClosed, $table->getLineNo());
@@ -221,7 +197,17 @@ class WikiParser
             /** @var DOMNode $child */
             $child = $row->childNodes->item($i);
 
-            if ($child->nodeName === 'td') {
+            if ($child->nodeName === 'th') {
+                if ($child->hasAttributes()) {
+                    /** @var \DOMNamedNodeMap $attributes */
+                    $attributes = $child->attributes;
+                    $classAttr = $attributes->getNamedItem('class');
+
+                    if ($classAttr?->nodeValue === 'fields_caption') {
+                        continue;
+                    }
+                }
+
                 $candidates[] = $child->textContent;
             }
         }
@@ -241,7 +227,7 @@ class WikiParser
             /** @var DOMNode $child */
             $child = $row->childNodes->item($i);
 
-            if ($child->nodeName === 'th' &&
+            if ($child->nodeName === 'td' &&
                 (trim($child->textContent) === 'Count:' || trim($child->textContent) === 'Final result:')
             ) {
                 return null; // tally row

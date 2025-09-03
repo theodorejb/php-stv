@@ -144,7 +144,7 @@ class WikiParserTest extends TestCase
         $this->assertCount(28, $election->validBallots);
         $this->assertSame(10, $election->quota);
         $this->assertEquals([
-            new Ballot('felipe (felipe)', array_fill(0, 7, 'P Charron')),
+            new Ballot('felipe', array_fill(0, 7, 'P Charron')),
         ], $election->invalidBallots);
 
         $rounds = $election->runElection();
@@ -182,7 +182,7 @@ class WikiParserTest extends TestCase
         $html = WikiParser::getHtml('test/cases/rm_election_83.html');
         $election = WikiParser::getStvElection($html);
 
-        $this->assertFalse($election->isClosed);
+        $this->assertTrue($election->isClosed);
         $this->assertCount(3, $election->candidates);
         $this->assertCount(24, $election->validBallots);
         $this->assertSame(9, $election->quota);
@@ -237,7 +237,7 @@ class WikiParserTest extends TestCase
         $this->assertCount(61, $election->validBallots);
         $this->assertSame(31, $election->quota);
         $this->assertEquals([
-            new Ballot('mgocobachi (mgocobachi)', array_fill(0, 3, '#[]')),
+            new Ballot('mgocobachi', array_fill(0, 3, '#[]')),
         ], $election->invalidBallots);
 
         $rounds = $election->runElection();
@@ -271,7 +271,7 @@ class WikiParserTest extends TestCase
         $this->assertCount(65, $election->validBallots);
         $this->assertSame(33, $election->quota);
         $this->assertEquals([
-            new Ballot('duodraco (duodraco)', ['#[Attr]', '<<Attr>>', '@[Attr]', '@{Attr}', '@:Attr', '@[Attr]']),
+            new Ballot('duodraco', ['#[Attr]', '<<Attr>>', '@[Attr]', '@{Attr}', '@:Attr', '@[Attr]']),
         ], $election->invalidBallots);
 
         $rounds = $election->runElection();
