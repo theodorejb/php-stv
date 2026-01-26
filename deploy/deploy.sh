@@ -7,8 +7,10 @@ set -e # exit when any command fails
 
 targetDir="/var/www/php-stv"
 
-# clean up old folders
-find -H /var/www -type d -name "php-stv_*" ! -samefile $targetDir -prune -exec rm -r {} \;
+if [ -d $targetDir ]; then
+    # clean up old folders
+    find -H /var/www -type d -name "php-stv_*" ! -samefile $targetDir -prune -exec rm -r {} \;
+fi
 
 # unzip to new incremented folder
 date=$(date +%Y_%m_%d_%H%M%S)
