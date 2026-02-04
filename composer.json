@@ -17,7 +17,7 @@
     "require-dev": {
         "phpunit/phpunit": "^11.5",
         "psalm/plugin-phpunit": "^0.19.5",
-        "vimeo/psalm": "^6.13"
+        "vimeo/psalm": "^6.15"
     },
     "autoload": {
         "psr-4": {
@@ -30,6 +30,9 @@
         }
     },
     "config": {
+      "platform": {
+        "php": "8.2.30"
+      },
       "sort-packages": true
     },
     "scripts": {
