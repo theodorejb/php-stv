@@ -11,7 +11,7 @@ class WikiParserTest extends TestCase
 {
     public function testRmElection80(): void
     {
-        $html = WikiParser::getHtml('test/cases/rm_election_80.html');
+        $html = WikiParser::getHtml('tests/cases/rm_election_80.html');
         $election = WikiParser::getStvElection($html);
 
         $this->assertTrue($election->isClosed);
@@ -94,7 +94,7 @@ class WikiParserTest extends TestCase
 
     public function testRmElection81(): void
     {
-        $html = WikiParser::getHtml('test/cases/rm_election_81.html');
+        $html = WikiParser::getHtml('tests/cases/rm_election_81.html');
         $election = WikiParser::getStvElection($html);
 
         $this->assertTrue($election->isClosed);
@@ -136,7 +136,7 @@ class WikiParserTest extends TestCase
 
     public function testRmElection82(): void
     {
-        $html = WikiParser::getHtml('test/cases/rm_election_82.html');
+        $html = WikiParser::getHtml('tests/cases/rm_election_82.html');
         $election = WikiParser::getStvElection($html);
 
         $this->assertTrue($election->isClosed);
@@ -179,7 +179,7 @@ class WikiParserTest extends TestCase
 
     public function testRmElection83WithTie(): void
     {
-        $html = WikiParser::getHtml('test/cases/rm_election_83.html');
+        $html = WikiParser::getHtml('tests/cases/rm_election_83.html');
         $election = WikiParser::getStvElection($html);
 
         $this->assertTrue($election->isClosed);
@@ -229,7 +229,7 @@ class WikiParserTest extends TestCase
 
     public function testShorterAttributeSyntax(): void
     {
-        $html = WikiParser::getHtml('test/cases/shorter_attribute_syntax.html');
+        $html = WikiParser::getHtml('tests/cases/shorter_attribute_syntax.html');
         $election = WikiParser::getStvElection($html, false);
 
         $this->assertTrue($election->isClosed);
@@ -263,7 +263,7 @@ class WikiParserTest extends TestCase
 
     public function testShorterAttributeSyntaxChange(): void
     {
-        $html = WikiParser::getHtml('test/cases/shorter_attribute_syntax_change.html');
+        $html = WikiParser::getHtml('tests/cases/shorter_attribute_syntax_change.html');
         $election = WikiParser::getStvElection($html);
 
         $this->assertTrue($election->isClosed);
@@ -341,7 +341,7 @@ class WikiParserTest extends TestCase
 
     public function testDequeNamingPatternStrawPoll(): void
     {
-        $html = WikiParser::getHtml('test/cases/deque_straw_poll.html');
+        $html = WikiParser::getHtml('tests/cases/deque_straw_poll.html');
         $election = WikiParser::getStvElection($html);
 
         $this->assertTrue($election->isClosed);
@@ -373,7 +373,7 @@ class WikiParserTest extends TestCase
 
     public function testIterableNamespacingStrawPoll(): void
     {
-        $html = WikiParser::getHtml('test/cases/iterable_namespace_straw_poll.html');
+        $html = WikiParser::getHtml('tests/cases/iterable_namespace_straw_poll.html');
         $election = WikiParser::getStvElection($html);
 
         $this->assertTrue($election->isClosed);

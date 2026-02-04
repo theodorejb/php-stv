@@ -12,7 +12,7 @@
     <projectFiles>
         <directory name="php"/>
         <directory name="public"/>
-        <directory name="test"/>
+        <directory name="tests"/>
         <file name="stv.php"/>
         <ignoreFiles>
             <directory name="vendor"/>
