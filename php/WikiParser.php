@@ -212,6 +212,11 @@ class WikiParser
             }
         }
 
+        $lastKey = array_key_last($candidates);
+        if ($lastKey !== null && strtolower($candidates[$lastKey]) === 'abstain') {
+            array_pop($candidates); // ignore abstain votes
+        }
+
         return $candidates;
     }
 
@@ -226,14 +231,17 @@ class WikiParser
         for ($i = 0; $i < $row->childNodes->count(); $i++) {
             /** @var DOMNode $child */
             $child = $row->childNodes->item($i);
+            $trimmedContent = trim($child->textContent);
 
-            if ($child->nodeName === 'td' &&
-                (trim($child->textContent) === 'Count:' || trim($child->textContent) === 'Final result:')
-            ) {
-                return null; // tally row
+            if ($child->nodeName === 'td' && (
+                $trimmedContent === 'Count:'
+                || $trimmedContent === 'Final result:'
+                || str_starts_with($trimmedContent, 'This poll will close on')
+            )) {
+                return null; // tally or close time row
             }
 
-            if ($child->nodeName === 'td' && trim($child->textContent) === 'This poll has been closed.') {
+            if ($child->nodeName === 'td' && $trimmedContent === 'This poll has been closed.') {
                 return false; // poll closed row
             }
 
@@ -243,7 +251,7 @@ class WikiParser
 
             // first td is username
             if ($username === null) {
-                $username = trim($child->textContent);
+                $username = $trimmedContent;
                 continue;
             }
 

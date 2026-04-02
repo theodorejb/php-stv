@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace theodorejb\PhpStv\Tests;
 
 use PHPUnit\Framework\TestCase;
-use theodorejb\PhpStv\{Ballot, CandidateCount, WikiParser};
+use theodorejb\PhpStv\{Ballot, CandidateCount, ElectedCandidate, WikiParser};
 
 class WikiParserTest extends TestCase
 {
@@ -225,6 +225,123 @@ class WikiParserTest extends TestCase
             'E Mann' => 7,
             'C Buckley' => 7,
         ], $secondRound->tally);
+    }
+
+    public function testRmElection86Unclosed(): void
+    {
+        $html = WikiParser::getHtml('tests/cases/rm_election_86_autoclose.html');
+        $election = WikiParser::getStvElection($html);
+
+        $this->assertFalse($election->isClosed);
+        $this->assertCount(7, $election->candidates);
+        $this->assertCount(18, $election->validBallots);
+        $this->assertSame(7, $election->quota);
+
+        $this->assertEquals([
+            new Ballot('beberlei', [
+                'Matteo Beccati',
+                'Joe Ferguson',
+                'Jordi Kroon',
+                'Paul Dragoonis',
+                'Aggelos Bellos',
+                'Pierre Tondereau',
+                'Pierre Tondereau',
+            ]),
+        ], $election->invalidBallots);
+
+        $rounds = $election->runElection();
+        $this->assertCount(5, $rounds);
+
+        // round 1
+        $firstRound = $rounds[0];
+        $this->assertEmpty($firstRound->getTransfers());
+        $this->assertEmpty($firstRound->eliminated);
+
+        $firstElected = $firstRound->elected[0];
+        $this->assertSame('Matteo Beccati', $firstElected->name);
+        $this->assertEquals(4, $firstElected->surplus);
+
+        $this->assertEquals([
+            'Joe Ferguson' => 4,
+            'Jordi Kroon' => 1,
+            'Paul Dragoonis' => 2,
+            'Matteo Beccati' => 11,
+            'Aggelos Bellos' => 0,
+            'Pierre Tondereau' => 0,
+            'Patrick Martin' => 0,
+        ], $firstRound->tally);
+
+        $this->assertEquals([
+            new CandidateCount('Paul Dragoonis', 1, 'floor(5 * (4 / 11))'),
+            new CandidateCount('Joe Ferguson', 1, 'floor(4 * (4 / 11))'),
+        ], StvElectionTest::getTransferCandidateCounts($firstElected->transfers));
+
+        // round 2
+        $secondRound = $rounds[1];
+        $this->assertEmpty($secondRound->getTransfers());
+        $this->assertEmpty($secondRound->elected);
+
+        $this->assertEquals([
+            new CandidateCount('Aggelos Bellos', 0),
+            new CandidateCount('Pierre Tondereau', 0),
+            new CandidateCount('Patrick Martin', 0),
+        ], $secondRound->eliminated);
+
+        $this->assertEquals([
+            'Joe Ferguson' => 5,
+            'Jordi Kroon' => 1,
+            'Paul Dragoonis' => 3,
+            'Aggelos Bellos' => 0,
+            'Pierre Tondereau' => 0,
+            'Patrick Martin' => 0,
+        ], $secondRound->tally);
+
+        // round 3
+        $thirdRound = $rounds[2];
+        $this->assertEmpty($thirdRound->getTransfers());
+        $this->assertEmpty($thirdRound->elected);
+
+        $this->assertEquals([
+            new CandidateCount('Jordi Kroon', 1),
+        ], $thirdRound->eliminated);
+
+        $this->assertEquals([
+            'Joe Ferguson' => 5,
+            'Jordi Kroon' => 1,
+            'Paul Dragoonis' => 3,
+        ], $thirdRound->tally);
+
+        // round 4
+        $fourthRound = $rounds[3];
+        $this->assertEquals([
+            'Joe Ferguson' => 1,
+        ], $fourthRound->getTransfers());
+        $this->assertEmpty($fourthRound->elected);
+
+        $this->assertEquals([
+            new CandidateCount('Paul Dragoonis', 3),
+        ], $fourthRound->eliminated);
+
+        $this->assertEquals([
+            'Joe Ferguson' => 6,
+            'Paul Dragoonis' => 3,
+        ], $fourthRound->tally);
+
+        // round 5
+        $fourthRound = $rounds[4];
+        $this->assertEquals([
+            'Joe Ferguson' => 2,
+        ], $fourthRound->getTransfers());
+
+        $this->assertEquals([
+            new ElectedCandidate('Joe Ferguson', 1)
+        ], $fourthRound->elected);
+
+        $this->assertEmpty($fourthRound->eliminated);
+
+        $this->assertEquals([
+            'Joe Ferguson' => 8,
+        ], $fourthRound->tally);
     }
 
     public function testShorterAttributeSyntax(): void
