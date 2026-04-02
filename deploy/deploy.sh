@@ -18,7 +18,7 @@ folder="/var/www/php-stv_$date"
 unzip -q ~/php-stv.zip -d $folder
 
 # copy nginx configuration if it doesn't exist yet
-cp --no-clobber $folder/php-stv_prod.conf /etc/nginx/sites-available/php-stv
+cp --update=none $folder/php-stv_prod.conf /etc/nginx/sites-available/php-stv
 
 # create/update nginx symlink to new folder
 ln -sfn $folder $targetDir

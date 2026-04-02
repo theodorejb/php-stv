@@ -1,12 +1,11 @@
-# starting with Ubuntu 20.04 x64 image
+# starting with Ubuntu 24.04 x64 image
 
 # Add PHP ppa and install PHP
 sudo add-apt-repository ppa:ondrej/php
-sudo apt install php8.0-fpm php8.0-xml php8.0-mysql php8.0-mbstring
+sudo apt install php8.5-fpm php8.5-xml php8.5-mysql php8.5-mbstring
 
 # install nginx and zip/unzip
-sudo apt install nginx
-sudo apt install zip unzip
+sudo apt install nginx zip unzip
 
 # remove symlink to disable default site
 rm /etc/nginx/sites-enabled/default
@@ -18,10 +17,7 @@ bash deploy/build.sh # run locally, not on server
 ln -sfn /etc/nginx/sites-available/php-stv /etc/nginx/sites-enabled/
 sudo systemctl reload nginx
 
-# enable HTTPS - see https://certbot.eff.org/lets-encrypt/ubuntufocal-nginx
-sudo apt-get update
-sudo apt-get install software-properties-common
-sudo add-apt-repository universe
-sudo apt-get update
-sudo apt-get install certbot python3-certbot-nginx
+# enable HTTPS - see https://certbot.eff.org/instructions?ws=nginx&os=snap
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/local/bin/certbot
 sudo certbot --nginx
